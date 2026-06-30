@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CEO AI Security Tool</title>
+    <style>
+        body { 
+            background-color: #121212; 
+            color: #00ff00; 
+            font-family: monospace; 
+            text-align: center; 
+            padding-top: 50px; 
+        }
+        .box { 
+            border: 2px solid #00ff00; 
+            padding: 25px; 
+            display: inline-block; 
+            margin-top: 20px; 
+            border-radius: 10px; 
+            background-color: #1a1a1a; 
+            box-shadow: 0 0 15px #00ff00; 
+        }
+        .input-style { 
+            background: #000; 
+            color: #00ff00; 
+            border: 1px solid #00ff00; 
+            padding: 10px; 
+            font-family: monospace; 
+            font-size: 16px; 
+            text-align: center; 
+            margin-top: 15px; 
+            width: 250px; 
+        }
+        .btn { 
+            background-color: #00ff00; 
+            color: #121212; 
+            padding: 10px 20px; 
+            border: none; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-family: monospace; 
+            margin-top: 15px; 
+        }
+        .btn:hover { background-color: #00cc00; }
+    </style>
+</head>
+<body>
+    <h1>CEO Təhlükəsizlik Aləti v2.0</h1>
+    <p>C++ Alqoritmləri ilə Gücləndirilmiş Canlı Şifrə Analiz Sistemi</p>
+    
+    <div class="box">
+        <h3>Sistem Canlı Analiz Nəticəsi:</h3>
+        <p>Yoxlanılan Şifrə: <b style='color:#ffffff' id="displayPass">CppCEO14</b></p>
+        <p>Təhlükəsizlik Statusu: <b style='color:#ffcc00' id="displayStatus">Mükəmməl Təhlükəsiz Şifrə! [CEO Təsdiqlədi]</b></p>
+        
+        <hr style="border-color: #00ff00; margin: 20px 0;">
+        
+        <p>Yeni Şifrə Test Et:</p>
+        <input type="text" class="input-style" placeholder="Şifrəni bura yazın..." id="passInput"><br>
+        <button class="btn" onclick="analizEt()">Canlı Analiz Et</button>
+    </div>
+
+    <!-- Brauzeri C++ məntiqi ilə canlı birləşdirən JavaScript kodu -->
+    <script>
+        function analizEt() {
+            var sifre = document.getElementById("passInput").value;
+            
+            if(sifre === "") {
+                alert("Zəhmət olmasa bir şifrə daxil edin!");
+                return;
+            }
+            
+            document.getElementById("displayPass").innerText = sifre;
+            var statusEkranı = document.getElementById("displayStatus");
+            
+            // Bizim C++ funksiyamızın tam eynisini brauzer daxilində işlədirik
+            if (sifre.length < 6) {
+                statusEkranı.innerText = "Çox Zəif! (Minimum 6 simvol olmalıdır)";
+                statusEkranı.style.color = "#ff3333"; // Qırmızı rəng
+                return;
+            }
+            
+            var boyukHerf = false;
+            var reqem = false;
+            
+            for (var i = 0; i < sifre.length; i++) {
+                var c = sifre[i];
+                if (c >= 'A' && c <= 'Z') boyukHerf = true;
+                if (c >= '0' && c <= '9') reqem = true;
+            }
+            
+            if (boyukHerf && reqem) {
+                statusEkranı.innerText = "Mükəmməl Təhlükəsiz Şifrə! [C++ Təsdiqlədi]";
+                statusEkranı.style.color = "#00ff00"; // Yaşıl rəng
+            } else if (boyukHerf || reqem) {
+                statusEkranı.innerText = "Orta Səviyyə. Həm rəqəm, həm böyük hərf istifadə edin.";
+                statusEkranı.style.color = "#ffcc00"; // Sarı rəng
+            } else {
+                statusEkranı.innerText = "Zəif Şifrə. Rəqəmlər və böyük hərflər əlavə edin.";
+                statusEkranı.style.color = "#ff9900"; // Narıncı rəng
+            }
+        }
+    </script>
+</body>
+</html>

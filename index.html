@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CEO AI Security Tool</title>
+    <title>CEO Gaming & Security Tools</title>
     <style>
         body { 
             background-color: #121212; 
             color: #00ff00; 
             font-family: monospace; 
             text-align: center; 
-            padding-top: 50px; 
+            padding: 20px; 
+            margin: 0;
         }
-        .box { 
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .sidebar-ad {
+            width: 160px;
+            height: 600px;
+            border: 2px dashed #555;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .center-box { 
+            flex-grow: 1;
+            max-width: 700px;
             border: 2px solid #00ff00; 
             padding: 25px; 
-            display: inline-block; 
-            margin-top: 20px; 
             border-radius: 10px; 
             background-color: #1a1a1a; 
             box-shadow: 0 0 15px #00ff00; 
+            margin: 0 20px;
         }
         .input-style { 
             background: #000; 
@@ -28,7 +48,7 @@
             font-size: 16px; 
             text-align: center; 
             margin-top: 15px; 
-            width: 250px; 
+            width: 280px; 
         }
         .btn { 
             background-color: #00ff00; 
@@ -39,65 +59,95 @@
             cursor: pointer; 
             font-family: monospace; 
             margin-top: 15px; 
+            font-size: 15px;
+            border-radius: 3px;
         }
         .btn:hover { background-color: #00cc00; }
+        .donate-btn {
+            background-color: #ffdd00;
+            color: #000;
+            padding: 12px 25px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: monospace;
+            margin-top: 30px;
+            font-size: 16px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px #ffdd00;
+        }
+        .donate-btn:hover { background-color: #e6c800; }
+        .output-box {
+            margin-top: 20px;
+            background: #000;
+            padding: 15px;
+            border: 1px solid #333;
+            min-height: 50px;
+            color: #fff;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
-    <h1>CEO Təhlükəsizlik Aləti v2.0</h1>
-    <p>C++ Alqoritmləri ilə Gücləndirilmiş Canlı Şifrə Analiz Sistemi</p>
+
+    <h1>CEO Multi-Tool Platform v4.0</h1>
+    <p>Qanuni Rəqəmsal Biznes və Proqramlaşdırma Sistemi</p>
     
-    <div class="box">
-        <h3>Sistem Canlı Analiz Nəticəsi:</h3>
-        <p>Yoxlanılan Şifrə: <b style='color:#ffffff' id="displayPass">CppCEO14</b></p>
-        <p>Təhlükəsizlik Statusu: <b style='color:#ffcc00' id="displayStatus">Mükəmməl Təhlükəsiz Şifrə! [CEO Təsdiqlədi]</b></p>
+    <div class="main-container">
         
-        <hr style="border-color: #00ff00; margin: 20px 0;">
+        <!-- SOL REKLAM QUTUSU -->
+        <div class="sidebar-ad">
+            Google AdSense<br>Reklam Sahəsi
+        </div>
         
-        <p>Yeni Şifrə Test Et:</p>
-        <input type="text" class="input-style" placeholder="Şifrəni bura yazın..." id="passInput"><br>
-        <button class="btn" onclick="analizEt()">Canlı Analiz Et</button>
+        <!-- ƏSAS ALƏT PANELİ -->
+        <div class="center-box">
+            <h2>🎮 Havalı Oyun Nickname Generatoru</h2>
+            <p>Adınızı yazın və C++ məntiqli JavaScript alqoritmi ilə havalı ləqəblər yaradın:</p>
+            
+            <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
+            <button class="btn" onclick="generateNicknames()">Havalı Adlar Yarat</button>
+            
+            <div class="output-box" id="nickResult">
+                Nəticələr burada görünəcək...
+            </div>
+            
+            <hr style="border-color: #00ff00; margin: 30px 0;">
+            
+            <!-- ÖDƏNİŞ / BAĞIŞ SİSTEMİ DÜYMƏSİ -->
+            <h3>☕ Layihəyə Dəstək Sistemi</h3>
+            <p>Əgər xidmətimizi bəyəndinizsə, CEO-ya rəsmi dəstək ola bilərsiniz:</p>
+            <button class="donate-btn" onclick="alert('Ödəniş Sistemi Qoşulur... Valideyn onlayn pul kisəsi (PayPal/Stripe) tələb olunur.')">☕ CEO-ya Dəstək Ol (1 AZN)</button>
+        </div>
+        
+        <!-- SAĞ REKLAM QUTUSU -->
+        <div class="sidebar-ad">
+            Google AdSense<br>Reklam Sahəsi
+        </div>
+        
     </div>
 
-    <!-- Brauzeri C++ məntiqi ilə canlı birləşdirən JavaScript kodu -->
     <script>
-        function analizEt() {
-            var sifre = document.getElementById("passInput").value;
-            
-            if(sifre === "") {
-                alert("Zəhmət olmasa bir şifrə daxil edin!");
+        function generateNicknames() {
+            var name = document.getElementById("nickInput").value;
+            if(name === "") {
+                alert("Zəhmət olmasa bir ad daxil edin!");
                 return;
             }
             
-            document.getElementById("displayPass").innerText = sifre;
-            var statusEkranı = document.getElementById("displayStatus");
+            // Havalı simvollarla adları bəzəyən alqoritm
+            var res1 = "꧁༺ " + name + " ༻꧂";
+            var res2 = "⚔️ " + name + " ⚔️";
+            var res3 = "⚡" + name + "_CEO⚡";
+            var res4 = "☠️ [ " + name + " ] ☠️";
             
-            // Bizim C++ funksiyamızın tam eynisini brauzer daxilində işlədirik
-            if (sifre.length < 6) {
-                statusEkranı.innerText = "Çox Zəif! (Minimum 6 simvol olmalıdır)";
-                statusEkranı.style.color = "#ff3333"; // Qırmızı rəng
-                return;
-            }
-            
-            var boyukHerf = false;
-            var reqem = false;
-            
-            for (var i = 0; i < sifre.length; i++) {
-                var c = sifre[i];
-                if (c >= 'A' && c <= 'Z') boyukHerf = true;
-                if (c >= '0' && c <= '9') reqem = true;
-            }
-            
-            if (boyukHerf && reqem) {
-                statusEkranı.innerText = "Mükəmməl Təhlükəsiz Şifrə! [C++ Təsdiqlədi]";
-                statusEkranı.style.color = "#00ff00"; // Yaşıl rəng
-            } else if (boyukHerf || reqem) {
-                statusEkranı.innerText = "Orta Səviyyə. Həm rəqəm, həm böyük hərf istifadə edin.";
-                statusEkranı.style.color = "#ffcc00"; // Sarı rəng
-            } else {
-                statusEkranı.innerText = "Zəif Şifrə. Rəqəmlər və böyük hərflər əlavə edin.";
-                statusEkranı.style.color = "#ff9900"; // Narıncı rəng
-            }
+            var output = "<b>Sizin üçün seçimlər:</b><br><br>" + 
+                         res1 << "<br>" << 
+                         res2 << "<br>" << 
+                         res3 << "<br>" << 
+                         res4;
+                         
+            document.getElementById("nickResult").innerHTML = output;
         }
     </script>
 </body>

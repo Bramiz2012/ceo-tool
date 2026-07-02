@@ -103,7 +103,7 @@
         <!-- ƏSAS ALƏT PANELİ -->
         <div class="center-box">
             <h2>🎮 Havalı Oyun Nickname Generatoru</h2>
-            <p>Adınızı yazın və C++ məntiqli JavaScript alqoritmi ilə havalı ləqəblər yaradın:</p>
+            <p>Adınızı yazın və havalı ləqəblər yaradın:</p>
             
             <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
             <button class="btn" onclick="generateNicknames()">Havalı Adlar Yarat</button>
@@ -135,16 +135,15 @@
                 return;
             }
             
-            // Havalı simvollarla adları bəzəyən alqoritm
             var res1 = "꧁༺ " + name + " ༻꧂";
             var res2 = "⚔️ " + name + " ⚔️";
-            var res3 = "⚡" + name + "_CEO⚡";
+            var res3 = "⚡ " + name + "_CEO ⚡";
             var res4 = "☠️ [ " + name + " ] ☠️";
             
             var output = "<b>Sizin üçün seçimlər:</b><br><br>" + 
-                         res1 << "<br>" << 
-                         res2 << "<br>" << 
-                         res3 << "<br>" << 
+                         res1 + "<br>" + 
+                         res2 + "<br>" + 
+                         res3 + "<br>" + 
                          res4;
                          
             document.getElementById("nickResult").innerHTML = output;

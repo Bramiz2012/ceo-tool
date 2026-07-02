@@ -62,7 +62,6 @@
             margin-top: 15px; 
             font-size: 15px;
             border-radius: 5px;
-            transition: 0.3s;
         }
         .btn:hover { background-color: #00cc00; box-shadow: 0 0 10px #00ff00; }
         .action-area {
@@ -115,7 +114,6 @@
         }
         .click-btn:active {
             transform: scale(0.95);
-            box-shadow: 0 0 35px #00ff00;
         }
         .shop-container {
             display: flex;
@@ -141,10 +139,9 @@
             border-radius: 3px;
             cursor: pointer;
             width: 100%;
-            transition: 0.2s;
         }
-        .btn-red { background-color: #ff3333; color: #fff; cursor: not-allowed; }
-        .btn-green { background-color: #00ff00; color: #000; cursor: pointer; }
+        .btn-red { background-color: #ff3333; color: #fff; }
+        .btn-green { background-color: #00ff00; color: #000; }
     </style>
 </head>
 <body>
@@ -208,6 +205,7 @@
     </div>
 
     <script>
+        // NICKNAME GENERATOR
         var leftDecors = ["꧂◤", "︻╦̵̵͇̿̿̿̿╤──", "⚔️", "꧁༺", "👑", "◥⚔️", "☣️", "⚙️ ["];
         var rightDecors = ["◥꧁", "──╤̿̿̿̿̿̿̿══╤─", "⚔️", "༻꧂", "👑", "⚔️◤", "☣️", "] ⚙️"];
 
@@ -231,7 +229,7 @@
             alert("Kopyalandı: " + text);
         }
 
-        // CORRECTED GAME LOGIC
+        // 100% BUG-SIZ CLICKER GAME LOGIC
         var score = 0;
         var clickPower = 1;
         var autoClickers = 0;
@@ -241,25 +239,27 @@
         function clickButton() {
             score += clickPower;
             document.getElementById("scoreDisplay").innerText = score;
-            checkShopPrices(); 
-        }
-
-        function checkShopPrices() {
+            
+            // Sadə və ilişməyən rəng yoxlanışı
             var btn1 = document.getElementById("up1Btn");
             if (score >= u1Cost) {
-                btn1.className = "shop-btn btn-green";
+                btn1.style.backgroundColor = "#00ff00";
+                btn1.style.color = "#000";
                 btn1.innerText = "Satın Al";
             } else {
-                btn1.className = "shop-btn btn-red";
+                btn1.style.backgroundColor = "#ff3333";
+                btn1.style.color = "#fff";
                 btn1.innerText = "Balans Çatmir";
             }
 
             var btn2 = document.getElementById("up2Btn");
             if (score >= u2Cost) {
-                btn2.className = "shop-btn btn-green";
+                btn2.style.backgroundColor = "#00ff00";
+                btn2.style.color = "#000";
                 btn2.innerText = "Satın Al";
             } else {
-                btn2.className = "shop-btn btn-red";
+                btn2.style.backgroundColor = "#ff3333";
+                btn2.style.color = "#fff";
                 btn2.innerText = "Balans Çatmir";
             }
         }
@@ -271,13 +271,7 @@
                 u1Cost = Math.floor(u1Cost * 1.5);
                 document.getElementById("upgrade1Cost").innerText = u1Cost;
                 document.getElementById("scoreDisplay").innerText = score;
-                checkShopPrices();
-            }
-        }
-
-        function buyUpgrade2() {
-            if (score >= u2Cost) {
-                score -= u2Cost;
-                autoClickers += 1;
-                u2Cost = Math.floor(u2Cost * 1.6);
-                document.getElementById("upgrade2Cost").innerText = u2Cost;
+                // Satın aldıqdan dərhal sonra düyməni yenidən qırmızı edirik
+                var btn1 = document.getElementById("up1Btn");
+                btn1.style.backgroundColor = "#ff3333";
+                btn1.style.color = "#fff";

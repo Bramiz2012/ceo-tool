@@ -5,22 +5,29 @@
     <style>
         body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
         .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; }
-        .sidebar-ad { width: 160px; height: 900px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; }
+        .sidebar-ad { width: 160px; height: 950px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; }
         .center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; }
         .input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 300px; border-radius: 5px; }
         .btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; }
         .action-area { margin-top: 25px; background: #000; padding: 20px; border: 1px solid #222; min-height: 60px; color: #fff; font-size: 18px; border-radius: 5px; text-align: left; }
         .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
         .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; }
+        
+        /* CLICKER STYLES */
         .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 120px; height: 120px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; user-select: none; }
         .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
         .shop-item { background: #000; border: 1px solid #333; padding: 15px; border-radius: 5px; font-size: 13px; width: 160px; }
+        
+        /* Qırmızı və Yaşıl Düymə Dizaynı */
+        .shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn-red { background-color: #ff3333; color: #fff; }
+        .btn-green { background-color: #00ff00; color: #000; }
     </style>
 </head>
 <body>
 
     <h1>CEO Multi-Tool Enterprise v9.0</h1>
-    <p style="color: #888;">Premium Alətlər və Qüsursuz Kiber Klik Oyunu</p>
+    <p style="color: #888;">Premium Alətlər və Ağıllı Mağazalı Kiber Klik Oyunu</p>
     
     <div class="main-container">
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
@@ -37,7 +44,7 @@
             
             <!-- ALƏT 2 -->
             <h2>🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
-            <p>Xal yığın və mağazadan gücləndiricilər alın!</p>
+            <p>Xal yığın və mağazadan düymə rənglərinə görə gücləndiricilər alın!</p>
             <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
                 Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
             </div>
@@ -46,11 +53,11 @@
             <div class="shop-container">
                 <div class="shop-item">
                     <b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
-                    <button class="btn" style="padding:5px; font-size:12px;" onclick="buyUpgrade1()">Satın Al</button>
+                    <button id="up1Btn" class="shop-btn btn-red" onclick="buyUpgrade1()">Balans Çatmır</button>
                 </div>
                 <div class="shop-item">
                     <b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
-                    <button class="btn" style="padding:5px; font-size:12px;" onclick="buyUpgrade2()">Satın Al</button>
+                    <button id="up2Btn" class="shop-btn btn-red" onclick="buyUpgrade2()">Balans Çatmır</button>
                 </div>
             </div>
 
@@ -96,6 +103,28 @@
         function clickButton() {
             score += clickPower;
             document.getElementById("scoreDisplay").innerText = score;
+            checkPrices();
+        }
+
+        // TAM TƏHLÜKƏSİZ VƏ DONDURMAYAN RƏNG YOXLANILIŞI
+        function checkPrices() {
+            var btn1 = document.getElementById("up1Btn");
+            if (score >= u1Cost) {
+                btn1.className = "shop-btn btn-green";
+                btn1.innerText = "Əldə et";
+            } else {
+                btn1.className = "shop-btn btn-red";
+                btn1.innerText = "Balans Çatmır";
+            }
+
+            var btn2 = document.getElementById("up2Btn");
+            if (score >= u2Cost) {
+                btn2.className = "shop-btn btn-green";
+                btn2.innerText = "Əldə et";
+            } else {
+                btn2.className = "shop-btn btn-red";
+                btn2.innerText = "Balans Çatmır";
+            }
         }
 
         function buyUpgrade1() {
@@ -105,6 +134,7 @@
                 u1Cost = Math.floor(u1Cost * 1.5);
                 document.getElementById("upgrade1Cost").innerText = u1Cost;
                 document.getElementById("scoreDisplay").innerText = score;
+                checkPrices();
             } else { alert("Xalınız çatmır!"); }
         }
 
@@ -115,6 +145,7 @@
                 u2Cost = Math.floor(u2Cost * 1.6);
                 document.getElementById("upgrade2Cost").innerText = u2Cost;
                 document.getElementById("scoreDisplay").innerText = score;
+                checkPrices();
             } else { alert("Xalınız çatmır!"); }
         }
 
@@ -122,6 +153,7 @@
             if (autoClickers > 0) {
                 score += autoClickers;
                 document.getElementById("scoreDisplay").innerText = score;
+                checkPrices();
             }
         }, 1000);
 

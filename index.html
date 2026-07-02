@@ -111,6 +111,7 @@
             margin: 20px auto;
             display: block;
             transition: 0.1s;
+            user-select: none;
         }
         .click-btn:active {
             transform: scale(0.95);
@@ -130,7 +131,6 @@
             font-size: 13px;
             width: 160px;
         }
-        /* Qırmızı və Yaşıl Düymə Ayarları */
         .shop-btn {
             padding: 6px 12px; 
             font-size: 12px; 
@@ -143,8 +143,8 @@
             width: 100%;
             transition: 0.2s;
         }
-        .btn-red { background-color: #ff3333; color: #fff; }
-        .btn-green { background-color: #00ff00; color: #000; }
+        .btn-red { background-color: #ff3333; color: #fff; cursor: not-allowed; }
+        .btn-green { background-color: #00ff00; color: #000; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -208,7 +208,6 @@
     </div>
 
     <script>
-        // NICKNAME GENERATOR
         var leftDecors = ["꧂◤", "︻╦̵̵͇̿̿̿̿╤──", "⚔️", "꧁༺", "👑", "◥⚔️", "☣️", "⚙️ ["];
         var rightDecors = ["◥꧁", "──╤̿̿̿̿̿̿̿══╤─", "⚔️", "༻꧂", "👑", "⚔️◤", "☣️", "] ⚙️"];
 
@@ -232,7 +231,7 @@
             alert("Kopyalandı: " + text);
         }
 
-        // CLICKER & SMART SHOP LOGIC
+        // CORRECTED GAME LOGIC
         var score = 0;
         var clickPower = 1;
         var autoClickers = 0;
@@ -242,12 +241,10 @@
         function clickButton() {
             score += clickPower;
             document.getElementById("scoreDisplay").innerText = score;
-            checkShopPrices(); // Hər klikdə düymə rənglərini yoxlayır
+            checkShopPrices(); 
         }
 
-        // Düymə rənglərini dinamik idarə edən funksiya
         function checkShopPrices() {
-            // Upgrade 1 Yoxlanışı
             var btn1 = document.getElementById("up1Btn");
             if (score >= u1Cost) {
                 btn1.className = "shop-btn btn-green";
@@ -257,7 +254,6 @@
                 btn1.innerText = "Balans Çatmir";
             }
 
-            // Upgrade 2 Yoxlanışı
             var btn2 = document.getElementById("up2Btn");
             if (score >= u2Cost) {
                 btn2.className = "shop-btn btn-green";
@@ -280,3 +276,8 @@
         }
 
         function buyUpgrade2() {
+            if (score >= u2Cost) {
+                score -= u2Cost;
+                autoClickers += 1;
+                u2Cost = Math.floor(u2Cost * 1.6);
+                document.getElementById("upgrade2Cost").innerText = u2Cost;

@@ -94,7 +94,6 @@
         }
         .copy-btn:hover { background-color: #00ff00; color: #000; }
         
-        /* LEVEL DEVIL MINIGAME STYLES */
         #gameCanvas {
             background-color: #222;
             border: 2px solid #ff3333;
@@ -142,7 +141,6 @@
     </div>
 
     <script>
-        // Yalnız ən yaxşı silahlı və kiber bezəklər qaldı
         var leftDecors = ["꧂◤", "︻╦̵̵͇̿̿̿̿╤──", "⚔️", "꧁༺", "👑", "◥⚔️", "☣️", "⚙️ ["];
         var rightDecors = ["◥꧁", "──╤̿̿̿̿̿̿̿══╤─", "⚔️", "༻꧂", "👑", "⚔️◤", "☣️", "] ⚙️"];
 
@@ -166,7 +164,7 @@
             alert("Kopyalandı: " + text);
         }
 
-        // LEVEL DEVIL OYUN KODLARI (JAVASCRIPT CANVAS)
+        // LEVEL DEVIL OYUN KODLARI
         var canvas = document.getElementById("gameCanvas");
         var ctx = canvas.getContext("2d");
 
@@ -177,43 +175,49 @@
         var trapTriggered = false;
         var trapX = 250;
         var trapY = 130;
+        var gameOver = false;
 
         window.addEventListener("keydown", function(e) { keys[e.keyCode] = true; });
         window.addEventListener("keyup", function(e) { keys[e.keyCode] = false; });
 
         function updateGame() {
-            // Sol-Sağ hərəkət
-            if (keys[39]) { if(player.x < canvas.width - player.width) player.x += player.speed; }
-            if (keys[37]) { if(player.x > 0) player.x -= player.speed; }
-            // Tullanmaq (Yuxarı əqrəb)
-            if (keys[38] || keys[32]) {
-                if (!player.jumping) { player.jumping = true; player.velY = -player.speed * 1.8; }
-            }
+            if (!gameOver) {
+                // Sol-Sağ hərəkət
+                if (keys[39]) { if(player.x < canvas.width - player.width) player.x += player.speed; }
+                if (keys[37]) { if(player.x > 0) player.x -= player.speed; }
+                
+                // Tullanmaq
+                if (keys[38] || keys[32]) {
+                    if (!player.jumping) { player.jumping = true; player.velY = -player.speed * 1.8; }
+                }
 
-            player.velY += gravity;
-            player.y += player.velY;
+                player.velY += gravity;
+                player.y += player.velY;
 
-            // Döşəmə limiti
-            if (player.y >= 110) { player.y = 110; player.jumping = false; player.velY = 0; }
+                // Döşəmə limiti
+                if (player.y >= 110) { player.y = 110; player.jumping = false; player.velY = 0; }
 
-            // GİZLİ LEVEL DEVIL TƏLƏSİ: Oyunçu yarı yola (200px) çatanda yerdən qəfil tikan çıxır!
-            if (player.x > 200) {
-                trapTriggered = true;
-                if (trapY > 90) trapY -= 5; // Tikan yuxarı fırlayır
-                document.getElementById("gameStatus").innerText = "TƏLƏ! Sürpriz tikanlar çıxdı! 😈";
-            }
+                // Tələnin aktivləşməsi
+                if (player.x > 200) {
+                    trapTriggered = true;
+                    if (trapY > 95) trapY -= 4; 
+                    document.getElementById("gameStatus").innerText = "TƏLƏ! Sürpriz tikanlar çıxdı! 😈";
+                    document.getElementById("gameStatus").style.color = "#ff3333";
+                }
 
-            // Tikanla toqquşma yoxlanışı
-            if (trapTriggered && player.x + player.width > trapX && player.x < trapX + 20 && player.y + player.height > trapY) {
-                document.getElementById("gameStatus").innerText = "Məğlub oldun! Level Devil səni tutdu! 😂";
-                resetGame();
-            }
+                // Tikanla toqquşma
+                if (trapTriggered && player.x + player.width > trapX && player.x < trapX + 20 && player.y + player.height > trapY) {
+                    gameOver = true;
+                    document.getElementById("gameStatus").innerText = "Məğlub oldun! Level Devil səni tutdu! 😂 (Yenidən Başla düyməsinə bas)";
+                    document.getElementById("gameStatus").style.color = "#ff3333";
+                }
 
-            // Qələbə yoxlanışı (Bayrağa çatmaq)
-            if (player.x + player.width > flag.x && player.y + player.height > flag.y) {
-                document.getElementById("gameStatus").innerText = "MÖHTƏŞƏM! Level Devil məğlub oldu! 🎉";
-                alert("Təbriklər, Məni CEO! Oyunu rəsmən fəth etdin!");
-                resetGame();
+                // Qələbə yoxlanışı (Üstdə yazı çıxmır, altdakı status dəyişir)
+                if (player.x + player.width > flag.x && player.y + player.height > flag.y) {
+                    gameOver = true;
+                    document.getElementById("gameStatus").innerText = "MÖHTƏŞƏM! Təbriklər, Məni CEO! Oyunu rəsmən fəth etdin! 🎉";
+                    document.getElementById("gameStatus").style.color = "#00ff00";
+                }
             }
 
             drawGame();
@@ -223,7 +227,7 @@
         function drawGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Döşəmə çizimi
+            // Döşəmə
             ctx.fillStyle = "#555";
             ctx.fillRect(0, 130, canvas.width, 20);
 
@@ -231,16 +235,16 @@
             ctx.fillStyle = "#00ff00";
             ctx.fillRect(player.x, player.y, player.width, player.height);
 
-            // Bayraq (Göy rəngli hədəf)
+            // Bayraq
             ctx.fillStyle = "#00ccff";
-            ctx.fillRect(flag.x, flag.addr, flag.width, flag.height);
+            ctx.fillRect(flag.x, flag.y, flag.width, flag.height);
             ctx.fillStyle = "#ffdd00";
-            ctx.fillRect(flag.x, flag.y, flag.width, 10);
+            ctx.fillRect(flag.x, flag.y, flag.width, 8);
 
-            // Tələ (Qırmızı tikanlar)
+            // Tələ (Qırmızı tikan)
             if (trapTriggered) {
                 ctx.fillStyle = "#ff3333";
-                ctx.fillRect(trapX, trapY, 20, 40);
+                ctx.fillRect(trapX, trapY, 20, 35);
             }
         }
 
@@ -251,10 +255,11 @@
             player.jumping = false;
             trapTriggered = false;
             trapY = 130;
-            if(!trapTriggered) document.getElementById("gameStatus").innerText = "Mərhələ 1: Yenidən sına!";
+            gameOver = false;
+            document.getElementById("gameStatus").innerText = "Mərhələ 1: Yenidən sına!";
+            document.getElementById("gameStatus").style.color = "#ff3333";
         }
 
-        // Oyunu başladırıq
         updateGame();
     </script>
 </body>

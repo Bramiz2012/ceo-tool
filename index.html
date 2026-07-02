@@ -94,7 +94,6 @@
         }
         .copy-btn:hover { background-color: #00ff00; color: #000; }
         
-        /* CLICKER STYLES */
         .click-btn {
             background-color: #111;
             color: #00ff00;
@@ -112,9 +111,7 @@
             transition: 0.1s;
             user-select: none;
         }
-        .click-btn:active {
-            transform: scale(0.95);
-        }
+        .click-btn:active { transform: scale(0.95); }
         .shop-container {
             display: flex;
             justify-content: center;
@@ -147,20 +144,17 @@
 <body>
 
     <h1>CEO Multi-Tool Enterprise v9.0</h1>
-    <p style="color: #888;">Premium Alətlər və Ağıllı Mağazalı Kiber Klik Oyunu</p>
+    <p style="color: #888;">Premium Alətlər və Qüsursuz Kiber Klik Oyunu</p>
     
     <div class="main-container">
-        
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
         
         <div class="center-box">
-            
             <!-- ALƏT 1: NICKNAME GENERATOR -->
             <h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
             <p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
             <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
             <button class="btn" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
-            
             <div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
             
             <hr style="border-color: #222; margin: 40px 0;">
@@ -168,14 +162,12 @@
             <!-- ALƏT 2: CEO CYBER CLICKER GAME -->
             <h2>🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
             <p>Xal yığın və mağazadan düymə rənglərinə görə gücləndiricilər alın!</p>
-            
             <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
                 Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
             </div>
             
             <button class="click-btn" onclick="clickButton()">KLİKLƏ!</button>
             
-            <!-- GÜCLƏNDİRMƏ MAĞAZASI -->
             <div class="shop-container">
                 <div class="shop-item">
                     <b>🚀 Super Klik (+2)</b><br>
@@ -195,26 +187,19 @@
             <h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
             <p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
             <button class="btn" style="background-color: #00ccff; color: #000;" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
-            
             <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
-
         </div>
         
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
-        
     </div>
 
     <script>
-        // NICKNAME GENERATOR
         var leftDecors = ["꧂◤", "︻╦̵̵͇̿̿̿̿╤──", "⚔️", "꧁༺", "👑", "◥⚔️", "☣️", "⚙️ ["];
         var rightDecors = ["◥꧁", "──╤̿̿̿̿̿̿̿══╤─", "⚔️", "༻꧂", "👑", "⚔️◤", "☣️", "] ⚙️"];
 
         function generateRandomNicknames() {
             var name = document.getElementById("nickInput").value;
-            if(name === "") {
-                alert("Zəhmət olmasa bir ad daxil edin!");
-                return;
-            }
+            if(name === "") { alert("Zəhmət olmasa bir ad daxil edin!"); return; }
             var outputHTML = "<b>Sizin üçün premium seçimlər:</b><br><br>";
             for (var i = 0; i < 4; i++) {
                 var randomIndex = Math.floor(Math.random() * leftDecors.length);
@@ -229,7 +214,6 @@
             alert("Kopyalandı: " + text);
         }
 
-        // 100% BUG-SIZ CLICKER GAME LOGIC
         var score = 0;
         var clickPower = 1;
         var autoClickers = 0;
@@ -239,29 +223,17 @@
         function clickButton() {
             score += clickPower;
             document.getElementById("scoreDisplay").innerText = score;
-            
-            // Sadə və ilişməyən rəng yoxlanışı
-            var btn1 = document.getElementById("up1Btn");
-            if (score >= u1Cost) {
-                btn1.style.backgroundColor = "#00ff00";
-                btn1.style.color = "#000";
-                btn1.innerText = "Satın Al";
-            } else {
-                btn1.style.backgroundColor = "#ff3333";
-                btn1.style.color = "#fff";
-                btn1.innerText = "Balans Çatmir";
-            }
+            colorCheck();
+        }
 
-            var btn2 = document.getElementById("up2Btn");
-            if (score >= u2Cost) {
-                btn2.style.backgroundColor = "#00ff00";
-                btn2.style.color = "#000";
-                btn2.innerText = "Satın Al";
-            } else {
-                btn2.style.backgroundColor = "#ff3333";
-                btn2.style.color = "#fff";
-                btn2.innerText = "Balans Çatmir";
-            }
+        function colorCheck() {
+            var b1 = document.getElementById("up1Btn");
+            if(score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Satın Al"; }
+            else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmir"; }
+
+            var b2 = document.getElementById("up2Btn");
+            if(score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Satın Al"; }
+            else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmir"; }
         }
 
         function buyUpgrade1() {
@@ -271,7 +243,30 @@
                 u1Cost = Math.floor(u1Cost * 1.5);
                 document.getElementById("upgrade1Cost").innerText = u1Cost;
                 document.getElementById("scoreDisplay").innerText = score;
-                // Satın aldıqdan dərhal sonra düyməni yenidən qırmızı edirik
-                var btn1 = document.getElementById("up1Btn");
-                btn1.style.backgroundColor = "#ff3333";
-                btn1.style.color = "#fff";
+                colorCheck();
+            }
+        }
+
+        function buyUpgrade2() {
+            if (score >= u2Cost) {
+                score -= u2Cost;
+                autoClickers += 1;
+                u2Cost = Math.floor(u2Cost * 1.6);
+                document.getElementById("upgrade2Cost").innerText = u2Cost;
+                document.getElementById("scoreDisplay").innerText = score;
+                colorCheck();
+            }
+        }
+
+        setInterval(function() {
+            if (autoClickers > 0) {
+                score += autoClickers;
+                document.getElementById("scoreDisplay").innerText = score;
+                colorCheck();
+            }
+        }, 1000);
+
+        function generateCryptoPassword() {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+            var password = "";
+            for (var i = 0; i < 12; i++) {

@@ -112,9 +112,13 @@
             { name: "💥 Hacker_007", score: 15 }
         ];
 
+        // 100% TAM DÜZƏLDİLMİŞ STRUKTUR SƏHVİ OLMAYAN REYTİNQ FUNKSİYASI
         function updateLeaderboard() {
-            leaders[2].score = score; // Oyunçunun xalını yeniləyirik
-            // Xallara görə böyükdən kiçiyə sıralayırıq
+            for(var i=0; i<leaders.length; i++) {
+                if(leaders[i].name === "👑 Sənin_Adın (CEO)") {
+                    leaders[i].score = score;
+                }
+            }
             leaders.sort(function(a, b) { return b.score - a.score; });
             
             var html = "";
@@ -124,7 +128,7 @@
             }
             document.getElementById("leaderboardList").innerHTML = html;
         }
-        updateLeaderboard(); // İlk açılışda reytinqi göstər
+        updateLeaderboard(); 
 
         function clickButton() {
             score += clickPower;
@@ -143,7 +147,6 @@
             else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmır"; }
         }
 
-        // 🎰 100% SƏHVSİZ VƏ DONMAYAN ŞANS ÇARXI ALQORİTMİ
         function spinWheel() {
             if(isSpinning) return;
             isSpinning = true;
@@ -172,4 +175,3 @@
                     statusText = "💀 ŞANS: Boş çıxdı, təzədən yoxla!";
                 }
                 
-                document.getElementById("wheelStatus").innerText = statusText;

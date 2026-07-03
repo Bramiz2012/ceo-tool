@@ -1,0 +1,21 @@
+body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
+.main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; }
+.sidebar-ad { width: 160px; height: 1100px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; }
+.center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; }
+.input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 300px; border-radius: 5px; }
+.btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; }
+.btn:hover { background-color: #00cc00; box-shadow: 0 0 10px #00ff00; }
+.action-area { margin-top: 25px; background: #000; padding: 20px; border: 1px solid #222; min-height: 60px; color: #fff; font-size: 18px; border-radius: 5px; text-align: left; }
+.nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
+.copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; }
+.click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 120px; height: 120px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; }
+.click-btn:active { transform: scale(0.95); }
+.shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+.shop-item { background: #000; border: 1px solid #333; padding: 15px; border-radius: 5px; font-size: 13px; width: 160px; }
+.shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: 0.2s; }
+.btn-red { background-color: #ff3333; color: #fff; }
+.btn-green { background-color: #00ff00; color: #000; }
+.casino-box { background: #0a0a0a; border: 1px solid #ffdd00; padding: 15px; border-radius: 5px; margin-top: 20px; box-shadow: 0 0 10px rgba(255, 221, 0, 0.2); }
+.leaderboard-box { background: #0a0a0a; border: 1px solid #00ccff; padding: 15px; border-radius: 5px; margin-top: 25px; text-align: left; }
+.leader-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #222; font-size: 14px; }
+.slot-animation { font-size: 20px; font-weight: bold; color: #ffdd00; margin: 10px 0; height: 25px; }

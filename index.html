@@ -1,73 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CEO Gaming Hub - Global Platform v10.0</title>
+    <title>CEO Gaming Hub - Enterprise v10.0</title>
     <style>
         body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
-        .lang-container { text-align: right; max-width: 1300px; margin: 0 auto 15px auto; }
-        .lang-btn { background: #111; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; margin-left: 5px; }
-        .lang-btn:hover { background: #00ff00; color: #000; }
         .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; }
         .sidebar-ad { width: 160px; height: 950px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; }
         .center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; }
         .input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 300px; border-radius: 5px; }
         .btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; }
+        .btn:hover { background-color: #00cc00; box-shadow: 0 0 10px #00ff00; }
         .action-area { margin-top: 25px; background: #000; padding: 20px; border: 1px solid #222; min-height: 60px; color: #fff; font-size: 18px; border-radius: 5px; text-align: left; }
         .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
         .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; }
-        .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 120px; height: 120px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; user-select: none; }
+        .copy-btn:hover { background-color: #00ff00; color: #000; }
+        
+        /* CLICKER STYLES */
+        .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 120px; height: 120px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; }
+        .click-btn:active { transform: scale(0.95); }
         .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
         .shop-item { background: #000; border: 1px solid #333; padding: 15px; border-radius: 5px; font-size: 13px; width: 160px; }
-        .shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; }
+        .shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: 0.2s; }
         .btn-red { background-color: #ff3333; color: #fff; }
         .btn-green { background-color: #00ff00; color: #000; }
     </style>
 </head>
 <body>
 
-    <!-- REAZAL DİL SEÇİM MENYUSU -->
-    <div class="lang-container">
-        <button class="lang-btn" onclick="setLanguage('az')">🇦🇿 AZ</button>
-        <button class="lang-btn" onclick="setLanguage('en')">🇺🇸 EN</button>
-        <button class="lang-btn" onclick="setLanguage('tr')">🇹🇷 TR</button>
-    </div>
-
+    <h1>CEO Multi-Tool Enterprise v10.0</h1>
+    <p style="color: #888;">Premium Alətlər və Qüsursuz Kiber Klik Oyunu</p>
+    
     <div class="main-container">
-        <div class="sidebar-ad" id="adLeft">Google AdSense</div>
+        <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
         
         <div class="center-box">
-            <!-- TITUL REKORDU -->
-            <h1 id="mainTitle">CEO Multi-Tool Enterprise v10.0</h1>
-            <p id="mainDesc" style="color: #888;">Qlobal Premium Alətlər və Ağıllı Kiber Klik Oyunu</p>
-            
-            <hr style="border-color: #222; margin: 20px 0;">
-
             <!-- ALƏT 1 -->
-            <h2 id="title1">⚔️ Alət 1: Premium Nickname Generatoru</h2>
-            <p id="desc1">Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
+            <h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
+            <p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
             <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
-            <button class="btn" id="btn1" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
+            <button class="btn" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
             <div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
             
             <hr style="border-color: #222; margin: 40px 0;">
             
             <!-- ALƏT 2 -->
-            <h2 id="title2">🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
-            <p id="desc2">Xal yığın və mağazadan gücləndiricilər alın!</p>
+            <h2>🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
+            <p>Xal yığın və mağazadan gücləndiricilər alın!</p>
             <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
-                <span id="scoreText">Kiber Xallarınız:</span> <span id="scoreDisplay" style="color: #ffdd00;">0</span>
+                Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
             </div>
-            <button class="click-btn" id="btnClick" onclick="clickButton()">KLİKLƏ!</button>
+            <button class="click-btn" onclick="clickButton()">KLİKLƏ!</button>
             
             <div class="shop-container">
                 <div class="shop-item">
-                    <b id="up1Title">🚀 Super Klik (+2)</b><br>
-                    <span id="up1PriceText">Qiymət:</span> <span id="upgrade1Cost">30</span><br>
+                    <b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
                     <button id="up1Btn" class="shop-btn btn-red" onclick="buyUpgrade1()">Balans Çatmır</button>
                 </div>
                 <div class="shop-item">
-                    <b>🤖 Avto-Klik (1/sn)</b><br>
-                    <span id="up2PriceText">Qiymət:</span> <span id="upgrade2Cost">100</span><br>
+                    <b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
                     <button id="up2Btn" class="shop-btn btn-red" onclick="buyUpgrade2()">Balans Çatmır</button>
                 </div>
             </div>
@@ -75,53 +65,93 @@
             <hr style="border-color: #222; margin: 40px 0;">
 
             <!-- ALƏT 3 -->
-            <h2 id="title3">🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
-            <p id="desc3">Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
-            <button class="btn" style="background-color: #00ccff; color: #000;" id="btn3" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
+            <h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
+            <p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
+            <button class="btn" style="background-color: #00ccff; color: #000;" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
             <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
         </div>
         
-        <div class="sidebar-ad">Google AdSense</div>
+        <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
     </div>
 
     <script>
-        var currentLang = "az";
         var score = 0;
         var clickPower = 1;
         var autoClickers = 0;
         var u1Cost = 30;
         var u2Cost = 100;
 
-        var langData = {
-            az: {
-                mainTitle: "CEO Multi-Tool Enterprise v10.0", mainDesc: "Qlobal Premium Alətlər və Ağıllı Kiber Klik Oyunu",
-                title1: "⚔️ Alət 1: Premium Nickname Generatoru", desc1: "Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:", placeholder: "Adınızı bura yazın...", btn1: "Havalı Adlar Yarat", out1: "Nəticələr burada görünəcək...",
-                title2: "🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)", desc2: "Xal yığın və mağazadan gücləndiricilər alın!", scoreText: "Kiber Xallarınız:", btnClick: "KLİKLƏ!", up1Title: "🚀 Super Klik (+2)", price: "Qiymət:", noMoney: "Balans Çatmır", buy: "Əldə et",
-                title3: "🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru", desc3: "Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:", btn3: "Güvənli Kod Yarat", out3: "Kod burada görünəcək...", alertInput: "Zəhmət olmasa bir ad daxil edin!", alertNoMoney: "Xalınız çatmır!", copyText: "Kopyalandı:"
-            },
-            en: {
-                mainTitle: "CEO Multi-Tool Enterprise v10.0", mainDesc: "Global Premium Tools & Smart Cyber Clicker Game",
-                title1: "⚔️ Tool 1: Premium Nickname Generator", desc1: "Enter your name to generate pro gamer nicknames:", placeholder: "Enter your name...", btn1: "Generate Names", out1: "Results will appear here...",
-                title2: "🎮 Tool 2: CEO Cyber Clicker (Mini-Game)", desc2: "Collect points and buy upgrades from the shop!", scoreText: "Cyber Points:", btnClick: "CLICK!", up1Title: "🚀 Super Click (+2)", price: "Price:", noMoney: "Not Enough Points", buy: "Buy Now",
-                title3: "🔒 Tool 3: Secure Password Generator", desc3: "Create a 100% unbreakable secure password for your accounts:", btn3: "Generate Secure Code", out3: "Code will appear here...", alertInput: "Please enter a name!", alertNoMoney: "Not enough points!", copyText: "Copied:"
-            },
-            tr: {
-                mainTitle: "CEO Multi-Tool Enterprise v10.0", mainDesc: "Küresel Premium Araçlar ve Akıllı Siber Tık Oyunu",
-                title1: "⚔️ Araç 1: Premium Takma Ad Oluşturucu", desc1: "Adınızı yazın ve profesyonel oyuncu nickleri üretin:", placeholder: "Adınızı buraya yazın...", btn1: "Nick Oluştur", out1: "Sonuçlar burada görünecek...",
-                title2: "🎮 Araç 2: CEO Cyber Clicker (Mini-Oyun)", desc2: "Puan toplayın ve mağazadan geliştirmeler satın alın!", scoreText: "Cyber Puanınız:", btnClick: "TIKLA!", up1Title: "🚀 Süper Tık (+2)", price: "Fiyat:", noMoney: "Yetersiz Bakiye", buy: "Satın Al",
-                title3: "🔒 Araç 3: Kırılmaz Güvenli Şifre Oluşturucu", desc3: "Hesaplarınız için %100 korumalı güvenli şifre oluşturun:", btn3: "Güvenli Şifre Üret", out3: "Şifre burada görünecek...", alertInput: "Lütfen bir isim girin!", alertNoMoney: "Puanınız yetersiz!", copyText: "Kopyalandı:"
-            }
-        };
+        function clickButton() {
+            score += clickPower;
+            document.getElementById("scoreDisplay").innerText = score;
+            
+            // Sadə və əsla dondurmayan düymə rəng yoxlanışı
+            var b1 = document.getElementById("up1Btn");
+            if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
+            else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmır"; }
 
-        function setLanguage(lang) {
-            currentLang = lang;
-            var d = langData[lang];
-            document.getElementById("mainTitle").innerText = d.mainTitle;
-            document.getElementById("mainDesc").innerText = d.mainDesc;
-            document.getElementById("title1").innerText = d.title1;
-            document.getElementById("desc1").innerText = d.desc1;
-            document.getElementById("nickInput").placeholder = d.placeholder;
-            document.getElementById("btn1").innerText = d.btn1;
-            document.getElementById("title2").innerText = d.title2;
-            document.getElementById("desc2").innerText = d.desc2;
-            document.getElementById("scoreText").innerText = d.scoreText;
+            var b2 = document.getElementById("up2Btn");
+            if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
+            else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmır"; }
+        }
+
+        function buyUpgrade1() {
+            if (score >= u1Cost) {
+                score -= u1Cost; clickPower += 1; u1Cost = Math.floor(u1Cost * 1.5);
+                document.getElementById("upgrade1Cost").innerText = u1Cost;
+                document.getElementById("scoreDisplay").innerText = score;
+                document.getElementById("up1Btn").className = "shop-btn btn-red";
+                document.getElementById("up1Btn").innerText = "Balans Çatmır";
+            } else { alert("Xalınız çatmır!"); }
+        }
+
+        function buyUpgrade2() {
+            if (score >= u2Cost) {
+                score -= u2Cost; autoClickers += 1; u2Cost = Math.floor(u2Cost * 1.6);
+                document.getElementById("upgrade2Cost").innerText = u2Cost;
+                document.getElementById("scoreDisplay").innerText = score;
+                document.getElementById("up2Btn").className = "shop-btn btn-red";
+                document.getElementById("up2Btn").innerText = "Balans Çatmır";
+            } else { alert("Xalınız çatmır!"); }
+        }
+
+        setInterval(function() {
+            if (autoClickers > 0) {
+                score += autoClickers;
+                document.getElementById("scoreDisplay").innerText = score;
+                var b1 = document.getElementById("up1Btn");
+                if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
+                var b2 = document.getElementById("up2Btn");
+                if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
+            }
+        }, 1000);
+
+        var leftDecors = ["꧂◤", "︻╦̵̵͇̿̿̿̿╤──", "⚔️", "꧁༺", "👑", "◥⚔️", "☣️", "⚙️ ["];
+        var rightDecors = ["◥꧁", "──╤̿̿̿̿̿̿̿══╤─", "⚔️", "༻꧂", "👑", "⚔️◤", "☣️", "] ⚙️"];
+
+        function generateRandomNicknames() {
+            var name = document.getElementById("nickInput").value;
+            if(name === "") { alert("Zəhmət olmasa bir ad daxil edin!"); return; }
+            var outputHTML = "<b>Sizin üçün premium seçimlər:</b><br><br>";
+            for (var i = 0; i < 4; i++) {
+                var randomIndex = Math.floor(Math.random() * leftDecors.length);
+                var fullNick = leftDecors[randomIndex] + " " + name + " " + rightDecors[randomIndex];
+                outputHTML += "<div class='nick-row'><span>" + fullNick + "</span><button class='copy-btn' onclick='copyToClipboard(\"" + fullNick + "\")'>Kopyala</button></div>";
+            }
+            document.getElementById("nickOutput").innerHTML = outputHTML;
+        }
+
+        function generateCryptoPassword() {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+            var password = "";
+            for (var i = 0; i < 12; i++) { password += chars.charAt(Math.floor(Math.random() * chars.length)); }
+            document.getElementById("passOutput").innerHTML = "<div class='nick-row' style='justify-content: center; gap: 20px;'><span style='color:#fff; font-size:22px; letter-spacing: 2px;'>" + password + "</span><button class='copy-btn' onclick='copyToClipboard(\"" + password + "\")'>Kopyala</button></div>";
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert("Kopyalandı: " + text);
+        }
+    </script>
+</body>
+</html>

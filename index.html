@@ -44,7 +44,7 @@
             <h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
             <p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
             <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
-            <button class="btn" id="genNickBtn">Havalı Adlar Yarat</button>
+            <button class="btn" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
             <div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
             
             <hr style="border-color: #222; margin: 40px 0;">
@@ -55,16 +55,17 @@
             <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
                 Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
             </div>
-            <button class="click-btn" id="clickerMainBtn">KLİKLƏ!</button>
+            <!-- Birbaşa klik funksiyasına bağlandı -->
+            <button class="click-btn" onclick="clickButton()">KLİKLƏ!</button>
             
             <div class="shop-container">
                 <div class="shop-item">
                     <b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
-                    <button id="up1Btn" class="shop-btn btn-red">Balans Çatmır</button>
+                    <button id="up1Btn" class="shop-btn btn-red" onclick="buyUpgrade1()">Balans Çatmır</button>
                 </div>
                 <div class="shop-item">
                     <b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
-                    <button id="up2Btn" class="shop-btn btn-red">Balans Çatmır</button>
+                    <button id="up2Btn" class="shop-btn btn-red" onclick="buyUpgrade2()">Balans Çatmır</button>
                 </div>
             </div>
 
@@ -73,18 +74,14 @@
                 <h3>🎰 CEO Şans Çarxı</h3>
                 <p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
                 <div class="slot-animation" id="wheelStatus">🎰 Çarx Hazırdır!</div>
-                <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinWheelBtn">Şansını Sına! (Pulsuz)</button>
+                <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="spinWheel()">Şansını Sına! (Pulsuz)</button>
             </div>
 
             <!-- IDEYA 1: REYAL REYTİNQ SİSTEMİ -->
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
                 <div id="leaderboardList">
-                    <div class='leader-row'><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>
-                    <div class='leader-row'><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>
-                    <div class='leader-row'><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>
-                    <div class='leader-row'><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>
-                    <div class='leader-row' style='color:#ffdd00;'><span>5. 👑 Sənin_Adın (CEO)</span><b id="ceoScoreText">0 Xal</b></div>
+                    <!-- Dinamik olaraq yerlər dolacaq -->
                 </div>
             </div>
 
@@ -93,7 +90,7 @@
             <!-- ALƏT 3 -->
             <h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
             <p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
-            <button class="btn" style="background-color: #00ccff; color: #000;" id="genCryptoBtn">Güvənli Kod Yarat</button>
+            <button class="btn" style="background-color: #00ccff; color: #000;" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
             <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
         </div>
         
@@ -108,41 +105,43 @@
         var u2Cost = 100;
         var isSpinning = false;
 
-        // BÜTÖV MEXANİKİ BAĞLANTILAR
-        document.getElementById("clickerMainBtn").addEventListener("click", function() {
+        var leaders = [
+            { name: "⚡ Kiber_Aslan", score: 250 },
+            { name: "🥷 Gizli_Pro", score: 180 },
+            { name: "🤖 Bot_Kliker", score: 45 },
+            { name: "💥 Hacker_007", score: 20 },
+            { name: "👑 Sənin_Adın (CEO)", score: 0 }
+        ];
+
+        function updateLeaderboard() {
+            for(var i=0; i<leaders.length; i++) {
+                if(leaders[i].name.includes("CEO")) {
+                    leaders[i].score = score;
+                }
+            }
+            var myCopy = [].concat(leaders);
+            myCopy.sort(function(a, b) { return b.score - a.score; });
+            
+            var html = "";
+            for(var i=0; i<myCopy.length; i++) {
+                var color = (myCopy[i].name.includes("CEO")) ? "#ffdd00" : "#fff";
+                html += "<div class='leader-row' style='color:"+color+";'><span>" + (i+1) + ". " + myCopy[i].name + "</span><b>" + myCopy[i].score + " Xal</b></div>";
+            }
+            var target = document.getElementById("leaderboardList");
+            if(target) { target.innerHTML = html; }
+        }
+
+        // Səhifə canlanan kimi reytinqi bir dəfə işə salır
+        setTimeout(updateLeaderboard, 200);
+
+        function clickButton() {
             score += clickPower;
-            updateDisplays();
-        });
-
-        document.getElementById("spinWheelBtn").addEventListener("click", function() {
-            spinWheel();
-        });
-
-        document.getElementById("up1Btn").addEventListener("click", function() {
-            buyUpgrade1();
-        });
-
-        document.getElementById("up2Btn").addEventListener("click", function() {
-            buyUpgrade2();
-        });
-
-        document.getElementById("genNickBtn").addEventListener("click", function() {
-            generateRandomNicknames();
-        });
-
-        document.getElementById("genCryptoBtn").addEventListener("click", function() {
-            generateCryptoPassword();
-        });
-
-        function updateDisplays() {
-            var sDisp = document.getElementById("scoreDisplay");
-            if(sDisp) sDisp.innerText = score;
-            
-            var cText = document.getElementById("ceoScoreText");
-            if(cText) cText.innerText = score + " Xal";
-            
+            var disp = document.getElementById("scoreDisplay");
+            if(disp) { disp.innerText = score; }
+            var ceoText = document.getElementById("ceoScoreText");
+            if(ceoText) ceoText.innerText = score + " Xal";
             colorCheck();
-            checkRank();
+            updateLeaderboard();
         }
 
         function colorCheck() {
@@ -159,16 +158,23 @@
             }
         }
 
-        function checkRank() {
-            var list = document.getElementById("leaderboardList");
-            if(!list) return;
+        function spinWheel() {
+            if(isSpinning) return;
+            isSpinning = true;
+            var sBtn = document.getElementById("spinBtn");
+            if(sBtn) sBtn.disabled = true;
             
-            var r1 = "<div class='leader-row'><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>";
-            var r2 = "<div class='leader-row'><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>";
-            var r3 = "<div class='leader-row'><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>";
-            var r4 = "<div class='leader-row'><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>";
-            var rCeo = "<div class='leader-row' style='color:#ffdd00;'><span>👑 Sənin_Adın (CEO)</span><b>" + score + " Xal</b></div>";
+            var fakes = ["🔄 FIRLANIR...", "💎 CEKPOT?!", "❌ RİSK...", "🎰 ŞANSINIZ..."];
+            var count = 0;
+            
+            var anim = setInterval(function() {
+                var wStat = document.getElementById("wheelStatus");
+                if(wStat) wStat.innerText = fakes[count % fakes.length];
+                count++;
+            }, 250);
 
-            if (score >= 250) { list.innerHTML = rCeo + r1 + r2 + r3 + r4; }
-            else if (score >= 180) { list.innerHTML = r1 + rCeo + r2 + r3 + r4; }
-            else if (score >= 45) { list.innerHTML = r1 + r2 + rCeo + r3 + r4; }
+            setTimeout(function() {
+                clearInterval(anim);
+                var rand = Math.random();
+                var statusText = "";
+                

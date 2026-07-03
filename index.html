@@ -23,7 +23,7 @@
         .btn-red { background-color: #ff3333; color: #fff; }
         .btn-green { background-color: #00ff00; color: #000; }
 
-        /* LEADERBOARD & CASINO STYLES */
+        /* REYTİNQ VƏ ÇARX STYLES */
         .casino-box { background: #0a0a0a; border: 1px solid #ffdd00; padding: 15px; border-radius: 5px; margin-top: 20px; box-shadow: 0 0 10px rgba(255, 221, 0, 0.2); }
         .leaderboard-box { background: #0a0a0a; border: 1px solid #00ccff; padding: 15px; border-radius: 5px; margin-top: 25px; text-align: left; }
         .leader-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #222; font-size: 14px; }
@@ -79,7 +79,11 @@
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
                 <div id="leaderboardList">
-                    <!-- Dinamik olaraq yüklənəcək -->
+                    <div class='leader-row' style='color:#fff;'><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>
+                    <div class='leader-row' style='color:#fff;'><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>
+                    <div class='leader-row' style='color:#ffdd00;' id="userLeaderRow"><span>3. 👑 Sənin_Adın (CEO)</span><b id="leaderScore">0 Xal</b></div>
+                    <div class='leader-row' style='color:#fff;'><span>4. 🤖 Bot_Kliker</span><b>45 Xal</b></div>
+                    <div class='leader-row' style='color:#fff;'><span>5. 💥 Hacker_007</span><b>15 Xal</b></div>
                 </div>
             </div>
 
@@ -103,38 +107,12 @@
         var u2Cost = 100;
         var isSpinning = false;
 
-        // REYTİNQ DATA BAZASI
-        var leaders = [
-            { name: "⚡ Kiber_Aslan", score: 250 },
-            { name: "🥷 Gizli_Pro", score: 180 },
-            { name: "👑 Sənin_Adın (CEO)", score: 0 },
-            { name: "🤖 Bot_Kliker", score: 45 },
-            { name: "💥 Hacker_007", score: 15 }
-        ];
-
-        // 100% TAM DÜZƏLDİLMİŞ STRUKTUR SƏHVİ OLMAYAN REYTİNQ FUNKSİYASI
-        function updateLeaderboard() {
-            for(var i=0; i<leaders.length; i++) {
-                if(leaders[i].name === "👑 Sənin_Adın (CEO)") {
-                    leaders[i].score = score;
-                }
-            }
-            leaders.sort(function(a, b) { return b.score - a.score; });
-            
-            var html = "";
-            for(var i=0; i<leaders.length; i++) {
-                var color = (leaders[i].name.includes("CEO")) ? "#ffdd00" : "#fff";
-                html += "<div class='leader-row' style='color:"+color+";'><span>" + (i+1) + ". " + leaders[i].name + "</span><b>" + leaders[i].score + " Xal</b></div>";
-            }
-            document.getElementById("leaderboardList").innerHTML = html;
-        }
-        updateLeaderboard(); 
-
+        // TAM TOXUNULMAZ VƏ ASAN KLİK FUNKSİYASI
         function clickButton() {
             score += clickPower;
             document.getElementById("scoreDisplay").innerText = score;
+            document.getElementById("leaderScore").innerText = score + " Xal";
             colorCheck();
-            updateLeaderboard();
         }
 
         function colorCheck() {
@@ -172,6 +150,18 @@
                 } else if (rand < 0.75) {
                     score = Math.max(0, score - 20); statusText = "🔴 RİSK: -20 Xal getdi!";
                 } else {
-                    statusText = "💀 ŞANS: Boş çıxdı, təzədən yoxla!";
+                    statusText = "💀 ŞANS: Boş çıxdı!";
                 }
                 
+                document.getElementById("wheelStatus").innerText = statusText;
+                document.getElementById("scoreDisplay").innerText = score;
+                document.getElementById("leaderScore").innerText = score + " Xal";
+                colorCheck();
+                
+                isSpinning = false;
+                document.getElementById("spinBtn").disabled = false;
+            }, 2000);
+        }
+
+        function buyUpgrade1() {
+            if (score >= u1Cost) {

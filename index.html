@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>CEO Gaming Hub - Enterprise v12.0</title>
     <style>
         body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
@@ -79,7 +80,7 @@
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
                 <div id="leaderboardList">
-                    <!-- Dinamik olaraq yerlər buraya dolacaq -->
+                    <!-- Dinamik dolacaq -->
                 </div>
             </div>
 
@@ -103,7 +104,6 @@
         var u2Cost = 100;
         var isSpinning = false;
 
-        // BOTLARIN XALLARI
         var leaders = [
             { name: "⚡ Kiber_Aslan", score: 250 },
             { name: "🥷 Gizli_Pro", score: 180 },
@@ -112,53 +112,63 @@
             { name: "👑 Sənin_Adın (CEO)", score: 0 }
         ];
 
-        // SARSILMAZ REYTİNQ FUNKSİYASI
         function updateLeaderboard() {
             for(var i=0; i<leaders.length; i++) {
-                if(leaders[i].name === "👑 Sənin_Adın (CEO)") {
+                if(leaders[i].name.includes("CEO")) {
                     leaders[i].score = score;
                 }
             }
-            // Böyükdən kiçiyə sıralama
-            var sorted = [].concat(leaders);
-            sorted.sort(function(a, b) { return b.score - a.score; });
+            // Təhlükəsiz sıralama kopyası
+            var myCopy = [].concat(leaders);
+            myCopy.sort(function(a, b) { return b.score - a.score; });
             
             var html = "";
-            for(var i=0; i<sorted.length; i++) {
-                var color = (sorted[i].name.includes("CEO")) ? "#ffdd00" : "#fff";
-                html += "<div class='leader-row' style='color:"+color+";'><span>" + (i+1) + ". " + sorted[i].name + "</span><b>" + sorted[i].score + " Xal</b></div>";
+            for(var i=0; i<myCopy.length; i++) {
+                var color = (myCopy[i].name.includes("CEO")) ? "#ffdd00" : "#fff";
+                html += "<div class='leader-row' style='color:"+color+";'><span>" + (i+1) + ". " + myCopy[i].name + "</span><b>" + myCopy[i].score + " Xal</b></div>";
             }
-            document.getElementById("leaderboardList").innerHTML = html;
+            var target = document.getElementById("leaderboardList");
+            if(target) { target.innerHTML = html; }
         }
-        updateLeaderboard();
+
+        window.onload = function() {
+            updateLeaderboard();
+        };
 
         function clickButton() {
             score += clickPower;
-            document.getElementById("scoreDisplay").innerText = score;
+            var disp = document.getElementById("scoreDisplay");
+            if(disp) { disp.innerText = score; }
             colorCheck();
             updateLeaderboard();
         }
 
         function colorCheck() {
             var b1 = document.getElementById("up1Btn");
-            if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
-            else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmır"; }
+            if(b1) {
+                if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
+                else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmır"; }
+            }
 
             var b2 = document.getElementById("up2Btn");
-            if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
-            else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmır"; }
+            if(b2) {
+                if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
+                else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmır"; }
+            }
         }
 
         function spinWheel() {
             if(isSpinning) return;
             isSpinning = true;
-            document.getElementById("spinBtn").disabled = true;
+            var sBtn = document.getElementById("spinBtn");
+            if(sBtn) sBtn.disabled = true;
             
             var fakes = ["🔄 FIRLANIR...", "💎 CEKPOT?!", "❌ RİSK...", "🎰 ŞANSINIZ..."];
             var count = 0;
             
             var anim = setInterval(function() {
-                document.getElementById("wheelStatus").innerText = fakes[count % fakes.length];
+                var wStatus = document.getElementById("wheelStatus");
+                if(wStatus) wStatus.innerText = fakes[count % fakes.length];
                 count++;
             }, 250);
 
@@ -171,9 +181,3 @@
                     score += 30; statusText = "🟢 UDUŞ: +30 Xal!";
                 } else if (rand < 0.5) {
                     score += 100; statusText = "🟡 CEKPOT: +100 Xal! 🔥";
-                } else if (rand < 0.75) {
-                    score = Math.max(0, score - 20); statusText = "🔴 RİSK: -20 Xal getdi!";
-                } else {
-                    statusText = "💀 ŞANS: Boş çıxdı!";
-                }
-                

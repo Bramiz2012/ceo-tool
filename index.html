@@ -84,8 +84,11 @@
         function clickButton() {
             score += clickPower;
             document.getElementById("scoreDisplay").innerText = score;
-            
-            // Sadə və əsla dondurmayan düymə rəng yoxlanışı
+            colorCheck();
+        }
+
+        // TAM 100% DÜZƏLDİLMİŞ ID YOXLANILIŞI (BÖYÜK B HƏRFLƏRİ İLƏ)
+        function colorCheck() {
             var b1 = document.getElementById("up1Btn");
             if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
             else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmır"; }
@@ -100,8 +103,7 @@
                 score -= u1Cost; clickPower += 1; u1Cost = Math.floor(u1Cost * 1.5);
                 document.getElementById("upgrade1Cost").innerText = u1Cost;
                 document.getElementById("scoreDisplay").innerText = score;
-                document.getElementById("up1Btn").className = "shop-btn btn-red";
-                document.getElementById("up1Btn").innerText = "Balans Çatmır";
+                colorCheck();
             } else { alert("Xalınız çatmır!"); }
         }
 
@@ -110,8 +112,7 @@
                 score -= u2Cost; autoClickers += 1; u2Cost = Math.floor(u2Cost * 1.6);
                 document.getElementById("upgrade2Cost").innerText = u2Cost;
                 document.getElementById("scoreDisplay").innerText = score;
-                document.getElementById("up2Btn").className = "shop-btn btn-red";
-                document.getElementById("up2Btn").innerText = "Balans Çatmır";
+                colorCheck();
             } else { alert("Xalınız çatmır!"); }
         }
 
@@ -119,10 +120,7 @@
             if (autoClickers > 0) {
                 score += autoClickers;
                 document.getElementById("scoreDisplay").innerText = score;
-                var b1 = document.getElementById("up1Btn");
-                if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
-                var b2 = document.getElementById("up2Btn");
-                if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
+                colorCheck();
             }
         }, 1000);
 

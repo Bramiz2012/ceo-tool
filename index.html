@@ -80,11 +80,11 @@
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
                 <div id="leaderboardList">
-                    <div class='leader-row' style='color:#fff;'><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>
-                    <div class='leader-row' style='color:#fff;'><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>
-                    <div class='leader-row' style='color:#fff;'><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>
-                    <div class='leader-row' style='color:#fff;'><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>
-                    <div class='leader-row' style='color:#ffdd00;' id="ceoRow"><span>5. 👑 Sənin_Adın (CEO)</span><b id="ceoRowScore">0 Xal</b></div>
+                    <div class='leader-row' id="row1"><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>
+                    <div class='leader-row' id="row2"><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>
+                    <div class='leader-row' id="row3"><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>
+                    <div class='leader-row' id="row4"><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>
+                    <div class='leader-row' id="row5" style='color:#ffdd00;'><span>5. 👑 Sənin_Adın (CEO)</span><b id="ceoScoreText">0 Xal</b></div>
                 </div>
             </div>
 
@@ -108,47 +108,58 @@
         var u2Cost = 100;
         var isSpinning = false;
 
+        // TAM TOXUNULMAZ VƏ ASAN KLİK FUNKSİYASI
         function clickButton() {
             score += clickPower;
-            var disp = document.getElementById("scoreDisplay");
-            if(disp) { disp.innerText = score; }
-            
-            var ceoScr = document.getElementById("ceoRowScore");
-            if(ceoScr) { ceoScr.innerText = score + " Xal"; }
+            updateDisplays();
+        }
 
+        function updateDisplays() {
+            document.getElementById("scoreDisplay").innerText = score;
+            document.getElementById("ceoScoreText").innerText = score + " Xal";
             colorCheck();
             checkRank();
         }
 
         function colorCheck() {
             var b1 = document.getElementById("up1Btn");
-            if(b1) {
-                if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
-                else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmır"; }
-            }
+            if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
+            else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmır"; }
 
             var b2 = document.getElementById("up2Btn");
-            if(b2) {
-                if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
-                else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmır"; }
+            if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
+            else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmır"; }
+        }
+
+        // HEÇ BİR MASSİV OLMADAN, DONDURMAYAN ASAN REYTİNQ MEXANİZMİ
+        function checkRank() {
+            var list = document.getElementById("leaderboardList");
+            
+            var r1 = "<div class='leader-row'><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>";
+            var r2 = "<div class='leader-row'><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>";
+            var r3 = "<div class='leader-row'><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>";
+            var r4 = "<div class='leader-row'><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>";
+            var rCeo = "<div class='leader-row' style='color:#ffdd00;'><span>👑 Sənin_Adın (CEO)</span><b>" + score + " Xal</b></div>";
+
+            if (score >= 250) {
+                list.innerHTML = rCeo + r1 + r2 + r3 + r4;
+            } else if (score >= 180) {
+                list.innerHTML = r1 + rCeo + r2 + r3 + r4;
+            } else if (score >= 45) {
+                list.innerHTML = r1 + r2 + rCeo + r3 + r4;
+            } else if (score >= 20) {
+                list.innerHTML = r1 + r2 + r3 + rCeo + r4;
+            } else {
+                list.innerHTML = r1 + r2 + r3 + r4 + rCeo;
             }
         }
 
-        function checkRank() {
-            var list = document.getElementById("leaderboardList");
-            if(!list) return;
-
-            var r1 = "<div><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>";
-            var r2 = "<div><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>";
-            var r3 = "<div><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>";
-            var r4 = "<div><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>";
-            var rCeo = "<div style='color:#ffdd00;'><span>👑 Sənin_Adın (CEO)</span><b>" + score + " Xal</b></div>";
-
-            var html = "";
-            if (score >= 250) {
-                html = "<div class='leader-row'>" + rCeo + "</div><div class='leader-row'>" + r1 + "</div><div class='leader-row'>" + r2 + "</div><div class='leader-row'>" + r3 + "</div><div class='leader-row'>" + r4 + "</div>";
-            } else if (score >= 180) {
-                html = "<div class='leader-row'>" + r1 + "</div><div class='leader-row'>" + rCeo + "</div><div class='leader-row'>" + r2 + "</div><div class='leader-row'>" + r3 + "</div><div class='leader-row'>" + r4 + "</div>";
-            } else if (score >= 45) {
-                html = "<div class='leader-row'>" + r1 + "</div><div class='leader-row'>" + r2 + "</div><div class='leader-row'>" + rCeo + "</div><div class='leader-row'>" + r3 + "</div><div class='leader-row'>" + r4 + "</div>";
-            } else if (score >= 20) {
+        function spinWheel() {
+            if(isSpinning) return;
+            isSpinning = true;
+            document.getElementById("spinBtn").disabled = true;
+            
+            var fakes = ["🔄 FIRLANIR...", "💎 CEKPOT?!", "❌ RİSK...", "🎰 ŞANSINIZ..."];
+            var count = 0;
+            
+            var anim = setInterval(function() {

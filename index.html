@@ -103,7 +103,7 @@
         var u2Cost = 100;
         var isSpinning = false;
 
-        // BOTLARIN XALLARI (Tam məntiqli və riyazi sıralama üçün)
+        // BOTLARIN XALLARI
         var leaders = [
             { name: "⚡ Kiber_Aslan", score: 250 },
             { name: "🥷 Gizli_Pro", score: 180 },
@@ -112,7 +112,7 @@
             { name: "👑 Sənin_Adın (CEO)", score: 0 }
         ];
 
-        // 100% SAF VƏ REYAL SIRALAMA FUNKSİYASI
+        // SARSILMAZ REYTİNQ FUNKSİYASI
         function updateLeaderboard() {
             for(var i=0; i<leaders.length; i++) {
                 if(leaders[i].name === "👑 Sənin_Adın (CEO)") {
@@ -120,16 +120,17 @@
                 }
             }
             // Böyükdən kiçiyə sıralama
-            leaders.sort(function(a, b) { return b.score - a.score; });
+            var sorted = [].concat(leaders);
+            sorted.sort(function(a, b) { return b.score - a.score; });
             
             var html = "";
-            for(var i=0; i<leaders.length; i++) {
-                var color = (leaders[i].name.includes("CEO")) ? "#ffdd00" : "#fff";
-                html += "<div class='leader-row' style='color:"+color+";'><span>" + (i+1) + ". " + leaders[i].name + "</span><b>" + leaders[i].score + " Xal</b></div>";
+            for(var i=0; i<sorted.length; i++) {
+                var color = (sorted[i].name.includes("CEO")) ? "#ffdd00" : "#fff";
+                html += "<div class='leader-row' style='color:"+color+";'><span>" + (i+1) + ". " + sorted[i].name + "</span><b>" + sorted[i].score + " Xal</b></div>";
             }
             document.getElementById("leaderboardList").innerHTML = html;
         }
-        updateLeaderboard(); // Açılışda reytinqi basır
+        updateLeaderboard();
 
         function clickButton() {
             score += clickPower;
@@ -174,3 +175,5 @@
                     score = Math.max(0, score - 20); statusText = "🔴 RİSK: -20 Xal getdi!";
                 } else {
                     statusText = "💀 ŞANS: Boş çıxdı!";
+                }
+                

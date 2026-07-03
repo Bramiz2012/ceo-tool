@@ -3,194 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>CEO Gaming Hub - Enterprise v12.0</title>
-    <style>
-        body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
-        .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; }
-        .sidebar-ad { width: 160px; height: 1100px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; }
-        .center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; }
-        .input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 300px; border-radius: 5px; }
-        .btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; }
-        .btn:hover { background-color: #00cc00; box-shadow: 0 0 10px #00ff00; }
-        .action-area { margin-top: 25px; background: #000; padding: 20px; border: 1px solid #222; min-height: 60px; color: #fff; font-size: 18px; border-radius: 5px; text-align: left; }
-        .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
-        .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; }
-        .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 120px; height: 120px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; }
-        .click-btn:active { transform: scale(0.95); }
-        .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .shop-item { background: #000; border: 1px solid #333; padding: 15px; border-radius: 5px; font-size: 13px; width: 160px; }
-        .shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: 0.2s; }
-        .btn-red { background-color: #ff3333; color: #fff; }
-        .btn-green { background-color: #00ff00; color: #000; }
-        .casino-box { background: #0a0a0a; border: 1px solid #ffdd00; padding: 15px; border-radius: 5px; margin-top: 20px; box-shadow: 0 0 10px rgba(255, 221, 0, 0.2); }
-        .leaderboard-box { background: #0a0a0a; border: 1px solid #00ccff; padding: 15px; border-radius: 5px; margin-top: 25px; text-align: left; }
-        .leader-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #222; font-size: 14px; }
-        .slot-animation { font-size: 20px; font-weight: bold; color: #ffdd00; margin: 10px 0; height: 25px; }
-    </style>
+    <!-- GitHub CSS-i bura bağlayacaq -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="main-container">
-    <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
+	<div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
 
-    <div class="center-box">
-        <h1>CEO Multi-Tool Enterprise v12.0</h1>
-        <p style="color: #888;">Premium Alətlər, Şans Çarxı və Ədalətli Reytinq Sistemi</p>
-        
-        <hr style="border-color: #222; margin: 20px 0;">
+		<div class="center-box">
+			<h1>CEO Multi-Tool Enterprise v12.0</h1>
+			<p style="color: #888;">Zirehli, Donmayan və Sarsılmaz Yeni Sistem</p>
 
-        <!-- ALƏT 1 -->
-        <h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
-        <p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
-        <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
-        <button class="btn" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
-        <div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
-        
-        <hr style="border-color: #222; margin: 40px 0;">
-        
-        <!-- ALƏT 2 -->
-        <h2>🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
-        <p>Xal yığın və mağazadan gücləndiricilər alın!</p>
-        <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
-            Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
-        </div>
-        <button class="click-btn" onclick="clickButton()">KLİKLƏ!</button>
-        
-        <div class="shop-container">
-            <div class="shop-item">
-                <b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
-                <button id="up1Btn" class="shop-btn btn-red" onclick="buyUpgrade1()">Balans Çatmır</button>
+			<hr style="border-color: #222; margin: 20px 0;">
+
+			<!-- ALƏT 1 -->
+			<h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
+			<p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
+			<input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
+			<button class="btn" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
+			<div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
+
+			<hr style="border-color: #222; margin: 40px 0;">
+
+			<!-- ALƏT 2 -->
+			<h2>🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
+			<p>Xal yığın və mağazadan gücləndiricilər alın!</p>
+			<div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
+				Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
+			</div>
+			<button class="click-btn" onclick="clickButton()">KLİKLƏ!</button>
+
+			<div class="shop-container">
+				<div class="shop-item">
+					<b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
+					<button id="up1Btn" class="shop-btn btn-red" onclick="buyUpgrade1()">Balans Çatmır</button>
+				</div>
+				<div class="shop-item">
+					<b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
+					<button id="up2Btn" class="shop-btn btn-red" onclick="buyUpgrade2()">Balans Çatmır</button>
+				</div>
+			</div>
+
+			<!-- IDEYA 2: CEO ŞANS ÇARXI -->
+			<div class="casino-box">
+				<h3>🎰 CEO Şans Çarxı</h3>
+				<p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
+				<div class="slot-animation" id="wheelStatus">🎰 Çarx Hazırdır!</div>
+				<button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="spinWheel()">Şansını Sına! (Pulsuz)</button>
             </div>
-            <div class="shop-item">
-                <b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
-                <button id="up2Btn" class="shop-btn btn-red" onclick="buyUpgrade2()">Balans Çatmır</button>
-            </div>
-        </div>
 
-        <!-- IDEYA 2: CEO ŞANS ÇARXI -->
-        <div class="casino-box">
-            <h3>🎰 CEO Şans Çarxı</h3>
-            <p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
-            <div class="slot-animation" id="wheelStatus">🎰 Çarx Hazırdır!</div>
-            <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="spinWheel()">Şansını Sına! (Pulsuz)</button>
-        </div>
+			<!-- IDEYA 1: REYAL REYTİNQ SİSTEMİ -->
+			<div class="leaderboard-box">
+				<h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
+				<div id="leaderboardList">
+					<!-- Dinamik dolacaq -->
+				</div>
+			</div>
 
-        <!-- IDEYA 1: REYAL REYTİNQ SİSTEMİ -->
-        <div class="leaderboard-box">
-            <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
-            <div id="leaderboardList">
-                <!-- Dinamik dolacaq -->
-            </div>
-        </div>
+			<hr style="border-color: #222; margin: 40px 0;">
 
-        <hr style="border-color: #222; margin: 40px 0;">
+			<!-- ALƏT 3 -->
+			<h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
+			<p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
+			<button class="btn" style="background-color: #00ccff; color: #000;" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
+			<div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...
+			</div>
+		</div>
 
-        <!-- ALƏT 3 -->
-        <h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
-        <p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
-        <button class="btn" style="background-color: #00ccff; color: #000;" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
-        <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
-    </div>
-
-    <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
+		<div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
 </div>
 
-<script>
-    // FUNKSİYALAR TAMAMİLƏ SERBƏST BURAXILDI (100% DONMAYAN STRUKTUR)
-    var score = 0;
-    var clickPower = 1;
-    var autoClickers = 0;
-    var u1Cost = 30;
-    var u2Cost = 100;
-    var isSpinning = false;
-
-    var leaders = [
-      { name: "⚡ Kiber_Aslan", score: 250 },
-      { name: "🥷 Gizli_Pro", score: 180 },
-      { name: "🤖 Bot_Kliker", score: 45 },
-      { name: "💥 Hacker_007", score: 20 },
-      { name: "👑 Sənin_Adın (CEO)", score: 0 }
-    ];
-
-    function updateLeaderboard() {
-      for (var i = 0; i < leaders.length; i++) {
-        if (leaders[i].name.includes("CEO")) {
-          leaders[i].score = score;
-        }
-      }
-      var myCopy = [].concat(leaders);
-      myCopy.sort(function (a, b) { return b.score - a.score; });
-
-      var html = "";
-      for (var i = 0; i < myCopy.length; i++) {
-        var color = (myCopy[i].name.includes("CEO")) ? "#ffdd00" : "#fff";
-        html += "<div class='leader-row' style='color:" + color + ";'><span>" + (i + 1) + ". " + myCopy[i].name + "</span><b>" + myCopy[i].score + " Xal</b></div>";
-      }
-      var target = document.getElementById("leaderboardList");
-      if (target) { target.innerHTML = html; }
-    }
-
-    // İlk açılış reytinqi
-    setTimeout(updateLeaderboard, 200);
-
-    function clickButton() {
-      score += clickPower;
-      var disp = document.getElementById("scoreDisplay");
-      if (disp) { disp.innerText = score; }
-      colorCheck();
-      updateLeaderboard();
-    }
-
-    function colorCheck() {
-      var b1 = document.getElementById("up1Btn");
-      if (b1) {
-        if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
-        else { b1.className = "shop-btn btn-red"; b1.innerText = "Balans Çatmır"; }
-      }
-
-      var b2 = document.getElementById("up2Btn");
-      if (b2) {
-        if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = "Əldə et"; }
-        else { b2.className = "shop-btn btn-red"; b2.innerText = "Balans Çatmır"; }
-      }
-    }
-
-    function spinWheel() {
-      if (isSpinning) return;
-      isSpinning = true;
-      var sBtn = document.getElementById("spinBtn");
-      if (sBtn) sBtn.disabled = true;
-
-      var fakes = ["🔄 FIRLANIR...", "💎 CEKPOT?!", "❌ RİSK...", "🎰 ŞANSINIZ..."];
-      var count = 0;
-
-      var anim = setInterval(function () {
-        var wStatus = document.getElementById("wheelStatus");
-        if (wStatus) wStatus.innerText = fakes[count % fakes.length];
-        count++;
-      }, 250);
-
-      setTimeout(function () {
-        clearInterval(anim);
-        var rand = Math.random();
-        var statusText = "";
-
-        if (rand < 0.3) { score += 30; statusText = "🟢 UDUŞ: +30 Xal!"; }
-        else if (rand < 0.5) { score += 100; statusText = "🟡 CEKPOT: +100 Xal! 🔥"; }
-        else if (rand < 0.75) { score = Math.max(0, score - 20); statusText = "🔴 RİSK: -20 Xal getdi!"; }
-        else { statusText = "💀 ŞANS: Boş çıxdı!"; }
-
-        var wStatus = document.getElementById("wheelStatus");
-        if (wStatus) wStatus.innerText = statusText;
-        var disp = document.getElementById("scoreDisplay");
-        if (disp) disp.innerText = score;
-        colorCheck();
-        updateLeaderboard();
-
-        isSpinning = false;
-        if (sBtn) sBtn.disabled = false;
-      }, 2000);
-    }
-
-    function buyUpgrade1() {
-      if (score >= u1Cost) {
-        score -= u1Cost; clickPower += 1; u1Cost = Math.floor(u1Cost * 1.5);
+    <!-- GitHub mühərriki bura bağlayacaq -->
+    <script src="script.js"></script>
+</body>
+</html>

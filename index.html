@@ -2,79 +2,113 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <title>CEO Gaming Hub - Enterprise v12.0</title>
-    <!-- GitHub CSS-i bura bağlayacaq -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEO Gaming Hub - Enterprise v13.0</title>
+    <!-- CSS Faylımız Bağlanır -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="main-container">
-	<div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
+    <!-- 🌐 DİL SEÇİMİ PANELİ -->
+    <div class="lang-container">
+        <button class="lang-btn active" id="lang-az" onclick="changeLanguage('az')">AZ</button>
+        <button class="lang-btn" id="lang-en" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn" id="lang-ru" onclick="changeLanguage('ru')">RU</button>
+    </div>
 
-		<div class="center-box">
-			<h1>CEO Multi-Tool Enterprise v12.0</h1>
-			<p style="color: #888;">Zirehli, Donmayan və Sarsılmaz Yeni Sistem</p>
+    <h1 id="main-title">CEO Multi-Tool Enterprise v13.0</h1>
+    <p id="main-subtitle" style="color: #888;">Premium Alətlər, Canlı Bot Rəqabəti və Qlobal Dil Seçimi</p>
+    
+    <!-- 🎛️ 3 DÜYMƏLİ ALƏT MENYUSU (TAB SYSTEM) -->
+    <div class="tab-container">
+        <button class="tab-btn" id="tab1-btn" onclick="switchTab(1)">⚔️ Alət 1</button>
+        <button class="tab-btn active" id="tab2-btn" onclick="switchTab(2)">🎮 Alət 2</button>
+        <button class="tab-btn" id="tab3-btn" onclick="switchTab(3)">🔒 Alət 3</button>
+    </div>
 
-			<hr style="border-color: #222; margin: 20px 0;">
+    <div class="main-container">
+        <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
+        
+        <div class="center-box">
+            
+            <!-- ⚔️ ALƏT 1: NICKNAME GENERATOR -->
+            <div id="tab1-content" class="tab-content">
+                <h2 id="t1-title">⚔️ Alət 1: Premium Nickname Generatoru</h2>
+                <p id="t1-desc">Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
+                <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
+                <button class="btn" id="t1-btn" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
+                <div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
+            </div>
+            
+            <!-- 🎮 ALƏT 2: CYBER CLICKER & PREMIUM SHOP v2.0 -->
+            <div id="tab2-content" class="tab-content active">
+                <h2 id="t2-title">🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
+                <p id="t2-desc">Xal yığın, mağazadan premium statuslar alın və canlı botları keçin!</p>
+                
+                <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
+                    <span id="t2-score-label">Kiber Xallarınız:</span> <span id="scoreDisplay" style="color: #ffdd00;">0</span>
+                </div>
+                
+                <button class="click-btn" id="clickBtn" onclick="clickButton()">KLİKLƏ!</button>
+                
+                <!-- STANDART MAĞAZA -->
+                <div class="shop-container">
+                    <div class="shop-item">
+                        <b id="up1-title">🚀 Super Klik (+2)</b><br><span id="up1-cost-label">Qiymət:</span> <span id="upgrade1Cost">30</span> Xal<br>
+                        <button id="up1Btn" class="shop-btn btn-red" onclick="buyUpgrade1()">Balans Çatmır</button>
+                    </div>
+                    <div class="shop-item">
+                        <b id="up2-title">🤖 Avto-Klik (1/sn)</b><br><span id="up2-cost-label">Qiymət:</span> <span id="upgrade2Cost">100</span> Xal<br>
+                        <button id="up2Btn" class="shop-btn btn-red" onclick="buyUpgrade2()">Balans Çatmır</button>
+                    </div>
+                </div>
 
-			<!-- ALƏT 1 -->
-			<h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
-			<p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
-			<input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
-			<button class="btn" onclick="generateRandomNicknames()">Havalı Adlar Yarat</button>
-			<div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
+                <!-- 🛍️ PREMIUM MAĞAZA v2.0 (İDEYA 1) -->
+                <div class="premium-shop-box">
+                    <h3 id="p-shop-title" style="color: #ff00ff; margin-top: 0;">🛍️ Premium Mağaza v2.0</h3>
+                    <div class="shop-container" style="margin-top: 10px;">
+                        <div class="shop-item" style="border-color: #ff3399;">
+                            <b style="color: #ff3399;" id="p1-title">🔴 Neon Qırmızı Ad</b><br><span id="p1-cost-label">Qiymət:</span> 300 Xal<br>
+                            <button id="p1Btn" class="shop-btn btn-red" onclick="buyPremiumItem('red', 300)">Balans Çatmır</button>
+                        </div>
+                        <div class="shop-item" style="border-color: #ffdd00;">
+                            <b style="color: #ffdd00;" id="p2-title">👑 Qızılı CEO Statusu</b><br><span id="p2-cost-label">Qiymət:</span> 500 Xal<br>
+                            <button id="p2Btn" class="shop-btn btn-red" onclick="buyPremiumItem('gold', 500)">Balans Çatmır</button>
+                        </div>
+                    </div>
+                </div>
 
-			<hr style="border-color: #222; margin: 40px 0;">
+                <!-- 🎰 CEO ŞANS ÇARXI -->
+                <div class="casino-box">
+                    <h3 id="wheel-title">🎰 CEO Şans Çarxı</h3>
+                    <p id="wheel-desc" style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
+                    <div class="slot-animation" id="wheelStatus">🎰 Çarx Hazırdır!</div>
+                    <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="spinWheel()">Şansını Sına! (Pulsuz)</button>
+                </div>
 
-			<!-- ALƏT 2 -->
-			<h2>🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
-			<p>Xal yığın və mağazadan gücləndiricilər alın!</p>
-			<div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
-				Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
-			</div>
-			<button class="click-btn" onclick="clickButton()">KLİKLƏ!</button>
-
-			<div class="shop-container">
-				<div class="shop-item">
-					<b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
-					<button id="up1Btn" class="shop-btn btn-red" onclick="buyUpgrade1()">Balans Çatmır</button>
-				</div>
-				<div class="shop-item">
-					<b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
-					<button id="up2Btn" class="shop-btn btn-red" onclick="buyUpgrade2()">Balans Çatmır</button>
-				</div>
-			</div>
-
-			<!-- IDEYA 2: CEO ŞANS ÇARXI -->
-			<div class="casino-box">
-				<h3>🎰 CEO Şans Çarxı</h3>
-				<p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
-				<div class="slot-animation" id="wheelStatus">🎰 Çarx Hazırdır!</div>
-				<button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="spinWheel()">Şansını Sına! (Pulsuz)</button>
+                <!-- 🏆 REYTİNQ (İDEYA 2: BOTLARIN CANLI SEVİYYƏSİNİN ARTMASI) -->
+                <div class="leaderboard-box">
+                    <h3 id="leader-title" style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu (Canlı)</h3>
+                    <div id="leaderboardList">
+                        <!-- Dinamik olaraq script.js tərəfindən doldurulacaq -->
+                    </div>
+                </div>
             </div>
 
-			<!-- IDEYA 1: REYAL REYTİNQ SİSTEMİ -->
-			<div class="leaderboard-box">
-				<h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
-				<div id="leaderboardList">
-					<!-- Dinamik dolacaq -->
-				</div>
-			</div>
+            <!-- 🔒 ALƏT 3: CRYPTO PASSWORD GENERATOR -->
+            <div id="tab3-content" class="tab-content">
+                <h2 id="t3-title">🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
+                <p id="t3-desc">Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
+                <button class="btn" style="background-color: #00ccff; color: #000;" id="t3-btn" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
+                <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
+            </div>
 
-			<hr style="border-color: #222; margin: 40px 0;">
+        </div>
+        
+        <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
+    </div>
 
-			<!-- ALƏT 3 -->
-			<h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
-			<p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
-			<button class="btn" style="background-color: #00ccff; color: #000;" onclick="generateCryptoPassword()">Güvənli Kod Yarat</button>
-			<div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...
-			</div>
-		</div>
-
-		<div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
-</div>
-
-    <!-- GitHub mühərriki bura bağlayacaq -->
+    <!-- JavaScript Mühərrikimiz Ən Sonda Bağlanır -->
     <script src="script.js"></script>
 </body>
 </html>

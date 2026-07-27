@@ -7,7 +7,7 @@ var translations = {
         t1Desc: "Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:",
         t1Btn: "Havalı Adlar Yarat",
         t2Title: "🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)",
-        t2Desc: "Xal yığın, mağazadan premium statuslar alın oarsılı canlı botları keçin!",
+        t2Desc: "Xal yığın, mağazadan premium statuslar alın və canlı botları keçin!",
         t2Score: "Kiber Xallarınız:",
         up1: "🚀 Super Klik (+2)",
         up2: "🤖 Avto-Klik (1/sn)",
@@ -103,7 +103,7 @@ var u2Cost = 100;
 var isSpinning = false;
 var userColorStatus = "normal"; // normal, red, gold
 
-// 🤖 CANLI BOT DATA BAZASI
+// 🤖 BOT DATA BAZASI
 var leaders = [
     { name: "⚡ Kiber_Aslan", score: 250, isBot: true },
     { name: "🥷 Gizli_Pro", score: 180, isBot: true },
@@ -157,9 +157,10 @@ window.switchTab = function(tabNum) {
     for (var i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove("active");
     }
+    
     var contents = document.querySelectorAll(".tab-content");
-    for (var i = 0; i < contents.length; i++) {
-        contents[i].classList.remove("active");
+    for (var j = 0; i < contents.length; j++) {
+        contents[j].classList.remove("active");
     }
 
     var activeTab = document.getElementById("tab" + tabNum + "-btn");
@@ -184,7 +185,7 @@ function updateLeaderboard() {
     }
 
     var myCopy = [].concat(leaders);
-    myCopy.sort(function(a, b) { return b.score - a.score; });
+    myCopy.sort((a, b) => b.score - a.score);
 
     var html = "";
     for (var i = 0; i < myCopy.length; i++) {
@@ -224,3 +225,5 @@ window.colorCheck = function() {
     var t = translations[currentLang];
     if (!t) return;
     
+    var b1 = document.getElementById("up1Btn");
+    if (b1) {

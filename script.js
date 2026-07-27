@@ -1,4 +1,4 @@
-// 🌐 GLOBAL GLOBAL DİL BAZASI
+// 🌐 GLOBAL DİL BAZASI
 var translations = {
     az: {
         title: "CEO Multi-Tool Enterprise v13.0",
@@ -7,7 +7,7 @@ var translations = {
         t1Desc: "Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:",
         t1Btn: "Havalı Adlar Yarat",
         t2Title: "🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)",
-        t2Desc: "Xal yığın, mağazadan premium statuslar alın və canlı botları keçin!",
+        t2Desc: "Xal yığın, mağazadan premium statuslar alın oarsılı canlı botları keçin!",
         t2Score: "Kiber Xallarınız:",
         up1: "🚀 Super Klik (+2)",
         up2: "🤖 Avto-Klik (1/sn)",
@@ -69,7 +69,7 @@ var translations = {
         t2Title: "🎮 Инструмент 2: CEO Cyber Clicker (Мини-Игра)",
         t2Desc: "Копите очки, покупайте премиум-статусы в магазине и обгоняйте живых ботов!",
         t2Score: "Ваши Кибер Очки:",
-        up1: "🚀 Супер Клик (+2)",
+        up1: "🚀 Премиум Клик (+2)",
         up2: "🤖 Авто-Клик (1/сек)",
         cost: "Цена:",
         pshop: "🛍️ Премиум Магазин v2.0",
@@ -78,7 +78,7 @@ var translations = {
         wheelTitle: "🎰 Колесо Удачи CEO",
         wheelDesc: "Испытай удачу: Выиграй много очков или рискуй!",
         wheelReady: "🎰 Колесо Готово!",
-        leader: "🏆 Топ-5 Кибер Игроков (Живой)",
+        leader: "🏆 Топ-5 Игроков (Живой)",
         t3Title: "🔒 Инструмент 3: Несокрушимый Генератор Паролей",
         t3Desc: "Создайте 100% защищенный секретный код для ваших аккаунтов:",
         t3Btn: "Создать Безопасный Код",
@@ -103,7 +103,7 @@ var u2Cost = 100;
 var isSpinning = false;
 var userColorStatus = "normal"; // normal, red, gold
 
-// 🤖 CANLI KLİKLEYƏN BOTLARIN DATA BAZASI (İDEYA 2)
+// 🤖 CANLI BOT DATA BAZASI
 var leaders = [
     { name: "⚡ Kiber_Aslan", score: 250, isBot: true },
     { name: "🥷 Gizli_Pro", score: 180, isBot: true },
@@ -112,46 +112,61 @@ var leaders = [
     { name: "👑 Sənin_Adın (CEO)", score: 0, isBot: false }
 ];
 
-// 🌐 DİL DƏYİŞMƏ FUNKSİYASI
+// 🌐 TAM DÜZƏLDİLMİŞ DİL FUNKSİYASI
 window.changeLanguage = function(lang) {
     currentLang = lang;
-    document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
-    document.getElementById("lang-" + lang).classList.add("active");
+    var btns = document.querySelectorAll(".lang-btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove("active");
+    }
+    var activeLangBtn = document.getElementById("lang-" + lang);
+    if (activeLangBtn) activeLangBtn.classList.add("active");
 
     var t = translations[lang];
-    document.getElementById("main-title").innerText = t.title;
-    document.getElementById("main-subtitle").innerText = t.subtitle;
-    document.getElementById("t1-title").innerText = t.t1Title;
-    document.getElementById("t1-desc").innerText = t.t1Desc;
-    document.getElementById("t1-btn").innerText = t.t1Btn;
-    document.getElementById("t2-title").innerText = t.t2Title;
-    document.getElementById("t2-desc").innerText = t.t2Desc;
-    document.getElementById("t2-score-label").innerText = t.t2Score;
-    document.getElementById("up1-title").innerText = t.up1;
-    document.getElementById("up2-title").innerText = t.up2;
-    document.getElementById("up1-cost-label").innerText = t.cost;
-    document.getElementById("up2-cost-label").innerText = t.cost;
-    document.getElementById("p1-cost-label").innerText = t.cost;
-    document.getElementById("p2-cost-label").innerText = t.cost;
-    document.getElementById("p-shop-title").innerText = t.pshop;
-    document.getElementById("wheel-title").innerText = t.wheelTitle;
-    document.getElementById("wheel-desc").innerText = t.wheelDesc;
-    document.getElementById("leader-title").innerText = t.leader;
-    document.getElementById("t3-title").innerText = t.t3Title;
-    document.getElementById("t3-desc").innerText = t.t3Desc;
-    document.getElementById("t3-btn").innerText = t.t3Btn;
+    if (!t) return;
+
+    if (document.getElementById("main-title")) document.getElementById("main-title").innerText = t.title;
+    if (document.getElementById("main-subtitle")) document.getElementById("main-subtitle").innerText = t.subtitle;
+    if (document.getElementById("t1-title")) document.getElementById("t1-title").innerText = t.t1Title;
+    if (document.getElementById("t1-desc")) document.getElementById("t1-desc").innerText = t.t1Desc;
+    if (document.getElementById("t1-btn")) document.getElementById("t1-btn").innerText = t.t1Btn;
+    if (document.getElementById("t2-title")) document.getElementById("t2-title").innerText = t.t2Title;
+    if (document.getElementById("t2-desc")) document.getElementById("t2-desc").innerText = t.t2Desc;
+    if (document.getElementById("t2-score-label")) document.getElementById("t2-score-label").innerText = t.t2Score;
+    if (document.getElementById("up1-title")) document.getElementById("up1-title").innerText = t.up1;
+    if (document.getElementById("up2-title")) document.getElementById("up2-title").innerText = t.up2;
+    if (document.getElementById("up1-cost-label")) document.getElementById("up1-cost-label").innerText = t.cost;
+    if (document.getElementById("up2-cost-label")) document.getElementById("up2-cost-label").innerText = t.cost;
+    if (document.getElementById("p1-cost-label")) document.getElementById("p1-cost-label").innerText = t.cost;
+    if (document.getElementById("p2-cost-label")) document.getElementById("p2-cost-label").innerText = t.cost;
+    if (document.getElementById("p-shop-title")) document.getElementById("p-shop-title").innerText = t.pshop;
+    if (document.getElementById("wheel-title")) document.getElementById("wheel-title").innerText = t.wheelTitle;
+    if (document.getElementById("wheel-desc")) document.getElementById("wheel-desc").innerText = t.wheelDesc;
+    if (document.getElementById("leader-title")) document.getElementById("leader-title").innerText = t.leader;
+    if (document.getElementById("t3-title")) document.getElementById("t3-title").innerText = t.t3Title;
+    if (document.getElementById("t3-desc")) document.getElementById("t3-desc").innerText = t.t3Desc;
+    if (document.getElementById("t3-btn")) document.getElementById("t3-btn").innerText = t.t3Btn;
 
     colorCheck();
     updateLeaderboard();
 };
 
-// 🎛️ ALƏT TAB MENYUSU FUNKSİYASI
+// 🎛️ 100% SƏHVSİZ ALƏT KEÇİD FUNKSİYASI
 window.switchTab = function(tabNum) {
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".tab-content").forEach(c => b = c.classList.remove("active"));
+    var tabs = document.querySelectorAll(".tab-btn");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+    var contents = document.querySelectorAll(".tab-content");
+    for (var i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+    }
 
-    document.getElementById("tab" + tabNum + "-btn").classList.add("active");
-    document.getElementById("tab" + tabNum + "-content").classList.add("active");
+    var activeTab = document.getElementById("tab" + tabNum + "-btn");
+    var activeContent = document.getElementById("tab" + tabNum + "-content");
+    
+    if (activeTab) activeTab.classList.add("active");
+    if (activeContent) activeContent.classList.add("active");
 };
 
 function updateLeaderboard() {
@@ -169,7 +184,7 @@ function updateLeaderboard() {
     }
 
     var myCopy = [].concat(leaders);
-    myCopy.sort((a, b) => b.score - a.score);
+    myCopy.sort(function(a, b) { return b.score - a.score; });
 
     var html = "";
     for (var i = 0; i < myCopy.length; i++) {
@@ -187,47 +202,25 @@ function updateLeaderboard() {
     if (target) { target.innerHTML = html; }
 }
 
-// ⚔️ BOTLARIN CANLI KLİK ARTIMI (HƏR 2 SANİYƏDƏ TƏSADÜFİ ARTIŞ)
+// 🤖 BOTLARIN CANLI KLİK SİSTEMİ
 setInterval(function() {
     for (var i = 0; i < leaders.length; i++) {
         if (leaders[i].isBot) {
-            leaders[i].score += Math.floor(Math.random() * 4) + 1; // 1-4 arası təsadüfi xal artımı
+            leaders[i].score += Math.floor(Math.random() * 3) + 1;
         }
     }
     updateLeaderboard();
-}, 2000);
+}, 2500);
 
 window.clickButton = function() {
     score += clickPower;
-    document.getElementById("scoreDisplay").innerText = score;
+    var disp = document.getElementById("scoreDisplay");
+    if (disp) disp.innerText = score;
     colorCheck();
     updateLeaderboard();
 };
 
 window.colorCheck = function() {
     var t = translations[currentLang];
+    if (!t) return;
     
-    var b1 = document.getElementById("up1Btn");
-    if (score >= u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = t.buy; }
-    else { b1.className = "shop-btn btn-red"; b1.innerText = t.noFunds; }
-
-    var b2 = document.getElementById("up2Btn");
-    if (score >= u2Cost) { b2.className = "shop-btn btn-green"; b2.innerText = t.buy; }
-    else { b2.className = "shop-btn btn-red"; b2.innerText = t.noFunds; }
-
-    var p1 = document.getElementById("p1Btn");
-    if (userColorStatus === "red" || userColorStatus === "gold") {
-        p1.className = "shop-btn btn-green"; p1.innerText = "ALINDI"; p1.disabled = true;
-    } else if (score >= 300) { p1.className = "shop-btn btn-green"; p1.innerText = t.buy; }
-    else { p1.className = "shop-btn btn-red"; p1.innerText = t.noFunds; }
-
-    var p2 = document.getElementById("p2Btn");
-    if (userColorStatus === "gold") {
-        p2.className = "shop-btn btn-green"; p2.innerText = "ALINDI"; p2.disabled = true;
-    } else if (score >= 500) { p2.className = "shop-btn btn-green"; p2.innerText = t.buy; }
-    else { p2.className = "shop-btn btn-red"; p2.innerText = t.noFunds; }
-};
-
-window.buyUpgrade1 = function() {
-    var t = translations[currentLang];
-    if (score >= u1Cost) {

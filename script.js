@@ -112,13 +112,11 @@ var leaders = [
     { name: "👑 Sənin_Adın (CEO)", score: 0, isBot: false }
 ];
 
-// 🌐 TAM DÜZƏLDİLMİŞ DİL FUNKSİYASI
+// 🌐 TƏHLÜKƏSİZ DİL FUNKSİYASI
 window.changeLanguage = function(lang) {
     currentLang = lang;
     var btns = document.querySelectorAll(".lang-btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.remove("active");
-    }
+    for (var i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
     var activeLangBtn = document.getElementById("lang-" + lang);
     if (activeLangBtn) activeLangBtn.classList.add("active");
 
@@ -151,9 +149,8 @@ window.changeLanguage = function(lang) {
     updateLeaderboard();
 };
 
-// 🎛️ 100% REAL VƏ SARSILMAZ TAB KEÇİD SİSTEMİ (DÖVRƏLƏR REZERV EDİLDİ)
+// 🎛️ 100% DÖVRƏSİZ SARSILMAZ TAB KEÇİD MEXANİZMİ 🛡️
 window.switchTab = function(tabNum) {
-    // Təhlükəli dövrələr söküldü, birbaşa nöqtə-atışı idarəetmə quruldu
     document.getElementById("tab1-btn").classList.remove("active");
     document.getElementById("tab2-btn").classList.remove("active");
     document.getElementById("tab3-btn").classList.remove("active");
@@ -218,3 +215,7 @@ window.clickButton = function() {
 };
 
 window.colorCheck = function() {
+    var t = translations[currentLang];
+    if (!t) return;
+    
+    var b1 = document.getElementById("up1Btn");

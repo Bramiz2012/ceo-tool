@@ -103,7 +103,7 @@ var u2Cost = 100;
 var isSpinning = false;
 var userColorStatus = "normal"; // normal, red, gold
 
-// 🤖 BOT DATA BAZASI
+// 🤖 CANLI BOT DATA BAZASI
 var leaders = [
     { name: "⚡ Kiber_Aslan", score: 250, isBot: true },
     { name: "🥷 Gizli_Pro", score: 180, isBot: true },
@@ -112,7 +112,7 @@ var leaders = [
     { name: "👑 Sənin_Adın (CEO)", score: 0, isBot: false }
 ];
 
-// 🌐 TAM DÜZƏLDİLMİŞ DİL FUNKSİYASI
+// 🌐 TƏHLÜKƏSİZ DİL FUNKSİYASI
 window.changeLanguage = function(lang) {
     currentLang = lang;
     var btns = document.querySelectorAll(".lang-btn");
@@ -151,7 +151,7 @@ window.changeLanguage = function(lang) {
     updateLeaderboard();
 };
 
-// 🎛️ 100% SƏHVSİZ ALƏT KEÇİD FUNKSİYASI
+// 🎛️ 100% TAM GÜVƏNLİ ALƏT TAB FUNKSİYASI (TIXAC ARADAN QALDIRILDI)
 window.switchTab = function(tabNum) {
     var tabs = document.querySelectorAll(".tab-btn");
     for (var i = 0; i < tabs.length; i++) {
@@ -159,7 +159,7 @@ window.switchTab = function(tabNum) {
     }
     
     var contents = document.querySelectorAll(".tab-content");
-    for (var j = 0; i < contents.length; j++) {
+    for (var j = 0; j < contents.length; j++) {
         contents[j].classList.remove("active");
     }
 
@@ -203,7 +203,7 @@ function updateLeaderboard() {
     if (target) { target.innerHTML = html; }
 }
 
-// 🤖 BOTLARIN CANLI KLİK SİSTEMİ
+// 🤖 BOTLARIN CANLI SÜRƏTLİ ARTMA MEXANİZMİ
 setInterval(function() {
     for (var i = 0; i < leaders.length; i++) {
         if (leaders[i].isBot) {
@@ -225,5 +225,3 @@ window.colorCheck = function() {
     var t = translations[currentLang];
     if (!t) return;
     
-    var b1 = document.getElementById("up1Btn");
-    if (b1) {

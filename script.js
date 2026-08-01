@@ -112,7 +112,7 @@ var leaders = [
     { name: "👑 Sənin_Adın (CEO)", score: 0, isBot: false }
 ];
 
-// 🌐 TƏHLÜKƏSİZ DİL FUNKSİYASI
+// 🌐 TAM DÜZƏLDİLMİŞ DİL FUNKSİYASI
 window.changeLanguage = function(lang) {
     currentLang = lang;
     var btns = document.querySelectorAll(".lang-btn");
@@ -151,23 +151,19 @@ window.changeLanguage = function(lang) {
     updateLeaderboard();
 };
 
-// 🎛️ 100% TAM GÜVƏNLİ ALƏT TAB FUNKSİYASI (TIXAC ARADAN QALDIRILDI)
+// 🎛️ 100% REAL VƏ SARSILMAZ TAB KEÇİD SİSTEMİ (DÖVRƏLƏR REZERV EDİLDİ)
 window.switchTab = function(tabNum) {
-    var tabs = document.querySelectorAll(".tab-btn");
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
-    }
+    // Təhlükəli dövrələr söküldü, birbaşa nöqtə-atışı idarəetmə quruldu
+    document.getElementById("tab1-btn").classList.remove("active");
+    document.getElementById("tab2-btn").classList.remove("active");
+    document.getElementById("tab3-btn").classList.remove("active");
     
-    var contents = document.querySelectorAll(".tab-content");
-    for (var j = 0; j < contents.length; j++) {
-        contents[j].classList.remove("active");
-    }
+    document.getElementById("tab1-content").classList.remove("active");
+    document.getElementById("tab2-content").classList.remove("active");
+    document.getElementById("tab3-content").classList.remove("active");
 
-    var activeTab = document.getElementById("tab" + tabNum + "-btn");
-    var activeContent = document.getElementById("tab" + tabNum + "-content");
-    
-    if (activeTab) activeTab.classList.add("active");
-    if (activeContent) activeContent.classList.add("active");
+    document.getElementById("tab" + tabNum + "-btn").classList.add("active");
+    document.getElementById("tab" + tabNum + "-content").classList.add("active");
 };
 
 function updateLeaderboard() {
@@ -203,7 +199,7 @@ function updateLeaderboard() {
     if (target) { target.innerHTML = html; }
 }
 
-// 🤖 BOTLARIN CANLI SÜRƏTLİ ARTMA MEXANİZMİ
+// 🤖 BOTLARIN CANLI KLİK SİSTEMİ
 setInterval(function() {
     for (var i = 0; i < leaders.length; i++) {
         if (leaders[i].isBot) {
@@ -222,6 +218,3 @@ window.clickButton = function() {
 };
 
 window.colorCheck = function() {
-    var t = translations[currentLang];
-    if (!t) return;
-    

@@ -108,7 +108,7 @@ body {
     box-shadow: 0 0 15px #00ff00;
 }
 
-/* 📦 ALƏT İÇƏRİKLƏRİNİN GİZLƏNİB-AÇILMASI */
+/* 📦 ALƏT BÖLMƏLƏRİNİN GİZLƏNİLMƏSİ */
 .tab-content {
     display: none;
 }
@@ -116,7 +116,6 @@ body {
     display: block;
 }
 
-/* 按钮 AXŞAMLARI */
 .btn { 
     background-color: #00ff00; 
     color: #0d0d0d; 
@@ -167,7 +166,7 @@ body {
     background-color: #111; 
     color: #00ff00; 
     border: 3px solid #00ff00; 
-    width: 130px; 
+    width: 120px; 
     height: 120px; 
     border-radius: 50%; 
     font-size: 18px; 
@@ -219,7 +218,7 @@ body {
     color: #000; 
 }
 
-/* 🛍️ PREMIUM SHOP v2.0 DIZAYNI */
+/* 🛍️ PREMIUM SHOP v2.0 */
 .premium-shop-box {
     background: #0d001a;
     border: 2px dashed #ff00ff;
@@ -229,7 +228,6 @@ body {
     box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
 }
 
-/* 🎰 ŞANS ÇARXI VƏ REYTİNQ CƏDVƏLİ */
 .casino-box { 
     background: #0a0a0a; 
     border: 1px solid #ffdd00; 
@@ -262,7 +260,7 @@ body {
     height: 25px; 
 }
 
-/* 💎 STATUS AD EFFEKTLƏRİ (🛍️ İDEYA 1) */
+/* 💎 PREMIUM REYTİNQ EFFEKTLƏRİ */
 .name-red {
     color: #ff3333 !important;
     text-shadow: 0 0 8px #ff3333;

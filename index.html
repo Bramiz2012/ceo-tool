@@ -128,7 +128,7 @@ font-weight:bold;
 
 <div class="box">
 
-<h2>⚔ Premium Nickname Generator</h2>
+<h2 id="nickTitle">⚔ Premium Nickname Generator</h2>
 
 <input id="nickInput" placeholder="Adını yaz">
 
@@ -144,7 +144,7 @@ Nickname Yarat
 
 <div class="box">
 
-<h2>🎮 Cyber Clicker</h2>
+<h2 id="clickerTitle">🎮 Cyber Clicker</h2>
 
 <p class="gold">
 Xal :
@@ -198,7 +198,7 @@ Al
 
 <div class="box">
 
-<h2>🎰 Şans Çarxı</h2>
+<h2 id="wheelTitle">🎰 Şans Çarxı</h2>
 
 <button onclick="spinWheel()">
 Fırlat
@@ -214,7 +214,7 @@ Hazırdır
 
 <div class="box">
 
-<h2>🔒 Password Generator</h2>
+<h2 id="passwordTitle">🔒 Password Generator</h2>
 
 <button onclick="generatePassword()">
 Şifrə Yarat
@@ -229,7 +229,7 @@ id="password">
 
 <div class="box">
 
-<h2>⏳ Countdown</h2>
+<h2 id="countdownTitle">⏳ Countdown</h2>
 
 <input
 type="datetime-local"
@@ -684,25 +684,71 @@ function changeLanguage() {
 
     localStorage.setItem("language", lang);
 
-    if (lang === "az") {
-        alert("Dil Azərbaycan seçildi.");
-    } else if (lang === "en") {
-        alert("Language changed to English.");
-    } else if (lang === "ru") {
-        alert("Язык изменен на Русский.");
-    }
+    document.getElementById("nickTitle").innerHTML =
+        translations[lang].nickTitle;
+
+    document.getElementById("clickerTitle").innerHTML =
+        translations[lang].clickerTitle;
+
+    document.getElementById("wheelTitle").innerHTML =
+        translations[lang].wheelTitle;
+
+    document.getElementById("passwordTitle").innerHTML =
+        translations[lang].passwordTitle;
+
+    document.getElementById("countdownTitle").innerHTML =
+        translations[lang].countdownTitle;
 
 }
 
 window.addEventListener("load", function () {
 
-    const saved = localStorage.getItem("language");
+    const saved = localStorage.getItem("language") || "az";
 
-    if (saved) {
-        document.getElementById("language").value = saved;
-    }
+    document.getElementById("language").value = saved;
+
+    changeLanguage();
 
 });
+    // =======================
+// DİL SİSTEMİ
+// =======================
+
+const translations = {
+
+az: {
+nickTitle:"⚔ Premium Ləqəb Generatoru",
+clickerTitle:"🎮 Cyber Klik Oyunu",
+wheelTitle:"🎰 Şans Çarxı",
+passwordTitle:"🔒 Şifrə Generatoru",
+countdownTitle:"⏳ Geri Sayım"
+},
+
+en: {
+nickTitle:"⚔ Premium Nickname Generator",
+clickerTitle:"🎮 Cyber Clicker",
+wheelTitle:"🎰 Lucky Wheel",
+passwordTitle:"🔒 Password Generator",
+countdownTitle:"⏳ Countdown"
+},
+
+tr: {
+nickTitle:"⚔ Premium Takma Ad Oluşturucu",
+clickerTitle:"🎮 Cyber Tıklama Oyunu",
+wheelTitle:"🎰 Şans Çarkı",
+passwordTitle:"🔒 Şifre Oluşturucu",
+countdownTitle:"⏳ Geri Sayım"
+},
+
+ru: {
+nickTitle:"⚔ Генератор Никнеймов",
+clickerTitle:"🎮 Кибер Кликер",
+wheelTitle:"🎰 Колесо Удачи",
+passwordTitle:"🔒 Генератор Паролей",
+countdownTitle:"⏳ Обратный Отсчет"
+}
+
+};
 </script>
 
 </body>

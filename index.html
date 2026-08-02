@@ -3,159 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEO Gaming Hub - Enterprise v12.0</title>
+    <title>CEO Gaming Hub - Enterprise v13.0</title>
     <style>
-        body { 
-            background-color: #0d0d0d; 
-            color: #00ff00; 
-            font-family: monospace; 
-            text-align: center; 
-            padding: 20px; 
-            margin: 0; 
-        }
-        .main-container { 
-            display: flex; 
-            justify-content: space-between; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            position: relative;
-        }
-        .sidebar-ad { 
-            width: 160px; 
-            height: 1100px; 
-            border: 2px dashed #333; 
-            background-color: #131313; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #444; 
-            font-size: 13px; 
-            border-radius: 5px; 
-            position: relative;
-            z-index: 1;
-        }
-        .center-box { 
-            flex-grow: 1; 
-            max-width: 800px; 
-            border: 2px solid #00ff00; 
-            padding: 30px; 
-            border-radius: 10px; 
-            background-color: #141414; 
-            box-shadow: 0 0 20px #00ff00; 
-            margin: 0 20px; 
-            position: relative;
-            z-index: 10;
-        }
-        .input-style { 
-            background: #000; 
-            color: #00ff00; 
-            border: 1px solid #00ff00; 
-            padding: 12px; 
-            font-family: monospace; 
-            font-size: 16px; 
-            text-align: center; 
-            margin-top: 15px; 
-            width: 300px; 
-            border-radius: 5px; 
-        }
-        .btn { 
-            background-color: #00ff00; 
-            color: #0d0d0d; 
-            padding: 12px 25px; 
-            border: none; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-family: monospace; 
-            margin-top: 15px; 
-            font-size: 15px; 
-            border-radius: 5px; 
-            position: relative;
-            z-index: 999;
-        }
-        .btn:hover { 
-            background-color: #00cc00; 
-            box-shadow: 0 0 10px #00ff00; 
-        }
-        .action-area { 
-            margin-top: 25px; 
-            background: #000; 
-            padding: 20px; 
-            border: 1px solid #222; 
-            min-height: 60px; 
-            color: #fff; 
-            font-size: 18px; 
-            border-radius: 5px; 
-            text-align: left; 
-        }
-        .nick-row { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 10px; 
-            border-bottom: 1px solid #222; 
-        }
-        .copy-btn { 
-            background-color: #333; 
-            color: #00ff00; 
-            border: 1px solid #00ff00; 
-            padding: 5px 10px; 
-            cursor: pointer; 
-            font-family: monospace; 
-            font-size: 12px; 
-            border-radius: 3px; 
-            position: relative;
-            z-index: 999;
-        }
-        .click-btn { 
-            background-color: #111; 
-            color: #00ff00; 
-            border: 3px solid #00ff00; 
-            width: 130px; 
-            height: 130px; 
-            border-radius: 50%; 
-            font-size: 18px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-family: monospace; 
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); 
-            margin: 20px auto; 
-            display: block; 
-            transition: 0.1s; 
-            user-select: none; 
-            position: relative;
-            z-index: 999;
-        }
-        .click-btn:active { 
-            transform: scale(0.95); 
-        }
-        .shop-container { 
-            display: flex; 
-            justify-content: center; 
-            gap: 15px; 
-            margin-top: 20px; 
-        }
-        .shop-item { 
-            background: #000; 
-            border: 1px solid #333; 
-            padding: 15px; 
-            border-radius: 5px; 
-            font-size: 13px; 
-            width: 160px; 
-        }
-        .shop-btn { 
-            padding: 6px 12px; 
-            font-size: 12px; 
-            margin-top: 8px; 
-            font-weight: bold; 
-            font-family: monospace; 
-            border: none; 
-            border-radius: 3px; 
-            cursor: pointer; 
-            width: 100%; 
-            transition: 0.2s; 
-            position: relative;
-            z-index: 999;
-        }
+        body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
+        .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; position: relative; }
+        .sidebar-ad { width: 160px; height: 1200px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; position: relative; z-index: 1; }
+        .center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; position: relative; z-index: 10; }
+        .input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 280px; border-radius: 5px; }
+        .btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; position: relative; z-index: 999; }
+        .btn:hover { background-color: #00cc00; box-shadow: 0 0 10px #00ff00; }
+        .action-area { margin-top: 25px; background: #000; padding: 20px; border: 1px solid #222; min-height: 60px; color: #fff; font-size: 18px; border-radius: 5px; text-align: left; }
+        .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
+        .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; position: relative; z-index: 999; }
+        
+        /* CLICKER PANELİ */
+        .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 130px; height: 130px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; position: relative; z-index: 999; }
+        .click-btn:active { transform: scale(0.95); }
+        .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .shop-item { background: #000; border: 1px solid #333; padding: 15px; border-radius: 5px; font-size: 13px; width: 160px; }
+        .shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: 0.2s; position: relative; z-index: 999; }
         .btn-red { background-color: #ff3333; color: #fff; }
         .btn-green { background-color: #00ff00; color: #000; }
         .casino-box { background: #0a0a0a; border: 1px solid #ffdd00; padding: 15px; border-radius: 5px; margin-top: 20px; box-shadow: 0 0 10px rgba(255, 221, 0, 0.2); }
@@ -166,8 +32,8 @@
 </head>
 <body>
 
-    <h1>CEO Multi-Tool Enterprise v12.0</h1>
-    <p style="color: #888;">Premium Alətlər, Şans Çarxı və Ədalətli Reytinq Sistemi</p>
+    <h1>CEO Multi-Tool Enterprise v13.0</h1>
+    <p style="color: #888;">Premium Alətlər, Oyun Bölməsi və Dahi 4-cü Alət: Kiber Zaman Maşını</p>
     
     <div class="main-container">
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
@@ -201,7 +67,6 @@
                 </div>
             </div>
 
-            <!-- CEO ŞANS ÇARXI -->
             <div class="casino-box">
                 <h3>🎰 CEO Şans Çarxı</h3>
                 <p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
@@ -209,7 +74,6 @@
                 <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="window.spinWheel()">Şansını Sına! (Pulsuz)</button>
             </div>
 
-            <!-- REYAL REYTİNQ SİSTEMİ -->
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
                 <div id="leaderboardList"></div>
@@ -222,6 +86,22 @@
             <p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
             <button class="btn" style="background-color: #00ccff; color: #000;" onclick="window.generateCryptoPassword()">Güvənli Kod Yarat</button>
             <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
+
+            <hr style="border-color: #222; margin: 40px 0;">
+
+            <!-- 🔥 ALƏT 4: MÜDİRİN ŞƏRTİ - REAL GERİ SAYIM SAYĞACI -->
+            <h2>⏳ Alət 4: CEO Kiber Zaman Maşını</h2>
+            <p>Gələcək bir tarixi seçin (İl, Ay, Gün, Saat, Dəqiqə, Saniyə):</p>
+            <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px;">
+                <input type="number" id="cYear" class="input-style" style="width: 70px; margin:0;" placeholder="İl" value="2026">
+                <input type="number" id="cMonth" class="input-style" style="width: 50px; margin:0;" placeholder="Ay" value="12">
+                <input type="number" id="cDay" class="input-style" style="width: 50px; margin:0;" placeholder="Gün" value="31">
+                <input type="number" id="cHour" class="input-style" style="width: 50px; margin:0;" placeholder="Saat" value="23">
+                <input type="number" id="cMin" class="input-style" style="width: 50px; margin:0;" placeholder="Dəq" value="59">
+                <input type="number" id="cSec" class="input-style" style="width: 50px; margin:0;" placeholder="San" value="59">
+            </div>
+            <button class="btn" style="background-color: #ff3399; color: #fff;" onclick="window.startCountdown()">Geri Sayımı Başlat</button>
+            <div class="action-area" id="countdownOutput" style="color: #ff3399; text-align: center; font-size: 20px; font-weight: bold;">Tarix təyin edin və düyməyə basın...</div>
         </div>
         
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
@@ -229,6 +109,8 @@
 
     <script>
         window.score = 0; window.clickPower = 1; window.autoClickers = 0; window.u1Cost = 30; window.u2Cost = 100; window.isSpinning = false;
+        window.countdownInterval = null;
+
         window.leaders = [
             { name: "⚡ Kiber_Aslan", score: 250 }, { name: "🥷 Gizli_Pro", score: 180 },
             { name: "🤖 Bot_Kliker", score: 45 }, { name: "💥 Hacker_007", score: 20 },
@@ -249,3 +131,7 @@
 
         window.clickButton = function() {
             window.score += window.clickPower;
+            if(document.getElementById("scoreDisplay")) { document.getElementById("scoreDisplay").innerText = window.score; }
+            window.colorCheck(); window.updateLeaderboard();
+        };
+

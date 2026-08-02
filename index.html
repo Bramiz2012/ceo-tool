@@ -249,7 +249,17 @@ Hazırdır
 </div>
 
 </div>
+<div class="box">
 
+<h2>🌍 Dil seçimi</h2>
+
+<select id="language" onchange="changeLanguage()">
+    <option value="az">🇦🇿 Azərbaycan</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="ru">🇷🇺 Русский</option>
+</select>
+
+</div>
 <script>
     // ======================
 // CEO Gaming Hub v14 JS
@@ -664,7 +674,35 @@ console.log("CEO Gaming Hub Enterprise v14 hazırdır.");
 // Daily Reward
 // Skin Shop
 // Lucky Box
+// ====================
+// Dil seçimi
+// ====================
 
+function changeLanguage() {
+
+    const lang = document.getElementById("language").value;
+
+    localStorage.setItem("language", lang);
+
+    if (lang === "az") {
+        alert("Dil Azərbaycan seçildi.");
+    } else if (lang === "en") {
+        alert("Language changed to English.");
+    } else if (lang === "ru") {
+        alert("Язык изменен на Русский.");
+    }
+
+}
+
+window.addEventListener("load", function () {
+
+    const saved = localStorage.getItem("language");
+
+    if (saved) {
+        document.getElementById("language").value = saved;
+    }
+
+});
 </script>
 
 </body>

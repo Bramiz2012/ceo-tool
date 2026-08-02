@@ -60,7 +60,7 @@
             border-radius: 5px; 
         }
 
-        /* 👑 SƏNİN DEDİYİN 4-CÜ QAYDA: Z-INDEX ZİREHİ (DÜYMƏLƏR ƏN ÖNDƏ) */
+        /* 👑 Z-INDEX ZİREHİ (DÜYMƏLƏR ƏN ÖNDƏ) */
         .btn { 
             background-color: #00ff00; 
             color: #0d0d0d; 
@@ -86,7 +86,7 @@
             border: 1px solid #222; 
             min-height: 60px; 
             color: #fff; 
-            font-size: 18px; 
+            font-size: 14px; 
             border-radius: 5px; 
             text-align: left; 
         }
@@ -110,7 +110,7 @@
             z-index: 999;
         }
 
-        /* 🎮 CYBER CLICKER DÜYMƏSİ - 100% KLİKLƏNƏN STRUKTUR */
+        /* 🎮 CYBER CLICKER DÜYMƏSİ */
         .click-btn { 
             background-color: #111; 
             color: #00ff00; 
@@ -128,7 +128,7 @@
             transition: 0.1s; 
             user-select: none; 
             position: relative;
-            z-index: 999; /* Tamamilə ən üst qatda! */
+            z-index: 999; 
         }
         .click-btn:active { 
             transform: scale(0.95); 
@@ -218,46 +218,42 @@
             <!-- REYAL REYTİNQ SİSTEMİ -->
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
-                <div id="leaderboardList">
-                    <!-- Dinamik dolacaq -->
+                <div id="leaderboardContent">
+                    <div class="leader-row"><span>1. DarkCEO_99</span><span style="color:#00ccff;">15,420 Xal</span></div>
+                    <div class="leader-row"><span>2. CyberKnight</span><span style="color:#00ccff;">12,100 Xal</span></div>
+                    <div class="leader-row"><span>3. Matrix_Hacker</span><span style="color:#00ccff;">9,850 Xal</span></div>
+                    <div class="leader-row"><span>4. PixelLord</span><span style="color:#00ccff;">7,320 Xal</span></div>
+                    <div class="leader-row"><span>5. Siz (Hazırkı)</span><span id="playerLeaderboardScore" style="color:#ffdd00;">0 Xal</span></div>
                 </div>
             </div>
-
-            <hr style="border-color: #222; margin: 40px 0;">
-
-            <!-- ALƏT 3 -->
-            <h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
-            <p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
-            <button class="btn" style="background-color: #00ccff; color: #000;" onclick="window.generateCryptoPassword()">Güvənli Kod Yarat</button>
-            <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
         </div>
-        
+
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
     </div>
 
+    <!-- ⚡ DÜYMƏLƏRİ İŞLƏDƏN JAVASCRIPT KODLARI ⚡ -->
     <script>
-        // SƏNİN 3-CÜ QAYDAN: WINDOW SEVİYYƏSİNDƏSİNƏ QURAŞDIRILMIŞ SARSILMAZ FUNKSİYALAR 🛡️
-        window.score = 0;
-        window.clickPower = 1;
-        window.autoClickers = 0;
-        window.u1Cost = 30;
-        window.u2Cost = 100;
-        window.isSpinning = false;
+        // OYUN DƏYİŞƏNLƏRİ
+        let score = 0;
+        let clickPower = 1;
+        let autoClickers = 0;
+        let up1Cost = 30;
+        let up2Cost = 100;
 
-        window.leaders = [
-            { name: "⚡ Kiber_Aslan", score: 250 },
-            { name: "🥷 Gizli_Pro", score: 180 },
-            { name: "🤖 Bot_Kliker", score: 45 },
-            { name: "💥 Hacker_007", score: 20 },
-            { name: "👑 Sənin_Adın (CEO)", score: 0 }
-        ];
+        // ELEMENTLƏRİ SEÇMƏK
+        const scoreDisplay = document.getElementById("scoreDisplay");
+        const playerLeaderboardScore = document.getElementById("playerLeaderboardScore");
+        const up1Btn = document.getElementById("up1Btn");
+        const up2Btn = document.getElementById("up2Btn");
+        const upgrade1CostStyle = document.getElementById("upgrade1Cost");
+        const upgrade2CostStyle = document.getElementById("upgrade2Cost");
 
-        window.updateLeaderboard = function() {
-            for(var i=0; i<window.leaders.length; i++) {
-                if(window.leaders[i].name.includes("CEO")) {
-                    window.leaders[i].score = window.score;
-                }
-            }
-            var myCopy = [].concat(window.leaders);
-            myCopy.sort(function(a, b) { return b.score - a.score; });
-            
+        // UI YENİLƏMƏ FUNKSİYASI
+        function updateUI() {
+            scoreDisplay.innerText = score;
+            playerLeaderboardScore.innerText = score + " Xal";
+
+            // Mağaza Düymələrinin Rəngini və Mətnini Yoxlamaq
+            if (score >= up1Cost) {
+                up1Btn.className = "shop-btn btn-green";
+                up1Btn.innerText = "Satın Al";

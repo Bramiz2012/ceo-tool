@@ -1,4 +1,3 @@
-// 🎮 GLOBAL OYUN DƏYİŞƏNLƏRİ (0% DÖVRƏSİZ STRUKTUR)
 window.score = 0;
 window.clickPower = 1;
 window.autoClickers = 0;
@@ -7,7 +6,6 @@ window.u2Cost = 100;
 window.isSpinning = false;
 window.countdownInterval = null;
 
-// 🟢 KLİKLƏMƏ FUNKSİYASI
 window.clickButton = function() {
     window.score += window.clickPower;
     if(document.getElementById("scoreDisplay")) { document.getElementById("scoreDisplay").innerText = window.score; }
@@ -15,7 +13,6 @@ window.clickButton = function() {
     window.colorCheck();
 };
 
-// 🛍️ MAĞAZA BALANS KONTROLU
 window.colorCheck = function() {
     var b1 = document.getElementById("up1Btn");
     if(b1) {
@@ -29,29 +26,6 @@ window.colorCheck = function() {
     }
 };
 
-// 🚀 SUPER KLİK MAĞAZA FUNKSİYASI
-window.buyUpgrade1 = function() {
-    if (window.score >= window.u1Cost) {
-        window.score -= window.u1Cost; window.clickPower += 1; window.u1Cost = Math.floor(window.u1Cost * 1.5);
-        if(document.getElementById("upgrade1Cost")) document.getElementById("upgrade1Cost").innerText = window.u1Cost;
-        if(document.getElementById("scoreDisplay")) document.getElementById("scoreDisplay").innerText = window.score;
-        if(document.getElementById("boardScoreDisplay")) document.getElementById("boardScoreDisplay").innerText = window.score;
-        window.colorCheck();
-    } else { alert("Xalınız çatmır!"); }
-};
-
-// 🤖 AVTO-KLİK MAĞAZA FUNKSİYASI
-window.buyUpgrade2 = function() {
-    if (window.score >= window.u2Cost) {
-        window.score -= window.u2Cost; window.autoClickers += 1; window.u2Cost = Math.floor(window.u2Cost * 1.6);
-        if(document.getElementById("upgrade2Cost")) document.getElementById("upgrade2Cost").innerText = window.u2Cost;
-        if(document.getElementById("scoreDisplay")) document.getElementById("scoreDisplay").innerText = window.score;
-        if(document.getElementById("boardScoreDisplay")) document.getElementById("boardScoreDisplay").innerText = window.score;
-        window.colorCheck();
-    } else { alert("Xalınız çatmır!"); }
-};
-
-// 🎰 CEO ŞANS ÇARXI FUNKSİYASI
 window.spinWheel = function() {
     if(window.isSpinning) return; window.isSpinning = true;
     var sBtn = document.getElementById("spinBtn"); if(sBtn) sBtn.disabled = true;
@@ -70,7 +44,26 @@ window.spinWheel = function() {
     }, 2000);
 };
 
-// ⏳ ALƏT 4: KİBER ZAMAN MAŞINI SİSTEMİ
+window.buyUpgrade1 = function() {
+    if (window.score >= window.u1Cost) {
+        window.score -= window.u1Cost; window.clickPower += 1; window.u1Cost = Math.floor(window.u1Cost * 1.5);
+        if(document.getElementById("upgrade1Cost")) document.getElementById("upgrade1Cost").innerText = window.u1Cost;
+        if(document.getElementById("scoreDisplay")) document.getElementById("scoreDisplay").innerText = window.score;
+        if(document.getElementById("boardScoreDisplay")) document.getElementById("boardScoreDisplay").innerText = window.score;
+        window.colorCheck();
+    } else { alert("Xalınız çatmır!"); }
+};
+
+window.buyUpgrade2 = function() {
+    if (window.score >= window.u2Cost) {
+        window.score -= window.u2Cost; window.autoClickers += 1; window.u2Cost = Math.floor(window.u2Cost * 1.6);
+        if(document.getElementById("upgrade2Cost")) document.getElementById("upgrade2Cost").innerText = window.u2Cost;
+        if(document.getElementById("scoreDisplay")) document.getElementById("scoreDisplay").innerText = window.score;
+        if(document.getElementById("boardScoreDisplay")) document.getElementById("boardScoreDisplay").innerText = window.score;
+        window.colorCheck();
+    } else { alert("Xalınız çatmır!"); }
+};
+
 window.startCountdown = function() {
     if(window.countdownInterval) { clearInterval(window.countdownInterval); }
     var yr = parseInt(document.getElementById("cYear").value) || 2026;
@@ -90,10 +83,8 @@ window.startCountdown = function() {
     }, 1000);
 };
 
-// 🤖 AVTO-KLİKER SAYĞACI
 setInterval(function() { if (window.autoClickers > 0) { window.score += window.autoClickers; if(document.getElementById("scoreDisplay")) document.getElementById("scoreDisplay").innerText = window.score; if(document.getElementById("boardScoreDisplay")) document.getElementById("boardScoreDisplay").innerText = window.score; window.colorCheck(); } }, 1000);
 
-// ⚔️ LƏQƏB VƏ ŞİFRƏ GENERATORU
 var leftDecors = ["꧂◤", "︻╦̵̵͇̿̿̿̿╤──", "⚔️", "꧁༺", "👑", "◥⚔️", "☣️", "⚙️ ["]; var rightDecors = ["◥꧁", "──╤̿̿̿̿̿̿̿══╤─", "⚔️", "༻꧂", "👑", "⚔️◤", "☣️", "] ⚙️"];
 window.generateRandomNicknames = function() { var name = document.getElementById("nickInput").value; if(name === "") { alert("Zəhmət olmasa bir ad daxil edin!"); return; } var outputHTML = "<b>Premium Seçimlər:</b><br><br>"; for (var i = 0; i < 4; i++) { var randomIndex = Math.floor(Math.random() * leftDecors.length); var fullNick = leftDecors[randomIndex] + " " + name + " " + rightDecors[randomIndex]; outputHTML += "<div class='nick-row'><span>" + fullNick + "</span><button class='copy-btn' onclick='copyToClipboard(\"" + fullNick + "\")'>Kopyala</button></div>"; } if(document.getElementById("nickOutput")) document.getElementById("nickOutput").innerHTML = outputHTML; };
 window.generateCryptoPassword = function() { var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"; var password = ""; for (var i = 0; i < 12; i++) { password += chars.charAt(Math.floor(Math.random() * chars.length)); } if(document.getElementById("passOutput")) document.getElementById("passOutput").innerHTML = "<div class='nick-row' style='justify-content: center; gap: 20px;'><span style='color:#fff; font-size:22px; letter-spacing: 2px;'> " + password + "</span><button class='copy-btn' onclick='copyToClipboard(\"" + password + "\")'>Kopyala</button></div>"; };

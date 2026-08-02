@@ -5,165 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEO Gaming Hub - Enterprise v12.0</title>
     <style>
-        /* 🕶️ ÜMUMİ SAYT EFFEKTLƏRİ */
-        body { 
-            background-color: #0d0d0d; 
-            color: #00ff00; 
-            font-family: monospace; 
-            text-align: center; 
-            padding: 20px; 
-            margin: 0; 
-        }
-        .main-container { 
-            display: flex; 
-            justify-content: space-between; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            position: relative;
-        }
-        .sidebar-ad { 
-            width: 160px; 
-            height: 1100px; 
-            border: 2px dashed #333; 
-            background-color: #131313; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #444; 
-            font-size: 13px; 
-            border-radius: 5px; 
-            position: relative;
-            z-index: 1; /* Arxada qalsın */
-        }
-        .center-box { 
-            flex-grow: 1; 
-            max-width: 800px; 
-            border: 2px solid #00ff00; 
-            padding: 30px; 
-            border-radius: 10px; 
-            background-color: #141414; 
-            box-shadow: 0 0 20px #00ff00; 
-            margin: 0 20px; 
-            position: relative;
-            z-index: 10; /* Öndə qalsın */
-        }
-        .input-style { 
-            background: #000; 
-            color: #00ff00; 
-            border: 1px solid #00ff00; 
-            padding: 12px; 
-            font-family: monospace; 
-            font-size: 16px; 
-            text-align: center; 
-            margin-top: 15px; 
-            width: 300px; 
-            border-radius: 5px; 
-        }
-
-        /* 👑 Z-INDEX ZİREHİ (DÜYMƏLƏR ƏN ÖNDƏ) */
-        .btn { 
-            background-color: #00ff00; 
-            color: #0d0d0d; 
-            padding: 12px 25px; 
-            border: none; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-family: monospace; 
-            margin-top: 15px; 
-            font-size: 15px; 
-            border-radius: 5px; 
-            position: relative;
-            z-index: 999; /* Reklam qutuları önünü kəsə bilməz! */
-        }
-        .btn:hover { 
-            background-color: #00cc00; 
-            box-shadow: 0 0 10px #00ff00; 
-        }
-        .action-area { 
-            margin-top: 25px; 
-            background: #000; 
-            padding: 20px; 
-            border: 1px solid #222; 
-            min-height: 60px; 
-            color: #fff; 
-            font-size: 14px; 
-            border-radius: 5px; 
-            text-align: left; 
-        }
-        .nick-row { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 10px; 
-            border-bottom: 1px solid #222; 
-        }
-        .copy-btn { 
-            background-color: #333; 
-            color: #00ff00; 
-            border: 1px solid #00ff00; 
-            padding: 5px 10px; 
-            cursor: pointer; 
-            font-family: monospace; 
-            font-size: 12px; 
-            border-radius: 3px; 
-            position: relative;
-            z-index: 999;
-        }
-
-        /* 🎮 CYBER CLICKER DÜYMƏSİ */
-        .click-btn { 
-            background-color: #111; 
-            color: #00ff00; 
-            border: 3px solid #00ff00; 
-            width: 130px; 
-            height: 130px; 
-            border-radius: 50%; 
-            font-size: 18px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-family: monospace; 
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); 
-            margin: 20px auto; 
-            display: block; 
-            transition: 0.1s; 
-            user-select: none; 
-            position: relative;
-            z-index: 999; 
-        }
-        .click-btn:active { 
-            transform: scale(0.95); 
-        }
-        .shop-container { 
-            display: flex; 
-            justify-content: center; 
-            gap: 15px; 
-            margin-top: 20px; 
-        }
-        .shop-item { 
-            background: #000; 
-            border: 1px solid #333; 
-            padding: 15px; 
-            border-radius: 5px; 
-            font-size: 13px; 
-            width: 160px; 
-        }
-        .shop-btn { 
-            padding: 6px 12px; 
-            font-size: 12px; 
-            margin-top: 8px; 
-            font-weight: bold; 
-            font-family: monospace; 
-            border: none; 
-            border-radius: 3px; 
-            cursor: pointer; 
-            width: 100%; 
-            transition: 0.2s; 
-            position: relative;
-            z-index: 999;
-        }
+        body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
+        .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; position: relative; }
+        .sidebar-ad { width: 160px; height: 1100px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; position: relative; z-index: 1; }
+        .center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; position: relative; z-index: 10; }
+        .input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 300px; border-radius: 5px; }
+        .btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; position: relative; z-index: 999; }
+        .btn:hover { background-color: #00cc00; box-shadow: 0 0 10px #00ff00; }
+        .action-area { margin-top: 25px; background: #000; padding: 20px; border: 1px solid #222; min-height: 60px; color: #fff; font-size: 14px; border-radius: 5px; text-align: left; }
+        .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
+        .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; position: relative; z-index: 999; }
+        .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 130px; height: 130px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; position: relative; z-index: 999; }
+        .click-btn:active { transform: scale(0.95); }
+        .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .shop-item { background: #000; border: 1px solid #333; padding: 15px; border-radius: 5px; font-size: 13px; width: 160px; }
+        .shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: 0.2s; position: relative; z-index: 999; }
         .btn-red { background-color: #ff3333; color: #fff; }
         .btn-green { background-color: #00ff00; color: #000; }
-
         .casino-box { background: #0a0a0a; border: 1px solid #ffdd00; padding: 15px; border-radius: 5px; margin-top: 20px; box-shadow: 0 0 10px rgba(255, 221, 0, 0.2); }
         .leaderboard-box { background: #0a0a0a; border: 1px solid #00ccff; padding: 15px; border-radius: 5px; margin-top: 25px; text-align: left; }
         .leader-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #222; font-size: 14px; }
@@ -183,7 +41,7 @@
             <h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
             <p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
             <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
-            <button class="btn" onclick="window.generateRandomNicknames()">Havalı Adlar Yarat</button>
+            <button class="btn" id="generateBtn">Havalı Adlar Yarat</button>
             <div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
             
             <hr style="border-color: #222; margin: 40px 0;">
@@ -194,16 +52,16 @@
             <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
                 Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
             </div>
-            <button class="click-btn" onclick="window.clickButton()">KLİKLƏ!</button>
+            <button class="click-btn" id="mainClickBtn">KLİKLƏ!</button>
             
             <div class="shop-container">
                 <div class="shop-item">
                     <b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
-                    <button id="up1Btn" class="shop-btn btn-red" onclick="window.buyUpgrade1()">Balans Çatmır</button>
+                    <button id="up1Btn" class="shop-btn btn-red">Balans Çatmır</button>
                 </div>
                 <div class="shop-item">
                     <b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
-                    <button id="up2Btn" class="shop-btn btn-red" onclick="window.buyUpgrade2()">Balans Çatmır</button>
+                    <button id="up2Btn" class="shop-btn btn-red">Balans Çatmır</button>
                 </div>
             </div>
 
@@ -212,10 +70,10 @@
                 <h3>🎰 CEO Şans Çarxı</h3>
                 <p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
                 <div class="slot-animation" id="wheelStatus">🎰 Çarx Hazırdır!</div>
-                <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="window.spinWheel()">Şansını Sına! (Pulsuz)</button>
+                <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn">Şansını Sına! (Pulsuz)</button>
             </div>
 
-            <!-- REYAL REYTİNQ SİSTEMİ -->
+            <!-- REAL REYTİNQ SİSTEMİ -->
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
                 <div id="leaderboardContent">
@@ -231,16 +89,14 @@
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
     </div>
 
-    <!-- ⚡ DÜYMƏLƏRİ İŞLƏDƏN JAVASCRIPT KODLARI ⚡ -->
+    <!-- TƏHLÜKƏSİZLİK KİLİDİ OLMAYAN BİRBAŞA SKRİPT -->
     <script>
-        // OYUN DƏYİŞƏNLƏRİ
         let score = 0;
         let clickPower = 1;
         let autoClickers = 0;
         let up1Cost = 30;
         let up2Cost = 100;
 
-        // ELEMENTLƏRİ SEÇMƏK
         const scoreDisplay = document.getElementById("scoreDisplay");
         const playerLeaderboardScore = document.getElementById("playerLeaderboardScore");
         const up1Btn = document.getElementById("up1Btn");
@@ -248,12 +104,62 @@
         const upgrade1CostStyle = document.getElementById("upgrade1Cost");
         const upgrade2CostStyle = document.getElementById("upgrade2Cost");
 
-        // UI YENİLƏMƏ FUNKSİYASI
         function updateUI() {
             scoreDisplay.innerText = score;
             playerLeaderboardScore.innerText = score + " Xal";
 
-            // Mağaza Düymələrinin Rəngini və Mətnini Yoxlamaq
             if (score >= up1Cost) {
                 up1Btn.className = "shop-btn btn-green";
                 up1Btn.innerText = "Satın Al";
+            } else {
+                up1Btn.className = "shop-btn btn-red";
+                up1Btn.innerText = "Balans Çatmır";
+            }
+
+            if (score >= up2Cost) {
+                up2Btn.className = "shop-btn btn-green";
+                up2Btn.innerText = "Satın Al";
+            } else {
+                up2Btn.className = "shop-btn btn-red";
+                up2Btn.innerText = "Balans Çatmır";
+            }
+        }
+
+        // DÜYMƏLƏRİN DİREKT QEYDİYYATI
+        document.getElementById("generateBtn").addEventListener("click", function() {
+            const input = document.getElementById("nickInput").value.trim();
+            const output = document.getElementById("nickOutput");
+            
+            if (input === "") {
+                output.innerHTML = "<span style='color: #ff3333;'>Zəhmət olmasa bir ad daxil edin!</span>";
+                return;
+            }
+
+            const prefixes = ["⚡X_", "Cyber_", "CEO_", "Vortex_", "Alpha_"];
+            const suffixes = ["_⚔️", "_Gladiator", "_99", "_Pro", "_Ghost"];
+            
+            let htmlContent = "";
+            for (let i = 0; i < 3; i++) {
+                let randomPref = prefixes[Math.floor(Math.random() * prefixes.length)];
+                let randomSuff = suffixes[Math.floor(Math.random() * suffixes.length)];
+                let generatedNick = randomPref + input + randomSuff;
+                
+                htmlContent += `
+                    <div class="nick-row">
+                        <span>${generatedNick}</span>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('${generatedNick}'); alert('Kopyalandı!');">Kopyala</button>
+                    </div>`;
+            }
+            output.innerHTML = htmlContent;
+        });
+
+        document.getElementById("mainClickBtn").addEventListener("click", function() {
+            score += clickPower;
+            updateUI();
+        });
+
+        up1Btn.addEventListener("click", function() {
+            if (score >= up1Cost) {
+                score -= up1Cost;
+                clickPower += 2;
+                up1Cost = Math.round(up1Cost * 1.5);

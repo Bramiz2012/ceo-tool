@@ -116,7 +116,7 @@
             const animations = ["🎰 🔄 CHURNING...", "🎰 ⚡ MATRIX...", "🎰 🔥 ROLLING..."];
             
             let animCount = 0;
-            let interval = setInterval(() => {
+            let interval = setinterval(() => {
                 if(status) status.innerText = animations[animCount % animations.length];
                 animCount++;
             }, 150);

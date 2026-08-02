@@ -7,7 +7,7 @@
     <style>
         body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
         .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; position: relative; }
-        .sidebar-ad { width: 160px; height: 1200px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; position: relative; z-index: 1; }
+        .sidebar-ad { width: 160px; height: 1100px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; position: relative; z-index: 1; }
         .center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; position: relative; z-index: 10; }
         .input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 280px; border-radius: 5px; }
         .btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; position: relative; z-index: 999; }
@@ -16,7 +16,6 @@
         .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
         .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; position: relative; z-index: 999; }
         
-        /* CLICKER PANELİ */
         .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 130px; height: 130px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; position: relative; z-index: 999; }
         .click-btn:active { transform: scale(0.95); }
         .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
@@ -33,7 +32,7 @@
 <body>
 
     <h1>CEO Multi-Tool Enterprise v13.0</h1>
-    <p style="color: #888;">Premium Alətlər, Oyun Bölməsi və Dahi 4-cü Alət: Kiber Zaman Maşını</p>
+    <p style="color: #888;">Premium Alətlər, Oyun Bölməsi və Alət 4: CEO Kiber Zaman Maşını</p>
     
     <div class="main-container">
         <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
@@ -67,6 +66,7 @@
                 </div>
             </div>
 
+            <!-- CEO ŞANS ÇARXI -->
             <div class="casino-box">
                 <h3>🎰 CEO Şans Çarxı</h3>
                 <p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
@@ -74,9 +74,16 @@
                 <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="window.spinWheel()">Şansını Sına! (Pulsuz)</button>
             </div>
 
+            <!-- REYTİNQ CƏDVƏLİ -->
             <div class="leaderboard-box">
                 <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
-                <div id="leaderboardList"></div>
+                <div id="leaderboardList">
+                    <div class="leader-row" style="color:#fff;"><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>
+                    <div class="leader-row" style="color:#fff;"><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>
+                    <div class="leader-row" style="color:#fff;"><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>
+                    <div class="leader-row" style="color:#fff;"><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>
+                    <div class="leader-row" style="color:#ffdd00; font-weight:bold;"><span>5. 👑 Sənin_Adın (CEO)</span><b><span id="boardScoreDisplay">0</span> Xal</b></div>
+                </div>
             </div>
 
             <hr style="border-color: #222; margin: 40px 0;">
@@ -89,7 +96,7 @@
 
             <hr style="border-color: #222; margin: 40px 0;">
 
-            <!-- 🔥 ALƏT 4: MÜDİRİN ŞƏRTİ - REAL GERİ SAYIM SAYĞACI -->
+            <!-- ⏳ ALƏT 4: GERI SAYIM SAYĞACI -->
             <h2>⏳ Alət 4: CEO Kiber Zaman Maşını</h2>
             <p>Gələcək bir tarixi seçin (İl, Ay, Gün, Saat, Dəqiqə, Saniyə):</p>
             <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px;">
@@ -111,27 +118,14 @@
         window.score = 0; window.clickPower = 1; window.autoClickers = 0; window.u1Cost = 30; window.u2Cost = 100; window.isSpinning = false;
         window.countdownInterval = null;
 
-        window.leaders = [
-            { name: "⚡ Kiber_Aslan", score: 250 }, { name: "🥷 Gizli_Pro", score: 180 },
-            { name: "🤖 Bot_Kliker", score: 45 }, { name: "💥 Hacker_007", score: 20 },
-            { name: "👑 Sənin_Adın (CEO)", score: 0 }
-        ];
-
-        window.updateLeaderboard = function() {
-            for(var i=0; i<window.leaders.length; i++) { if(window.leaders[i].name.includes("CEO")) { window.leaders[i].score = window.score; } }
-            var myCopy = [].concat(window.leaders); myCopy.sort(function(a, b) { return b.score - a.score; });
-            var html = "";
-            for(var j=0; j<myCopy.length; j++) {
-                var color = (myCopy[j].name.includes("CEO")) ? "#ffdd00" : "#fff";
-                html += "<div class='leader-row' style='color:"+color+";'><span>" + (j+1) + ". " + myCopy[j].name + "</span><b>" + myCopy[j].score + " Xal</b></div>";
-            }
-            var target = document.getElementById("leaderboardList"); if(target) { target.innerHTML = html; }
-        };
-        setTimeout(window.updateLeaderboard, 200);
-
         window.clickButton = function() {
             window.score += window.clickPower;
             if(document.getElementById("scoreDisplay")) { document.getElementById("scoreDisplay").innerText = window.score; }
-            window.colorCheck(); window.updateLeaderboard();
+            if(document.getElementById("boardScoreDisplay")) { document.getElementById("boardScoreDisplay").innerText = window.score; }
+            window.colorCheck();
         };
 
+        window.colorCheck = function() {
+            var b1 = document.getElementById("up1Btn");
+            if(b1) {
+                if (window.score >= window.u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }

@@ -1,130 +1,671 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEO Gaming Hub - Enterprise v13.0</title>
-    <style>
-        body { background-color: #0d0d0d !important; color: #00ff00 !important; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
-        .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; position: relative; }
-        .sidebar-ad { width: 160px; height: 1100px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; position: relative; z-index: 1; }
-        .center-box { flex-grow: 1; max-width: 800px; border: 2px solid #00ff00; padding: 30px; border-radius: 10px; background-color: #141414; box-shadow: 0 0 20px #00ff00; margin: 0 20px; position: relative; z-index: 10; }
-        .input-style { background: #000; color: #00ff00; border: 1px solid #00ff00; padding: 12px; font-family: monospace; font-size: 16px; text-align: center; margin-top: 15px; width: 280px; border-radius: 5px; }
-        .btn { background-color: #00ff00; color: #0d0d0d; padding: 12px 25px; border: none; font-weight: bold; cursor: pointer; font-family: monospace; margin-top: 15px; font-size: 15px; border-radius: 5px; position: relative; z-index: 999; }
-        .btn:hover { background-color: #00cc00; box-shadow: 0 0 10px #00ff00; }
-        .action-area { margin-top: 25px; background: #000; padding: 20px; border: 1px solid #222; min-height: 60px; color: #fff; font-size: 18px; border-radius: 5px; text-align: left; }
-        .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
-        .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; position: relative; z-index: 999; }
-        .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 130px; height: 130px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; position: relative; z-index: 999; }
-        .click-btn:active { transform: scale(0.95); }
-        .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .shop-item { background: #000; border: 1px solid #333; padding: 15px; border-radius: 5px; font-size: 13px; width: 160px; }
-        .shop-btn { padding: 6px 12px; font-size: 12px; margin-top: 8px; font-weight: bold; font-family: monospace; border: none; border-radius: 3px; cursor: pointer; width: 100%; transition: 0.2s; position: relative; z-index: 999; }
-        .btn-red { background-color: #ff3333; color: #fff; }
-        .btn-green { background-color: #00ff00; color: #000; }
-        .casino-box { background: #0a0a0a; border: 1px solid #ffdd00; padding: 15px; border-radius: 5px; margin-top: 20px; box-shadow: 0 0 10px rgba(255, 221, 0, 0.2); }
-        .leaderboard-box { background: #0a0a0a; border: 1px solid #00ccff; padding: 15px; border-radius: 5px; margin-top: 25px; text-align: left; }
-        .leader-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #222; font-size: 14px; }
-        .slot-animation { font-size: 20px; font-weight: bold; color: #ffdd00; margin: 10px 0; height: 25px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEO Gaming Hub Enterprise v14</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:monospace;
+}
+
+body{
+background:#0d0d0d;
+color:#00ff00;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+.box{
+background:#141414;
+border:2px solid #00ff00;
+border-radius:10px;
+padding:20px;
+margin-bottom:25px;
+box-shadow:0 0 15px #00ff00;
+}
+
+input{
+background:#000;
+color:#00ff00;
+border:1px solid #00ff00;
+padding:10px;
+width:250px;
+border-radius:5px;
+margin:10px;
+}
+
+button{
+padding:10px 20px;
+cursor:pointer;
+background:#00ff00;
+color:#000;
+font-weight:bold;
+border:none;
+border-radius:5px;
+margin:10px;
+}
+
+button:hover{
+background:#00cc00;
+}
+
+.output{
+background:#000;
+border:1px solid #333;
+padding:15px;
+margin-top:15px;
+color:white;
+min-height:50px;
+border-radius:5px;
+}
+
+.clickBtn{
+width:140px;
+height:140px;
+border-radius:50%;
+font-size:22px;
+}
+
+.shop{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.item{
+width:180px;
+background:#000;
+padding:15px;
+border:1px solid #444;
+border-radius:8px;
+}
+
+.gold{
+color:gold;
+font-weight:bold;
+font-size:22px;
+}
+
+table{
+width:100%;
+margin-top:15px;
+border-collapse:collapse;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #333;
+}
+
+#countdown{
+font-size:24px;
+color:#ff3399;
+margin-top:15px;
+font-weight:bold;
+}
+</style>
+
 </head>
+
 <body>
 
-    <h1>CEO Multi-Tool Enterprise v13.0</h1>
-    <p style="color: #888;">Premium Alətlər, Oyun Bölməsi və Alət 4: CEO Kiber Zaman Maşını</p>
-    
-    <div class="main-container">
-        <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
-        
-        <div class="center-box">
-            <!-- ALƏT 1 -->
-            <h2>⚔️ Alət 1: Premium Nickname Generatoru</h2>
-            <p>Adınızı yazın və peşəkar oyunçu ləqəbləri yaradın:</p>
-            <input type="text" class="input-style" placeholder="Adınızı bura yazın..." id="nickInput"><br>
-            <button class="btn" onclick="window.generateRandomNicknames()">Havalı Adlar Yarat</button>
-            <div class="action-area" id="nickOutput">Nəticələr burada görünəcək...</div>
-            
-            <hr style="border-color: #222; margin: 40px 0;">
-            
-            <!-- ALƏT 2 -->
-            <h2>🎮 Alət 2: CEO Cyber Clicker (Mini-Oyun)</h2>
-            <p>Xal yığın və mağazadan gücləndiricilər alın!</p>
-            <div style="font-size: 22px; font-weight: bold; margin-top: 15px;">
-                Kiber Xallarınız: <span id="scoreDisplay" style="color: #ffdd00;">0</span>
-            </div>
-            <button class="click-btn" onclick="window.clickButton()">KLİKLƏ!</button>
-            
-            <div class="shop-container">
-                <div class="shop-item">
-                    <b>🚀 Super Klik (+2)</b><br>Qiymət: <span id="upgrade1Cost">30</span> Xal<br>
-                    <button id="up1Btn" class="shop-btn btn-red" onclick="window.buyUpgrade1()">Balans Çatmır</button>
-                </div>
-                <div class="shop-item">
-                    <b>🤖 Avto-Klik (1/sn)</b><br>Qiymət: <span id="upgrade2Cost">100</span> Xal<br>
-                    <button id="up2Btn" class="shop-btn btn-red" onclick="window.buyUpgrade2()">Balans Çatmır</button>
-                </div>
-            </div>
+<div class="container">
 
-            <!-- CEO ŞANS ÇARXI -->
-            <div class="casino-box">
-                <h3>🎰 CEO Şans Çarxı</h3>
-                <p style="color: #aaa; font-size:12px;">Bəxtini sına: Böyük Xal qazan və ya Risk et!</p>
-                <div class="slot-animation" id="wheelStatus">🎰 Çarx Hazırdır!</div>
-                <button class="btn" style="background-color: #ffdd00; color:#000;" id="spinBtn" onclick="window.spinWheel()">Şansını Sına! (Pulsuz)</button>
-            </div>
+<h1>CEO Gaming Hub Enterprise v14</h1>
+<p>Premium Multi Tool</p>
 
-            <!-- REYTİNQ CƏDVƏLİ -->
-            <div class="leaderboard-box">
-                <h3 style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu</h3>
-                <div id="leaderboardList">
-                    <div class="leader-row" style="color:#fff;"><span>1. ⚡ Kiber_Aslan</span><b>250 Xal</b></div>
-                    <div class="leader-row" style="color:#fff;"><span>2. 🥷 Gizli_Pro</span><b>180 Xal</b></div>
-                    <div class="leader-row" style="color:#fff;"><span>3. 🤖 Bot_Kliker</span><b>45 Xal</b></div>
-                    <div class="leader-row" style="color:#fff;"><span>4. 💥 Hacker_007</span><b>20 Xal</b></div>
-                    <div class="leader-row" style="color:#ffdd00; font-weight:bold;"><span>5. 👑 Sənin_Adın (CEO)</span><b><span id="boardScoreDisplay">0</span> Xal</b></div>
-                </div>
-            </div>
+<div class="box">
 
-            <hr style="border-color: #222; margin: 40px 0;">
+<h2>⚔ Premium Nickname Generator</h2>
 
-            <!-- ALƏT 3 -->
-            <h2>🔒 Alət 3: Qırılmaz Güvənli Kod Generatoru</h2>
-            <p>Hesablarınız üçün 100% qorunan təhlükəsiz gizli kod yaradın:</p>
-            <button class="btn" style="background-color: #00ccff; color: #000;" onclick="window.generateCryptoPassword()">Güvənli Kod Yarat</button>
-            <div class="action-area" id="passOutput" style="color: #00ccff; text-align: center;">Kod burada görünəcək...</div>
+<input id="nickInput" placeholder="Adını yaz">
 
-            <hr style="border-color: #222; margin: 40px 0;">
+<br>
 
-            <!-- ⏳ ALƏT 4: GERI SAYIM SAYĞACI -->
-            <h2>⏳ Alət 4: CEO Kiber Zaman Maşını</h2>
-            <p>Gələcək bir tarixi seçin (İl, Ay, Gün, Saat, Dəqiqə, Saniyə):</p>
-            <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 15px;">
-                <input type="number" id="cYear" class="input-style" style="width: 70px; margin:0;" placeholder="İl" value="2026">
-                <input type="number" id="cMonth" class="input-style" style="width: 50px; margin:0;" placeholder="Ay" value="12">
-                <input type="number" id="cDay" class="input-style" style="width: 50px; margin:0;" placeholder="Gün" value="31">
-                <input type="number" id="cHour" class="input-style" style="width: 50px; margin:0;" placeholder="Saat" value="23">
-                <input type="number" id="cMin" class="input-style" style="width: 50px; margin:0;" placeholder="Dəq" value="59">
-                <input type="number" id="cSec" class="input-style" style="width: 50px; margin:0;" placeholder="San" value="59">
-            </div>
-            <button class="btn" style="background-color: #ff3399; color: #fff;" onclick="window.startCountdown()">Geri Sayımı Başlat</button>
-            <div class="action-area" id="countdownOutput" style="color: #ff3399; text-align: center; font-size: 20px; font-weight: bold;">Tarix təyin edin və düyməyə basın...</div>
-        </div>
-        
-        <div class="sidebar-ad">Google AdSense<br>Banner Bölməsi</div>
-    </div>
+<button onclick="generateNick()">
+Nickname Yarat
+</button>
 
-    <script>
-        // JSFIDDLE-DA 100% İŞLƏYƏN SARSILMAZ BEYİN ARTIQ BİRBAŞA BURADA!
-        window.score = 0; window.clickPower = 1; window.autoClickers = 0; window.u1Cost = 30; window.u2Cost = 100; window.isSpinning = false; window.countdownInterval = null;
+<div class="output" id="nickOutput"></div>
 
-        window.clickButton = function() {
-            window.score += window.clickPower;
-            if(document.getElementById("scoreDisplay")) { document.getElementById("scoreDisplay").innerText = window.score; }
-            if(document.getElementById("boardScoreDisplay")) { document.getElementById("boardScoreDisplay").innerText = window.score; }
-            window.colorCheck();
-        };
+</div>
 
-        window.colorCheck = function() {
-            var b1 = document.getElementById("up1Btn");
-            if(b1) {
-                if (window.score >= window.u1Cost) { b1.className = "shop-btn btn-green"; b1.innerText = "Əldə et"; }
+<div class="box">
+
+<h2>🎮 Cyber Clicker</h2>
+
+<p class="gold">
+Xal :
+<span id="score">
+0
+</span>
+</p>
+
+<button class="clickBtn"
+onclick="clickGame()">
+CLICK
+</button>
+
+<div class="shop">
+
+<div class="item">
+
+<h3>🚀 Super Click</h3>
+
+<p>Qiymət :
+<span id="cost1">
+30
+</span>
+</p>
+
+<button onclick="buyClick()">
+Al
+</button>
+
+</div>
+
+<div class="item">
+
+<h3>🤖 Auto Click</h3>
+
+<p>Qiymət :
+<span id="cost2">
+100
+</span>
+</p>
+
+<button onclick="buyAuto()">
+Al
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="box">
+
+<h2>🎰 Şans Çarxı</h2>
+
+<button onclick="spinWheel()">
+Fırlat
+</button>
+
+<div
+class="output"
+id="wheelResult">
+Hazırdır
+</div>
+
+</div>
+
+<div class="box">
+
+<h2>🔒 Password Generator</h2>
+
+<button onclick="generatePassword()">
+Şifrə Yarat
+</button>
+
+<div
+class="output"
+id="password">
+</div>
+
+</div>
+
+<div class="box">
+
+<h2>⏳ Countdown</h2>
+
+<input
+type="datetime-local"
+id="date">
+
+<br>
+
+<button
+onclick="startCountdown()">
+Başlat
+</button>
+
+<div id="countdown">
+
+Hazırdır
+
+</div>
+
+</div>
+
+<script>
+    // ======================
+// CEO Gaming Hub v14 JS
+// ======================
+
+let score = Number(localStorage.getItem("score")) || 0;
+let clickPower = Number(localStorage.getItem("clickPower")) || 1;
+let autoClick = Number(localStorage.getItem("autoClick")) || 0;
+
+let cost1 = Number(localStorage.getItem("cost1")) || 30;
+let cost2 = Number(localStorage.getItem("cost2")) || 100;
+
+document.getElementById("score").innerHTML = score;
+document.getElementById("cost1").innerHTML = cost1;
+document.getElementById("cost2").innerHTML = cost2;
+
+function saveGame(){
+
+localStorage.setItem("score",score);
+localStorage.setItem("clickPower",clickPower);
+localStorage.setItem("autoClick",autoClick);
+
+localStorage.setItem("cost1",cost1);
+localStorage.setItem("cost2",cost2);
+
+}
+
+function updateScore(){
+
+document.getElementById("score").innerHTML=score;
+
+saveGame();
+
+}
+
+// ===================
+// CLICK GAME
+// ===================
+
+function clickGame(){
+
+score+=clickPower;
+
+updateScore();
+
+}
+
+// ===================
+// BUY CLICK
+// ===================
+
+function buyClick(){
+
+if(score<cost1){
+
+alert("Xal çatmır!");
+
+return;
+
+}
+
+score-=cost1;
+
+clickPower++;
+
+cost1=Math.floor(cost1*1.7);
+
+document.getElementById("cost1").innerHTML=cost1;
+
+updateScore();
+
+}
+
+// ===================
+// BUY AUTO CLICK
+// ===================
+
+function buyAuto(){
+
+if(score<cost2){
+
+alert("Xal çatmır!");
+
+return;
+
+}
+
+score-=cost2;
+
+autoClick++;
+
+cost2=Math.floor(cost2*2);
+
+document.getElementById("cost2").innerHTML=cost2;
+
+updateScore();
+
+}
+
+setInterval(function(){
+
+score+=autoClick;
+
+updateScore();
+
+},1000);
+
+// ===================
+// NICKNAME
+// ===================
+
+function generateNick(){
+
+let name=document.getElementById("nickInput").value.trim();
+
+if(name==""){
+
+name="CEO";
+
+}
+
+const left=[
+
+"Dark",
+"Cyber",
+"Shadow",
+"Ghost",
+"Ultra",
+"Pro",
+"Royal",
+"Fire",
+"Ice",
+"Night"
+
+];
+
+const right=[
+
+"King",
+"Hunter",
+"X",
+"Master",
+"Wolf",
+"Legend",
+"Boss",
+"Sniper",
+"Player",
+"Storm"
+
+];
+
+let html="";
+
+for(let i=0;i<8;i++){
+
+let nick=
+
+left[Math.floor(Math.random()*left.length)]
+
++
+
+name
+
++
+
+right[Math.floor(Math.random()*right.length)];
+
+html+=nick+"<br>";
+
+}
+
+document.getElementById("nickOutput").innerHTML=html;
+
+}
+
+// ===================
+// PASSWORD
+// ===================
+
+function generatePassword(){
+
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+let pass="";
+
+for(let i=0;i<20;i++){
+
+pass+=chars[Math.floor(Math.random()*chars.length)];
+
+}
+
+document.getElementById("password").innerHTML=pass;
+
+}
+    // ===================
+// ŞANS ÇARXI
+// ===================
+
+function spinWheel(){
+
+const result=document.getElementById("wheelResult");
+
+const random=Math.floor(Math.random()*100)+1;
+
+if(random<=40){
+
+let reward=Math.floor(Math.random()*20)+10;
+
+score+=reward;
+
+result.innerHTML="🎉 +" + reward + " xal qazandın!";
+
+}
+
+else if(random<=70){
+
+let reward=Math.floor(Math.random()*50)+25;
+
+score+=reward;
+
+result.innerHTML="🔥 JACKPOT! +" + reward + " xal!";
+
+}
+
+else if(random<=90){
+
+let lose=Math.min(score,20);
+
+score-=lose;
+
+result.innerHTML="😢 -" + lose + " xal itirdin.";
+
+}
+
+else{
+
+score*=2;
+
+result.innerHTML="💎 X2 BONUS! Xalın ikiqat oldu!";
+
+}
+
+updateScore();
+
+}
+
+// ===================
+// GERİ SAYIM
+// ===================
+
+let countdownTimer=null;
+
+function startCountdown(){
+
+clearInterval(countdownTimer);
+
+let value=document.getElementById("date").value;
+
+if(value==""){
+
+alert("Tarix seç.");
+
+return;
+
+}
+
+let target=new Date(value).getTime();
+
+countdownTimer=setInterval(function(){
+
+let now=new Date().getTime();
+
+let diff=target-now;
+
+if(diff<=0){
+
+clearInterval(countdownTimer);
+
+document.getElementById("countdown").innerHTML="🎉 Vaxt tamam oldu!";
+
+return;
+
+}
+
+let day=Math.floor(diff/86400000);
+
+let hour=Math.floor((diff%86400000)/3600000);
+
+let minute=Math.floor((diff%3600000)/60000);
+
+let second=Math.floor((diff%60000)/1000);
+
+document.getElementById("countdown").innerHTML=
+
+day+" Gün "
+
++hour+" Saat "
+
++minute+" Dəqiqə "
+
++second+" Saniyə";
+
+},1000);
+
+}
+
+// ===================
+// LİDERLƏR
+// ===================
+
+const leaders=[
+
+{name:"👑 CEO",score:500},
+
+{name:"⚡ Cyber",score:350},
+
+{name:"🤖 Bot",score:250},
+
+{name:"🔥 Dark",score:150},
+
+{name:"💀 Ghost",score:75}
+
+];
+
+function showLeaders(){
+
+let html="<table>";
+
+html+="<tr><th>Oyunçu</th><th>Xal</th></tr>";
+
+leaders.forEach(function(player){
+
+html+="<tr>";
+
+html+="<td>"+player.name+"</td>";
+
+html+="<td>"+player.score+"</td>";
+
+html+="</tr>";
+
+});
+
+html+="<tr>";
+
+html+="<td><b>Sən</b></td>";
+
+html+="<td><b>"+score+"</b></td>";
+
+html+="</tr>";
+
+html+="</table>";
+
+const box=document.createElement("div");
+
+box.className="box";
+
+box.innerHTML="<h2>🏆 Liderlər</h2>"+html;
+
+document.querySelector(".container").appendChild(box);
+
+}
+
+showLeaders();
+    // ===================
+// EXTRA
+// ===================
+
+window.onload=function(){
+
+updateScore();
+
+};
+
+// Ctrl+S ilə oyunu yadda saxla
+
+window.addEventListener("beforeunload",function(){
+
+saveGame();
+
+});
+
+// Enter basanda nickname yarat
+
+document.getElementById("nickInput").addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+generateNick();
+
+}
+
+});
+
+// Xoş gəldin mesajı
+
+setTimeout(function(){
+
+console.log("CEO Gaming Hub Enterprise v14 hazırdır.");
+
+},500);
+
+// ===================
+// GƏLƏCƏKDƏ ƏLAVƏ OLUNA BİLƏR
+// ===================
+
+// Login sistemi
+// Firebase
+// Cloud Save
+// Multiplayer
+// Chat
+// Achievement
+// Daily Reward
+// Skin Shop
+// Lucky Box
+
+</script>
+
+</body>
+</html>

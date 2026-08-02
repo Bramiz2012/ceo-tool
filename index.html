@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEO Gaming Hub - Enterprise v13.0</title>
     <style>
+        /* 🕶️ ÜMUMİ SAYT NEON DİZAYNI */
         body { background-color: #0d0d0d; color: #00ff00; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
         .main-container { display: flex; justify-content: space-between; max-width: 1300px; margin: 0 auto; }
         .sidebar-ad { width: 160px; height: 1100px; border: 2px dashed #333; background-color: #131313; display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px; border-radius: 5px; }
@@ -31,7 +32,7 @@
         .nick-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #222; }
         .copy-btn { background-color: #333; color: #00ff00; border: 1px solid #00ff00; padding: 5px 10px; cursor: pointer; font-family: monospace; font-size: 12px; border-radius: 3px; }
         
-        /* 🎮 CYBER STYLES */
+        /* 🎮 CYBER CLICKER BUTTON */
         .click-btn { background-color: #111; color: #00ff00; border: 3px solid #00ff00; width: 120px; height: 120px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; font-family: monospace; box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); margin: 20px auto; display: block; transition: 0.1s; user-select: none; }
         .click-btn:active { transform: scale(0.95); }
         .shop-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
@@ -46,6 +47,7 @@
         .leader-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #222; font-size: 14px; align-items: center; }
         .slot-animation { font-size: 20px; font-weight: bold; color: #ffdd00; margin: 10px 0; height: 25px; }
         
+        /* 💎 PREMIUM EFFEKTLƏR */
         .name-red { color: #ff3333 !important; text-shadow: 0 0 8px #ff3333; font-weight: bold; }
         .name-gold { color: #ffdd00 !important; text-shadow: 0 0 12px #ffdd00; font-weight: bold; animation: goldGlow 1.5s infinite alternate; }
         @keyframes goldGlow { from { text-shadow: 0 0 4px #ffdd00; } to { text-shadow: 0 0 15px #ffdd00, 0 0 20px #ffaa00; } }
@@ -53,6 +55,7 @@
 </head>
 <body>
 
+    <!-- 🌐 DİL SEÇİMİ PANELİ -->
     <div class="lang-container">
         <button class="lang-btn active" id="lang-az" onclick="changeLanguage('az')">AZ</button>
         <button class="lang-btn" id="lang-en" onclick="changeLanguage('en')">EN</button>
@@ -62,6 +65,7 @@
     <h1 id="main-title">CEO Multi-Tool Enterprise v13.0</h1>
     <p id="main-subtitle" style="color: #888;">Premium Alətlər, Canlı Bot Rəqabəti və Qlobal Dil Seçimi</p>
     
+    <!-- 🎛️ TAB SİSTEMİ MENYUSU -->
     <div class="tab-container">
         <button class="tab-btn" id="tab1-btn" onclick="switchTab(1)">⚔️ Alət 1</button>
         <button class="tab-btn active" id="tab2-btn" onclick="switchTab(2)">🎮 Alət 2</button>
@@ -123,4 +127,3 @@
                 </div>
 
                 <div class="leaderboard-box">
-                    <h3 id="leader-title" style="color: #00ccff; margin-top: 0; text-align:center;">🏆 Top 5 Kiber Oyunçu (Canlı)</h3>

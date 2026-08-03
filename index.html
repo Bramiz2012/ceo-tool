@@ -147,10 +147,8 @@ Nickname Yarat
 <h2 id="clickerTitle">🎮 Cyber Clicker</h2>
 
 <p class="gold">
-Xal :
-<span id="score">
-0
-</span>
+<span id="scoreText">Xal</span> :
+<span id="score">0</span>
 </p>
 
 <button class="clickBtn"
@@ -698,6 +696,9 @@ function changeLanguage() {
 
     document.getElementById("countdownTitle").innerHTML =
         translations[lang].countdownTitle;
+    
+    document.getElementById("scoreText").innerHTML =
+        translations[lang].score;
 
 }
 

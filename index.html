@@ -296,6 +296,56 @@ user-select:none;
 </div>
 <div class="box">
 
+<h2>🐟 Cat Fish Game</h2>
+
+<p>100 xal topla və qalib ol!</p>
+
+<div style="font-size:22px;margin:15px;">
+Xal:
+<span id="fishScore">0</span>/100
+</div>
+
+<div id="fishArea"
+style="
+position:relative;
+width:700px;
+height:400px;
+margin:auto;
+background:#003366;
+border:3px solid #00ffff;
+overflow:hidden;
+border-radius:10px;
+">
+
+<div id="fish"
+style="
+position:absolute;
+font-size:45px;
+cursor:pointer;
+user-select:none;
+">
+🐟
+</div>
+
+<div id="bomb"
+style="
+position:absolute;
+font-size:45px;
+cursor:pointer;
+user-select:none;
+">
+💣
+</div>
+
+</div>
+
+<button onclick="startFishGame()">
+Başlat
+</button>
+
+</div>
+<div class="box">
+
 <h2>🌍 Dil seçimi</h2>
 
 <select id="language" onchange="changeLanguage()">
@@ -825,56 +875,6 @@ countdown:"Обратный отсчёт"
 }
 
 };
-<div class="box">
-
-<h2>🐟 Cat Fish Game</h2>
-
-<p>100 xal topla və qalib ol!</p>
-
-<div style="font-size:22px;margin:15px;">
-Xal:
-<span id="fishScore">0</span>/100
-</div>
-
-<div id="fishArea"
-style="
-position:relative;
-width:700px;
-height:400px;
-margin:auto;
-background:#003366;
-border:3px solid #00ffff;
-overflow:hidden;
-border-radius:10px;
-">
-
-<div id="fish"
-style="
-position:absolute;
-font-size:45px;
-cursor:pointer;
-user-select:none;
-">
-🐟
-</div>
-
-<div id="bomb"
-style="
-position:absolute;
-font-size:45px;
-cursor:pointer;
-user-select:none;
-">
-💣
-</div>
-
-</div>
-
-<button onclick="startFishGame()">
-Başlat
-</button>
-
-</div>
     // =========================
 // CAT GAME HƏRƏKƏT SİSTEMİ
 // =========================

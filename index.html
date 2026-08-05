@@ -249,6 +249,53 @@ Hazırdır
 </div>
 <div class="box">
 
+<h2>🐱 Cat Catch Game</h2>
+
+<p class="gold">
+Xal:
+<span id="catScore">0</span> / 100
+</p>
+
+<div id="gameArea" style="
+position:relative;
+width:500px;
+height:350px;
+margin:auto;
+background:#111;
+border:2px solid #00ff00;
+overflow:hidden;
+border-radius:10px;
+">
+
+<div id="cat" onclick="catchCat()" style="
+position:absolute;
+left:50px;
+top:50px;
+font-size:50px;
+cursor:pointer;
+user-select:none;
+">
+🐱
+</div>
+
+<div id="bomb" onclick="hitBomb()" style="
+position:absolute;
+left:250px;
+top:180px;
+font-size:45px;
+cursor:pointer;
+user-select:none;
+">
+💣
+</div>
+
+</div>
+
+<p id="catMessage"></p>
+
+</div>
+<div class="box">
+
 <h2>🌍 Dil seçimi</h2>
 
 <select id="language" onchange="changeLanguage()">
@@ -778,6 +825,115 @@ countdown:"Обратный отсчёт"
 }
 
 };
+<div class="box">
+
+<h2>🐟 Cat Fish Game</h2>
+
+<p>100 xal topla və qalib ol!</p>
+
+<div style="font-size:22px;margin:15px;">
+Xal:
+<span id="fishScore">0</span>/100
+</div>
+
+<div id="fishArea"
+style="
+position:relative;
+width:700px;
+height:400px;
+margin:auto;
+background:#003366;
+border:3px solid #00ffff;
+overflow:hidden;
+border-radius:10px;
+">
+
+<div id="fish"
+style="
+position:absolute;
+font-size:45px;
+cursor:pointer;
+user-select:none;
+">
+🐟
+</div>
+
+<div id="bomb"
+style="
+position:absolute;
+font-size:45px;
+cursor:pointer;
+user-select:none;
+">
+💣
+</div>
+
+</div>
+
+<button onclick="startFishGame()">
+Başlat
+</button>
+
+</div>
+    // =========================
+// CAT GAME HƏRƏKƏT SİSTEMİ
+// =========================
+
+function moveObjects(){
+
+    const cat=document.getElementById("cat");
+    const bomb=document.getElementById("bomb");
+    const area=document.getElementById("gameArea");
+
+    if(!cat || !bomb || !area) return;
+
+    const w=area.clientWidth-60;
+    const h=area.clientHeight-60;
+
+    cat.style.left=Math.random()*w+"px";
+    cat.style.top=Math.random()*h+"px";
+
+    bomb.style.left=Math.random()*w+"px";
+    bomb.style.top=Math.random()*h+"px";
+}
+
+function catchCat(){
+
+    catScore++;
+
+    document.getElementById("catScore").innerHTML=catScore;
+
+    moveObjects();
+
+    if(catScore>=100){
+
+        alert("🏆 Təbriklər! 100 xal topladın!");
+
+        catScore=0;
+
+        document.getElementById("catScore").innerHTML=catScore;
+
+    }
+
+}
+
+function hitBomb(){
+
+    catScore-=3;
+
+    if(catScore<0){
+        catScore=0;
+    }
+
+    document.getElementById("catScore").innerHTML=catScore;
+
+    moveObjects();
+
+}
+
+setInterval(moveObjects,1200);
+
+window.addEventListener("load",moveObjects);
 </script>
 
 </body>

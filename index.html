@@ -115,6 +115,139 @@ color:#ff3399;
 margin-top:15px;
 font-weight:bold;
 }
+
+/* ===========================
+   CAT FISH ARENA CSS
+=========================== */
+
+#arena{
+position:relative;
+width:700px;
+height:420px;
+margin:25px auto;
+background:#111;
+border:3px solid #00ff00;
+border-radius:12px;
+overflow:hidden;
+}
+
+#fish,
+#bomb{
+
+position:absolute;
+
+font-size:50px;
+
+transition:.15s;
+
+cursor:pointer;
+
+user-select:none;
+
+}
+
+#fish{
+
+left:120px;
+
+top:120px;
+
+}
+
+#bomb{
+
+left:520px;
+
+top:260px;
+
+}
+
+.scoreBoard{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:10px;
+
+margin-top:20px;
+
+}
+
+.scoreBoard p{
+
+background:#000;
+
+padding:12px;
+
+border:1px solid #00ff00;
+
+border-radius:8px;
+
+font-size:20px;
+
+}
+
+#winnerText{
+
+margin-top:20px;
+
+font-size:32px;
+
+color:gold;
+
+font-weight:bold;
+
+}
+
+#gameInfo{
+
+margin:20px 0;
+
+line-height:2;
+
+font-size:18px;
+
+}
+
+#gameMode,
+#winScore{
+
+padding:10px;
+
+background:#000;
+
+color:#00ff00;
+
+border:1px solid #00ff00;
+
+border-radius:6px;
+
+font-size:18px;
+
+margin:10px;
+
+}
+
+@media(max-width:800px){
+
+#arena{
+
+width:95%;
+
+height:320px;
+
+}
+
+#fish,
+#bomb{
+
+font-size:40px;
+
+}
+
+}
+    
 </style>
 
 </head>
@@ -249,61 +382,73 @@ Hazırdır
 </div>
 <div class="box">
 
-<h2>🐱 Cat Catch Game</h2>
+<h2>🐱 Cat Fish Arena</h2>
 
-<p class="gold">
-Xal:
-<span id="catScore">0</span> / 100
+<p>
+İlk çatan qalib olur
 </p>
 
-<div id="gameArea" style="
-position:relative;
-width:500px;
-height:350px;
-margin:auto;
-background:#111;
-border:2px solid #00ff00;
-overflow:hidden;
-border-radius:10px;
-">
+<label>Oyunçu sayı:</label>
 
-<div id="cat" onclick="catchCat()" style="
-position:absolute;
-left:50px;
-top:50px;
-font-size:50px;
-cursor:pointer;
-user-select:none;
-">
-🐱
-</div>
-
-<div id="bomb" onclick="hitBomb()" style="
-position:absolute;
-left:250px;
-top:180px;
-font-size:45px;
-cursor:pointer;
-user-select:none;
-">
-💣
-</div>
-
-</div>
-
-<p id="catMessage"></p>
-
-</div>
-
-<div class="box">
-
-<h2>🌍 Dil seçimi</h2>
-
-<select id="language" onchange="changeLanguage()">
-    <option value="az">🇦🇿 Azərbaycan</option>
-    <option value="en">🇬🇧 English</option>
-    <option value="ru">🇷🇺 Русский</option>
+<select id="gameMode">
+    <option value="1">1 Oyunçu</option>
+    <option value="2">2 Oyunçu</option>
+    <option value="3">3 Oyunçu</option>
+    <option value="4">4 Oyunçu</option>
 </select>
+
+<br><br>
+
+<label>Qələbə xalı:</label>
+
+<select id="winScore">
+    <option value="10">10</option>
+    <option value="100">100</option>
+</select>
+
+<br><br>
+
+<button onclick="startFishGame()">
+🎮 Oyuna Başla
+</button>
+
+<div id="gameInfo">
+
+<p>🔵 Mavi → A</p>
+
+<p>🔴 Qırmızı → Enter</p>
+
+<p>🟢 Yaşıl → Space</p>
+
+<p>🟡 Sarı → ↓</p>
+
+</div>
+
+<div id="arena">
+
+<div id="fish">🐟</div>
+
+<div id="bomb">💣</div>
+
+</div>
+
+<div class="scoreBoard">
+
+<p>🔵 Mavi :
+<span id="blueScore">0</span></p>
+
+<p>🔴 Qırmızı :
+<span id="redScore">0</span></p>
+
+<p>🟢 Yaşıl :
+<span id="greenScore">0</span></p>
+
+<p>🟡 Sarı :
+<span id="yellowScore">0</span></p>
+
+</div>
+
+<h2 id="winnerText"></h2>
 
 </div>
 <script>
@@ -887,6 +1032,299 @@ function hitBomb(){
 setInterval(moveObjects,1200);
 
 window.addEventListener("load",moveObjects);
+
+// ===============================
+// CAT FISH ARENA ENGINE
+// ===============================
+
+let fishGame={
+running:false,
+players:1,
+target:10,
+scores:[0,0,0,0]
+};
+
+let currentTarget="fish";
+
+const scoreIds=[
+"blueScore",
+"redScore",
+"greenScore",
+"yellowScore"
+];
+
+function updateFishScores(){
+
+for(let i=0;i<4;i++){
+
+const el=document.getElementById(scoreIds[i]);
+
+if(el){
+
+el.innerHTML=fishGame.scores[i];
+
+}
+
+}
+
+}
+
+function randomPosition(id){
+
+const obj=document.getElementById(id);
+
+const arena=document.getElementById("arena");
+
+if(!obj||!arena)return;
+
+const maxX=arena.clientWidth-60;
+const maxY=arena.clientHeight-60;
+
+obj.style.left=Math.floor(Math.random()*maxX)+"px";
+obj.style.top=Math.floor(Math.random()*maxY)+"px";
+
+}
+
+function nextObject(){
+
+currentTarget=Math.random()<0.75?"fish":"bomb";
+
+document.getElementById("fish").style.display=
+currentTarget==="fish"?"block":"none";
+
+document.getElementById("bomb").style.display=
+currentTarget==="bomb"?"block":"none";
+
+randomPosition(currentTarget);
+
+}
+
+function startFishGame(){
+
+fishGame.players=parseInt(document.getElementById("gameMode").value);
+
+fishGame.target=parseInt(document.getElementById("winScore").value);
+
+fishGame.running=false;
+
+fishGame.scores=[0,0,0,0];
+
+updateFishScores();
+
+document.getElementById("winnerText").innerHTML="3...";
+
+setTimeout(()=>{
+document.getElementById("winnerText").innerHTML="2...";
+},1000);
+
+setTimeout(()=>{
+document.getElementById("winnerText").innerHTML="1...";
+},2000);
+
+setTimeout(()=>{
+
+document.getElementById("winnerText").innerHTML="GO!";
+
+fishGame.running=true;
+
+nextObject();
+
+},3000);
+
+}
+
+document.addEventListener("keydown",function(e){
+
+if(!fishGame.running)return;
+
+let player=-1;
+
+if(e.code==="KeyA")player=0;
+if(e.code==="Enter")player=1;
+if(e.code==="Space")player=2;
+if(e.code==="ArrowDown")player=3;
+
+if(player==-1)return;
+
+if(player>=fishGame.players)return;
+
+if(currentTarget==="fish"){
+
+fishGame.scores[player]++;
+
+}else{
+
+fishGame.scores[player]-=3;
+
+}
+
+updateFishScores();
+
+if(fishGame.scores[player]>=fishGame.target){
+
+fishGame.running=false;
+
+document.getElementById("winnerText").innerHTML=
+"🏆 "+["🔵 Mavi","🔴 Qırmızı","🟢 Yaşıl","🟡 Sarı"][player]+" QAZANDI!";
+
+return;
+
+}
+
+nextObject();
+
+});
+
+// ===============================
+// CAT FISH ARENA EXTRA
+// ===============================
+
+// Balıq 1.2 saniyədən bir qaçırsa -1 xal
+setInterval(function(){
+
+if(!fishGame.running) return;
+
+if(currentTarget==="fish"){
+
+for(let i=0;i<fishGame.players;i++){
+
+fishGame.scores[i]--;
+
+}
+
+updateFishScores();
+
+nextObject();
+
+}
+
+},1200);
+
+// Balıq və bombaya klik etməklə də işləsin
+document.getElementById("fish").onclick=function(){
+
+if(!fishGame.running)return;
+
+nextObject();
+
+}
+
+document.getElementById("bomb").onclick=function(){
+
+if(!fishGame.running)return;
+
+nextObject();
+
+}
+
+// Obyektlər hər 700 ms yeni yerə keçsin
+setInterval(function(){
+
+if(!fishGame.running)return;
+
+randomPosition(currentTarget);
+
+},700);
+
+// Oyun başlayanda bomba gizli olsun
+window.addEventListener("load",function(){
+
+document.getElementById("bomb").style.display="none";
+
+});
+
+// ESC düyməsi oyunu dayandırsın
+document.addEventListener("keydown",function(e){
+
+if(e.code==="Escape"){
+
+fishGame.running=false;
+
+document.getElementById("winnerText").innerHTML="⏸ Oyun dayandırıldı";
+
+}
+
+});    
+
+// =====================================
+// CAT FISH ARENA FINAL
+// =====================================
+
+// Qalib effekti
+function finishFishGame(player){
+
+fishGame.running=false;
+
+const names=[
+"🔵 Mavi",
+"🔴 Qırmızı",
+"🟢 Yaşıl",
+"🟡 Sarı"
+];
+
+document.getElementById("winnerText").innerHTML=
+"🏆 "+names[player]+" QAZANDI! 🎉";
+
+document.getElementById("fish").style.display="none";
+document.getElementById("bomb").style.display="none";
+
+}
+
+// Qələbə yoxlanışı
+function checkWinner(player){
+
+if(fishGame.scores[player]>=fishGame.target){
+
+finishFishGame(player);
+
+}
+
+}
+
+// updateFishScores funksiyasını genişləndir
+const oldUpdateFishScores=updateFishScores;
+
+updateFishScores=function(){
+
+oldUpdateFishScores();
+
+for(let i=0;i<fishGame.players;i++){
+
+checkWinner(i);
+
+}
+
+};
+
+// Yenidən başlat düyməsi
+function restartFishGame(){
+
+fishGame.running=false;
+
+fishGame.scores=[0,0,0,0];
+
+updateFishScores();
+
+document.getElementById("winnerText").innerHTML="";
+
+document.getElementById("fish").style.display="block";
+document.getElementById("bomb").style.display="none";
+
+}
+
+// Enter düyməsi ilə yenidən başlat
+document.addEventListener("keydown",function(e){
+
+if(e.code==="KeyR"){
+
+restartFishGame();
+
+}
+
+});
+
+console.log("✅ Cat Fish Arena v1 hazırdır.");
+    
 </script>
 
 </body>

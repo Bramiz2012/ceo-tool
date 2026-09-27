@@ -134,6 +134,51 @@ font-weight:bold;
 .smallBtn{padding:8px 14px;margin:5px}
 @media(max-width:600px){body{padding:10px}.box{padding:14px}.clickBtn{width:120px;height:120px}.toolGrid{grid-template-columns:1fr}}
 
+
+/* =========================
+   CEO V17 XP / CHALLENGE
+   ========================= */
+.xpPanel{background:#050505;border:2px solid #00ff00;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 0 15px rgba(0,255,0,.25)}
+.xpTop{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.xpBig{font-size:30px;color:#ffd700;font-weight:bold}
+.levelBadge{display:inline-block;padding:8px 14px;border:1px solid #ffd700;border-radius:999px;color:#ffd700}
+.xpBar{height:18px;background:#151515;border:1px solid #444;border-radius:99px;overflow:hidden;margin:12px 0}
+.xpFill{height:100%;width:0;background:linear-gradient(90deg,#00ff00,#00ccff,#ff00ff);transition:width .35s}
+.questionBox{background:#000;border:1px solid #333;border-radius:10px;padding:18px;text-align:left;margin-top:12px}
+.questionText{font-size:20px;color:#fff;line-height:1.5;margin-bottom:14px}
+.answerGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.answerBtn{margin:0!important;text-align:left;background:#111;color:#00ff00;border:1px solid #00ff00}
+.answerBtn:hover{background:#003300}
+.answerBtn.correct{background:#064d1a!important;color:#fff!important;border-color:#00ff66!important}
+.answerBtn.wrong{background:#4d0808!important;color:#fff!important;border-color:#ff3333!important}
+.statRow{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px 0}
+.statPill{background:#090909;border:1px solid #333;border-radius:999px;padding:7px 12px;color:#fff}
+.achievementGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.achievement{padding:12px;border:1px solid #333;border-radius:9px;background:#050505;color:#777}
+.achievement.unlocked{border-color:#ffd700;color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,.2)}
+.themeBtns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.themeBtns button{margin:4px}
+.theme-cyber{--theme:#00ff00}
+.theme-blue{--theme:#00ccff}
+.theme-purple{--theme:#cc66ff}
+.theme-red{--theme:#ff4444}
+.theme-gold{--theme:#ffd700}
+body.theme-blue{color:#00ccff}
+body.theme-purple{color:#cc66ff}
+body.theme-red{color:#ff5555}
+body.theme-gold{color:#ffd700}
+body.theme-blue .box,body.theme-blue .xpPanel{border-color:#00ccff}
+body.theme-purple .box,body.theme-purple .xpPanel{border-color:#cc66ff}
+body.theme-red .box,body.theme-red .xpPanel{border-color:#ff4444}
+body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
+.wheelWrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.wheelPointer{font-size:34px;line-height:20px;transform:rotate(180deg)}
+.wheel{width:250px;height:250px;border-radius:50%;border:8px solid #eee;position:relative;overflow:hidden;box-shadow:0 0 25px #00ff00;transition:transform 5s cubic-bezier(.12,.72,.15,1)}
+.wheel::after{content:"🎰";position:absolute;inset:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:#000;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:27px}
+.wheelLabels{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;text-shadow:0 1px 3px #000;font-size:14px}
+.wheelCooldown{color:#ffcc00;font-weight:bold;min-height:24px}
+@media(max-width:600px){.answerGrid{grid-template-columns:1fr}.wheel{width:210px;height:210px}}
+
 </style>
 
 </head>
@@ -216,23 +261,19 @@ Al
 </div>
 
 <div class="box">
-
 <h2 id="wheelTitle">🎰 Şans Çarxı</h2>
-
-<button onclick="spinWheel()">
-Fırlat
-</button>
-
-<div
-class="output"
-id="wheelResult">
-Hazırdır
+<div class="wheelWrap">
+<div class="wheelPointer">▼</div>
+<div class="wheel" id="prizeWheel">
+<div class="wheelLabels">+25 &nbsp; | &nbsp; +50 &nbsp; | &nbsp; +100 &nbsp; | &nbsp; +250 &nbsp; | &nbsp; +500 &nbsp; | &nbsp; X2</div>
 </div>
-
+<button id="spinButton" onclick="spinWheel()">🎰 Fırlat</button>
+<div class="wheelCooldown" id="wheelCooldown"></div>
+<div class="output" id="wheelResult">Hazırdır</div>
+</div>
 </div>
 
 <div class="box">
-
 <h2 id="passwordTitle">🔒 Password Generator</h2>
 
 <button onclick="generatePassword()">
@@ -429,6 +470,84 @@ Dönər"></textarea>
 <div class="toolResult" id="passwordStrength">Şifrə yaz...</div>
 </div>
 
+</div>
+</div>
+
+
+<div class="xpPanel" id="xpHub">
+<h2>🏆 XP & Challenge Center</h2>
+<p style="margin-top:8px">Nə qədər çox oynasan və düzgün cavab versən, bir o qədər XP qazanırsan.</p>
+
+<div class="xpTop">
+<div class="xpBig">⭐ <span id="xpValue">0</span> XP</div>
+<div class="levelBadge">LEVEL <span id="levelValue">1</span></div>
+<div class="levelBadge">🔥 <span id="streakValue">0</span> gün streak</div>
+</div>
+<div class="xpBar"><div class="xpFill" id="xpFill"></div></div>
+<div id="xpProgressText">Növbəti levelə: 1000 XP</div>
+
+<div class="statRow">
+<div class="statPill">Düzgün: <span id="mathCorrect">0</span></div>
+<div class="statPill">Quiz: <span id="quizCorrect">0</span></div>
+<div class="statPill">Achievement: <span id="achievementCount">0</span></div>
+</div>
+
+<div class="questionBox">
+<h3>🧠 Sonsuz Çətin Riyaziyyat Challenge</h3>
+<p id="mathQuestion" class="questionText">Başlamaq üçün düyməyə bas.</p>
+<div id="mathAnswers" class="answerGrid"></div>
+<button onclick="newMathQuestion()">🧠 Çətin sual ver</button>
+<div class="toolResult" id="mathFeedback"></div>
+</div>
+
+<div class="questionBox">
+<h3>🎓 Quiz Arena — çoxlu sual</h3>
+<p>Bir raundda 10 təsadüfi sual. Riyaziyyat, elm, kompüter, coğrafiya və ümumi bilik.</p>
+<div id="quizQuestion" class="questionText">Başlamaq üçün quiz-i başlat.</div>
+<div id="quizAnswers" class="answerGrid"></div>
+<button onclick="startQuiz()">🚀 Quiz-i başlat</button>
+<div class="toolResult" id="quizFeedback"></div>
+</div>
+
+<div class="questionBox">
+<h3>🎁 Gündəlik mükafat</h3>
+<p id="dailyRewardText">Bugünkü mükafat hazırdır.</p>
+<button id="dailyRewardBtn" onclick="claimDailyReward()">🎁 Mükafatı al</button>
+</div>
+
+<div class="questionBox">
+<h3>🏅 Achievements</h3>
+<div id="achievementGrid" class="achievementGrid"></div>
+</div>
+
+<div class="questionBox">
+<h3>🔥 Streak</h3>
+<p>Sayta müxtəlif günlərdə daxil olduqca streak artır. Eyni gündə yenidən artırılmır.</p>
+<div class="toolResult" id="streakText">Streak yoxlanılır...</div>
+</div>
+
+<div class="questionBox">
+<h3>🎨 Theme Center</h3>
+<div class="themeBtns">
+<button onclick="setTheme('cyber')">🟢 Cyber</button>
+<button onclick="setTheme('blue')">🔵 Blue</button>
+<button onclick="setTheme('purple')">🟣 Purple</button>
+<button onclick="setTheme('red')">🔴 Red</button>
+<button onclick="setTheme('gold')">🟡 Gold</button>
+</div>
+</div>
+
+<div class="questionBox">
+<h3>🎁 Surprise Me!</h3>
+<p>Heç nə seçmə. Düyməyə bas və sayt sənin üçün təsadüfi bir şey etsin.</p>
+<button onclick="surpriseMe()">🎁 Məni təəccübləndir</button>
+<div class="toolResult" id="surpriseResult">Görək nə çıxacaq...</div>
+</div>
+
+<div class="questionBox">
+<h3>👑 1,000,000 XP Ultimate Reward</h3>
+<p>1 milyon XP topladıqda <b>CEO LEGEND</b> mükafatı açılır.</p>
+<div class="toolResult" id="millionReward">🔒 Hələ kilidlidir.</div>
 </div>
 </div>
 
@@ -1210,7 +1329,347 @@ function resetAllTools(){
 }
 
 
+// =========================
+// CEO V17 XP / CHALLENGES
+// =========================
+let xp=Number(localStorage.getItem("ceoXP"))||0;
+let mathCorrect=Number(localStorage.getItem("mathCorrect"))||0;
+let quizCorrect=Number(localStorage.getItem("quizCorrect"))||0;
+let achievementUnlocked=JSON.parse(localStorage.getItem("achievementUnlocked")||"{}");
+let lastReward=localStorage.getItem("dailyRewardDate")||"";
+let streak=Number(localStorage.getItem("ceoStreak"))||0;
+let streakDate=localStorage.getItem("ceoStreakDate")||"";
+let currentMath=null;
+let currentQuiz=null;
+let quizIndex=0;
+let quizScore=0;
+
+function todayKey(){return new Date().toISOString().slice(0,10);}
+
+function getLevel(){return Math.floor(xp/1000)+1;}
+function addXP(amount,reason){
+    xp+=amount;
+    localStorage.setItem("ceoXP",xp);
+    updateXPUI();
+    checkAchievements();
+    if(xp>=1000000){
+        document.getElementById("millionReward").innerHTML="👑 <b>CEO LEGEND PACK AÇILDI!</b><br>🏆 1,000,000 XP tamamlandı! Sən əfsanəsən!";
+    }
+}
+function updateXPUI(){
+    const level=getLevel();
+    const into=xp%1000;
+    document.getElementById("xpValue").textContent=xp.toLocaleString();
+    document.getElementById("levelValue").textContent=level;
+    document.getElementById("xpFill").style.width=(into/10)+"%";
+    document.getElementById("xpProgressText").textContent=
+        (1000-into)+" XP sonra Level "+(level+1);
+    document.getElementById("mathCorrect").textContent=mathCorrect;
+    document.getElementById("quizCorrect").textContent=quizCorrect;
+    document.getElementById("achievementCount").textContent=
+        Object.values(achievementUnlocked).filter(Boolean).length;
+    document.getElementById("streakValue").textContent=streak;
+}
+
+function makeMathQuestion(){
+    const type=Math.floor(Math.random()*5);
+    let q,a,wrong1,wrong2,wrong3;
+    if(type===0){
+        const x=Math.floor(Math.random()*20)+2;
+        const m=Math.floor(Math.random()*8)+3;
+        const b=Math.floor(Math.random()*30)+5;
+        const c=m*x+b;
+        q=`${m}x + ${b} = ${c} → x = ?`;
+        a=x;
+    }else if(type===1){
+        const x=Math.floor(Math.random()*15)+2;
+        const p=Math.floor(Math.random()*12)+2;
+        const qv=Math.floor(Math.random()*12)+2;
+        const sum=x+p;
+        q=`x² + ${sum}x + ${p*x} = 0 → böyük kök hansıdır?`;
+        a=-p;
+        // This template can have two roots -p and -x; choose the larger.
+        a=Math.max(-p,-x);
+    }else if(type===2){
+        const base=Math.floor(Math.random()*7)+2;
+        const n=Math.floor(Math.random()*4)+2;
+        const val=base**n;
+        q=`√(${val}) = ?`;
+        a=Math.sqrt(val);
+    }else if(type===3){
+        const total=(Math.floor(Math.random()*8)+2)*100;
+        const percent=[12,15,18,20,25,30,35][Math.floor(Math.random()*7)];
+        const val=total*percent/100;
+        q=`${percent}% of ${total} = ?`;
+        a=val;
+    }else{
+        const a1=Math.floor(Math.random()*12)+3;
+        const b1=Math.floor(Math.random()*12)+3;
+        const c1=Math.floor(Math.random()*10)+1;
+        const c2=Math.floor(Math.random()*10)+1;
+        // system: a1*x + b1*y = c1+b1; a1*x+b1*y=c1+b1 same is too trivial
+        // Use a simple Pythagoras-like challenge instead.
+        const side1=Math.floor(Math.random()*9)+4;
+        const side2=Math.floor(Math.random()*9)+4;
+        const hyp=Math.sqrt(side1*side1+side2*side2);
+        q=`Düzbucaqlı üçbucaqda katetlər ${side1} və ${side2}-dir. Hipotenuz neçədir?`;
+        a=Number(hyp.toFixed(2));
+    }
+    const candidates=[a,a+1,a-1,a*2];
+    if(Number.isInteger(a)) {
+        const opts=[a,a+Math.floor(Math.random()*4)+2,a-Math.floor(Math.random()*4)-2,a+10];
+        return {q,a,opts:[...new Set(opts)].slice(0,4)};
+    }
+    const rounded=Number(a.toFixed(2));
+    return {q,a:rounded,opts:[rounded,Number((rounded+1).toFixed(2)),Number((rounded-1).toFixed(2)),Number((rounded*2).toFixed(2))]};
+}
+
+function newMathQuestion(){
+    currentMath=makeMathQuestion();
+    document.getElementById("mathQuestion").textContent=currentMath.q;
+    const arr=[...currentMath.opts].sort(()=>Math.random()-.5);
+    document.getElementById("mathAnswers").innerHTML=arr.map(v=>
+        `<button class="answerBtn" onclick="answerMath(${JSON.stringify(v)},this)">${v}</button>`
+    ).join("");
+    document.getElementById("mathFeedback").textContent="🧠 Cavabı seç.";
+}
+function answerMath(value,btn){
+    if(!currentMath)return;
+    document.querySelectorAll("#mathAnswers .answerBtn").forEach(b=>b.disabled=true);
+    if(Math.abs(Number(value)-Number(currentMath.a))<0.001){
+        btn.classList.add("correct");
+        mathCorrect++;
+        localStorage.setItem("mathCorrect",mathCorrect);
+        addXP(500,"math");
+        document.getElementById("mathFeedback").textContent="✅ Düzdür! +500 XP";
+    }else{
+        btn.classList.add("wrong");
+        document.getElementById("mathFeedback").textContent="❌ Səhvdir. Düz cavab: "+currentMath.a;
+    }
+    checkAchievements();
+}
+
+const quizBank=[
+["RAM nədir?","Kompüterin müvəqqəti yaddaşı",["Qrafik kart","Kompüterin müvəqqəti yaddaşı","Antivirus","İnternet protokolu"]],
+["HTML əsasən nə üçün istifadə olunur?","Veb səhifənin strukturunu yaratmaq",["Video montaj","Veb səhifənin strukturunu yaratmaq","Virus yazmaq","Disk formatlamaq"]],
+["Dünyanın ən böyük okeanı hansıdır?","Sakit okean",["Atlantik","Hind","Sakit okean","Şimal Buzlu"]],
+["Su dəniz səviyyəsində təxminən neçə °C-də qaynayır?","100",["50","90","100","120"]],
+["2^5 neçədir?","32",["16","25","32","64"]],
+["Pifaqor teoremi hansı fiqurla bağlıdır?","Düzbucaqlı üçbucaq",["Kvadrat","Düzbucaqlı üçbucaq","Dairə","Beşbucaq"]],
+["CPU nədir?","Mərkəzi prosessor",["Mərkəzi prosessor","Yaddaş kartı","Monitor","Klaviatura"]],
+["Bir bayt neçə bitdir?","8",["4","8","16","32"]],
+["Yer Günəş ətrafında təxminən neçə günə dövr edir?","365",["24","30","365","1000"]],
+["√144 neçədir?","12",["10","11","12","14"]],
+["CSS əsasən nəyi idarə edir?","Veb səhifənin görünüşünü",["Veb səhifənin görünüşünü","Kompüterin BIOS-unu","Hard diski","Printeri"]],
+["İşığın vakuumdakı sürəti təxminən neçə km/s-dir?","300000",["300","3000","30000","300000"]],
+["15% of 200 neçədir?","30",["15","20","30","40"]],
+["Azərbaycanın paytaxtı hansıdır?","Bakı",["Gəncə","Bakı","Şəki","Quba"]],
+["JavaScript nədir?","Proqramlaşdırma dili",["Əməliyyat sistemi","Proqramlaşdırma dili","Brauzer","Prosessor"]],
+["9×9 neçədir?","81",["72","81","91","99"]],
+["Dairənin sahəsi üçün əsas düstur hansıdır?","πr²",["2πr","πr²","a²","ab"]],
+["Git nə üçün istifadə olunur?","Versiya nəzarəti",["Video oynatmaq","Versiya nəzarəti","Şəkil çəkmək","Antivirus kimi"]],
+["Atmosferdə ən çox olan qaz hansıdır?","Azot",["Oksigen","Azot","Hidrogen","Helium"]],
+["3³ neçədir?","27",["9","18","27","81"]],
+["Onaltılıq sistemdə FF hansı onluq qiymətə bərabərdir?","255",["127","128","255","256"]],
+["Bir kilometr neçə metrdir?","1000",["10","100","1000","10000"]],
+["Fotosintezdə bitkilər əsasən hansı qazı qəbul edir?","Karbon qazı",["Oksigen","Azot","Karbon qazı","Helium"]],
+["Vebdə HTTPS-də S nəyi bildirir?","Secure",["Simple","System","Secure","Server"]],
+["5! neçədir?","120",["25","60","100","120"]]
+];
+
+function startQuiz(){
+    quizIndex=0;quizScore=0;
+    currentQuiz=[...quizBank].sort(()=>Math.random()-.5).slice(0,10);
+    showQuizQuestion();
+}
+function showQuizQuestion(){
+    if(quizIndex>=currentQuiz.length){
+        document.getElementById("quizQuestion").textContent=`🏁 Raund bitdi: ${quizScore}/10`;
+        document.getElementById("quizAnswers").innerHTML="";
+        document.getElementById("quizFeedback").textContent="🎉 Raund bonusu: +"+(quizScore*250)+" XP";
+        addXP(quizScore*250,"quiz");
+        return;
+    }
+    const item=currentQuiz[quizIndex];
+    document.getElementById("quizQuestion").textContent=
+        `Sual ${quizIndex+1}/10 — ${item[0]}`;
+    const arr=[...item[2]].sort(()=>Math.random()-.5);
+    document.getElementById("quizAnswers").innerHTML=arr.map(v=>
+        `<button class="answerBtn" onclick="answerQuiz(${JSON.stringify(v)},this)">${v}</button>`
+    ).join("");
+    document.getElementById("quizFeedback").textContent="";
+}
+function answerQuiz(value,btn){
+    const item=currentQuiz[quizIndex];
+    document.querySelectorAll("#quizAnswers .answerBtn").forEach(b=>b.disabled=true);
+    if(value===item[1]){
+        btn.classList.add("correct");quizScore++;quizCorrect++;
+        localStorage.setItem("quizCorrect",quizCorrect);
+        addXP(250,"quiz-question");
+        document.getElementById("quizFeedback").textContent="✅ +250 XP";
+    }else{
+        btn.classList.add("wrong");
+        document.getElementById("quizFeedback").textContent="❌ Düz cavab: "+item[1];
+    }
+    setTimeout(()=>{quizIndex++;showQuizQuestion();},650);
+}
+
+function claimDailyReward(){
+    const today=todayKey();
+    if(lastReward===today){
+        document.getElementById("dailyRewardText").textContent="⏳ Bugünkü mükafatı artıq almısan.";
+        return;
+    }
+    lastReward=today;
+    localStorage.setItem("dailyRewardDate",today);
+    addXP(1000,"daily");
+    document.getElementById("dailyRewardText").textContent="🎁 +1000 XP aldın! Sabah yenidən götürə bilərsən.";
+    document.getElementById("dailyRewardBtn").disabled=true;
+}
+
+function updateStreak(){
+    const today=todayKey();
+    if(!streakDate){
+        streak=1;streakDate=today;
+    }else if(streakDate!==today){
+        const old=new Date(streakDate);
+        const now=new Date(today);
+        const days=Math.round((now-old)/86400000);
+        if(days===1) streak++;
+        else streak=1;
+        streakDate=today;
+    }
+    localStorage.setItem("ceoStreak",streak);
+    localStorage.setItem("ceoStreakDate",streakDate);
+    document.getElementById("streakText").textContent=
+        `🔥 Hazırkı streak: ${streak} gün`;
+}
+
+const achievements=[
+["first_xp","⭐ İlk XP","İlk dəfə XP qazan",()=>xp>=1],
+["math_10","🧠 Riyaziyyatçı","10 çətin riyaziyyat sualı düz cavabla",()=>mathCorrect>=10],
+["quiz_10","🎓 Quiz Master","10 quiz sualını düz cavabla",()=>quizCorrect>=10],
+["level_10","🚀 Level 10","Level 10-a çat",()=>getLevel()>=10],
+["level_50","🔥 Level 50","Level 50-yə çat",()=>getLevel()>=50],
+["streak_7","🔥 7 Gün","7 günlük streak et",()=>streak>=7],
+["xp_100k","💎 100K XP","100,000 XP topla",()=>xp>=100000],
+["million","👑 CEO Legend","1,000,000 XP topla",()=>xp>=1000000],
+["lucky_spin","🎰 Şanslı","Şans çarxını fırlat",()=>Number(localStorage.getItem("wheelSpins")||0)>=1],
+["surprise","🎁 Surprise","Surprise Me istifadə et",()=>Number(localStorage.getItem("surprises")||0)>=1]
+];
+
+function checkAchievements(){
+    achievements.forEach(a=>{
+        if(a[3]()) achievementUnlocked[a[0]]=true;
+    });
+    localStorage.setItem("achievementUnlocked",JSON.stringify(achievementUnlocked));
+    renderAchievements();
+}
+function renderAchievements(){
+    const unlocked=Object.values(achievementUnlocked).filter(Boolean).length;
+    document.getElementById("achievementGrid").innerHTML=achievements.map(a=>{
+        const yes=!!achievementUnlocked[a[0]];
+        return `<div class="achievement ${yes?"unlocked":""}">
+            <b>${a[1]}</b><br><small>${a[2]}</small><br>${yes?"✅ AÇILDI":"🔒 Kilidli"}
+        </div>`;
+    }).join("");
+    document.getElementById("achievementCount").textContent=unlocked;
+}
+
+function setTheme(theme){
+    document.body.classList.remove("theme-cyber","theme-blue","theme-purple","theme-red","theme-gold");
+    document.body.classList.add("theme-"+theme);
+    localStorage.setItem("ceoTheme",theme);
+}
+function loadTheme(){
+    setTheme(localStorage.getItem("ceoTheme")||"cyber");
+}
+
+function surpriseMe(){
+    const options=[
+        ()=>{document.getElementById("xpHub").scrollIntoView({behavior:"smooth"});newMathQuestion();return "🧠 Çətin riyaziyyat sualı gəldi!";},
+        ()=>{document.getElementById("xpHub").scrollIntoView({behavior:"smooth"});startQuiz();return "🎓 Quiz Arena başladı!";},
+        ()=>{flipCoin();return "🪙 Coin Flip etdim!";},
+        ()=>{rollDice();return "🎲 Zər atdım!";},
+        ()=>{randomColor();return "🌈 Random rəng yaratdım!";},
+        ()=>{generatePassword();return "🔐 Yeni şifrə yaratdım!";},
+        ()=>{document.getElementById("xpHub").scrollIntoView({behavior:"smooth"});return "🎁 Sürpriz! XP mərkəzinə get!";}
+    ];
+    const msg=options[Math.floor(Math.random()*options.length)]();
+    localStorage.setItem("surprises",Number(localStorage.getItem("surprises")||0)+1);
+    addXP(50,"surprise");
+    document.getElementById("surpriseResult").textContent=msg+" +50 XP";
+    checkAchievements();
+}
+
+// =========================
+// REAL 5-SECOND WHEEL + 60s COOLDOWN
+// =========================
+let wheelSpinning=false;
+function wheelRemaining(){
+    const until=Number(localStorage.getItem("wheelCooldownUntil")||0);
+    return Math.max(0,until-Date.now());
+}
+function updateWheelCooldown(){
+    const ms=wheelRemaining();
+    const btn=document.getElementById("spinButton");
+    const out=document.getElementById("wheelCooldown");
+    if(!btn||!out)return;
+    if(ms>0){
+        btn.disabled=true;
+        out.textContent="⏳ Yenidən fırlatmaq üçün "+Math.ceil(ms/1000)+" saniyə.";
+        setTimeout(updateWheelCooldown,250);
+    }else if(!wheelSpinning){
+        btn.disabled=false;
+        out.textContent="✅ Hazırdır — 1 dəqiqədə 1 dəfə.";
+    }
+}
+function spinWheel(){
+    if(wheelSpinning || wheelRemaining()>0)return;
+    wheelSpinning=true;
+    const btn=document.getElementById("spinButton");
+    const out=document.getElementById("wheelCooldown");
+    const wheel=document.getElementById("prizeWheel");
+    btn.disabled=true;
+    out.textContent="🎰 Fırlanır... 5 saniyə!";
+    const prizeIndex=Math.floor(Math.random()*6);
+    const prizes=[25,50,100,250,500,"x2"];
+    const turns=6*360;
+    const extra=prizeIndex*60+Math.floor(Math.random()*20);
+    wheel.style.transform=`rotate(${turns+extra}deg)`;
+    setTimeout(()=>{
+        const prize=prizes[prizeIndex];
+        let message="";
+        if(prize==="x2"){
+            score=Math.max(1,score*2);updateScore();
+            message="💎 X2 BONUS! Clicker xalların ikiqat oldu!";
+        }else{
+            addXP(prize*5,"wheel");
+            score+=prize;updateScore();
+            message=`🎉 +${prize} xal və +${prize*5} XP qazandın!`;
+        }
+        localStorage.setItem("wheelSpins",Number(localStorage.getItem("wheelSpins")||0)+1);
+        localStorage.setItem("wheelCooldownUntil",String(Date.now()+60000));
+        wheelSpinning=false;
+        document.getElementById("wheelResult").textContent=message;
+        updateWheelCooldown();
+        checkAchievements();
+    },5000);
+}
+setInterval(updateWheelCooldown,1000);
+
 renderStudyTimer();
+
+updateXPUI();
+updateStreak();
+renderAchievements();
+loadTheme();
+if(lastReward===todayKey()){
+    document.getElementById("dailyRewardBtn").disabled=true;
+    document.getElementById("dailyRewardText").textContent="⏳ Bugünkü mükafatı artıq almısan.";
+}
+updateWheelCooldown();
+newMathQuestion();
 
 </script>
 

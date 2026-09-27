@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEO Gaming Hub Enterprise v15</title>
+<title>CEO Gaming Hub Enterprise v16</title>
 
 <style>
 *{
@@ -142,10 +142,10 @@ font-weight:bold;
 
 <div class="container">
 
-<h1>CEO Gaming Hub Enterprise v15</h1>
+<h1>CEO Gaming Hub Enterprise v16</h1>
 <p>Premium Multi Tool</p>
 
-<button class="resetAll" onclick="resetAllTools()">♻️ Hər şeyi sıfırla</button>
+<button type="button" class="resetAll" onclick="resetAllTools()">♻️ Hər şeyi sıfırla</button>
 
 <div class="box">
 
@@ -344,6 +344,89 @@ Hazırdır
 <h3>🔟 🎲 Dice</h3>
 <button class="smallBtn" onclick="rollDice()">🎲 Zər at</button>
 <div class="toolResult" id="diceResult">Hazırdır</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="box">
+<h2>🚀 CEO Extra Tools</h2>
+<p>Daha çox faydalı mini alət — hamısı brauzerdə işləyir.</p>
+
+<div class="toolGrid">
+
+<div class="toolCard">
+<h3>⏱️ Stopwatch</h3>
+<div class="timerDisplay" id="stopwatch">00:00:00</div>
+<button class="smallBtn" onclick="startStopwatch()">▶️ Başla</button>
+<button class="smallBtn" onclick="pauseStopwatch()">⏸️ Dayandır</button>
+<button class="smallBtn" onclick="resetStopwatch()">🔄 Sıfırla</button>
+</div>
+
+<div class="toolCard">
+<h3>🕐 Canlı saat</h3>
+<div class="timerDisplay" id="liveClock">00:00:00</div>
+<div class="toolResult">Kompüterinin yerli saatını göstərir.</div>
+</div>
+
+<div class="toolCard">
+<h3>🔄 Vahid çevirici</h3>
+<input id="unitValue" type="number" placeholder="Dəyər">
+<select id="unitType">
+<option value="cm-m">Santimetr → metr</option>
+<option value="m-km">Metr → kilometr</option>
+<option value="km-m">Kilometr → metr</option>
+<option value="kg-g">Kiloqram → qram</option>
+<option value="g-kg">Qram → kiloqram</option>
+<option value="c-f">°C → °F</option>
+<option value="f-c">°F → °C</option>
+</select>
+<button class="smallBtn" onclick="convertUnit()">🔄 Çevir</button>
+<div class="toolResult" id="unitResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>🔤 Mətn sayğacı</h3>
+<textarea id="textCounterInput" placeholder="Mətni buraya yaz..."></textarea>
+<div class="toolResult" id="textCounterResult">Simvol: 0 | Söz: 0 | Sətir: 0</div>
+</div>
+
+<div class="toolCard">
+<h3>🔢 Tək / Cüt / Sadə ədəd</h3>
+<input id="numberCheck" type="number" placeholder="Bir ədəd yaz">
+<button class="smallBtn" onclick="checkNumber()">🔍 Yoxla</button>
+<div class="toolResult" id="numberCheckResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>✖️ Vurma cədvəli</h3>
+<input id="tableNumber" type="number" min="1" max="100" placeholder="Məs: 7">
+<button class="smallBtn" onclick="makeTable()">📚 Göstər</button>
+<div class="toolResult" id="tableResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>🎯 Random seçim</h3>
+<textarea id="choicesInput" placeholder="Variantları hər sətirdə bir yaz:
+Pizza
+Burger
+Dönər"></textarea>
+<button class="smallBtn" onclick="randomChoice()">🎯 Seç</button>
+<div class="toolResult" id="choiceResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>🌈 Random rəng</h3>
+<div id="colorPreview" style="height:70px;border-radius:8px;border:1px solid #333;margin:10px 0;background:#000"></div>
+<button class="smallBtn" onclick="randomColor()">🎨 Rəng yarat</button>
+<div class="toolResult" id="colorResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>🔐 Şifrə gücü</h3>
+<input id="passwordCheck" type="password" placeholder="Şifrəni yaz">
+<div class="toolResult" id="passwordStrength">Şifrə yaz...</div>
 </div>
 
 </div>
@@ -994,14 +1077,138 @@ function rollDice(){
     document.getElementById("diceResult").textContent="🎲 "+(Math.floor(Math.random()*6)+1);
 }
 
+
+// =========================
+// EXTRA TOOLS v16
+// =========================
+
+let stopwatchSeconds=0;
+let stopwatchInterval=null;
+
+function renderStopwatch(){
+    const h=Math.floor(stopwatchSeconds/3600).toString().padStart(2,"0");
+    const m=Math.floor((stopwatchSeconds%3600)/60).toString().padStart(2,"0");
+    const s=(stopwatchSeconds%60).toString().padStart(2,"0");
+    document.getElementById("stopwatch").textContent=h+":"+m+":"+s;
+}
+function startStopwatch(){
+    if(stopwatchInterval) return;
+    stopwatchInterval=setInterval(function(){
+        stopwatchSeconds++;
+        renderStopwatch();
+    },1000);
+}
+function pauseStopwatch(){
+    clearInterval(stopwatchInterval);
+    stopwatchInterval=null;
+}
+function resetStopwatch(){
+    pauseStopwatch();
+    stopwatchSeconds=0;
+    renderStopwatch();
+}
+
+function updateLiveClock(){
+    const d=new Date();
+    document.getElementById("liveClock").textContent=
+        [d.getHours(),d.getMinutes(),d.getSeconds()]
+        .map(x=>String(x).padStart(2,"0")).join(":");
+}
+setInterval(updateLiveClock,1000);
+updateLiveClock();
+
+function convertUnit(){
+    const v=Number(document.getElementById("unitValue").value);
+    const type=document.getElementById("unitType").value;
+    const out=document.getElementById("unitResult");
+    if(!Number.isFinite(v)){out.textContent="Əvvəl dəyər yaz.";return;}
+    let r=0,label="";
+    if(type==="cm-m"){r=v/100;label=" m";}
+    if(type==="m-km"){r=v/1000;label=" km";}
+    if(type==="km-m"){r=v*1000;label=" m";}
+    if(type==="kg-g"){r=v*1000;label=" g";}
+    if(type==="g-kg"){r=v/1000;label=" kg";}
+    if(type==="c-f"){r=(v*9/5)+32;label=" °F";}
+    if(type==="f-c"){r=(v-32)*5/9;label=" °C";}
+    out.textContent="Nəticə: "+Number(r.toFixed(6))+label;
+}
+
+function updateTextCounter(){
+    const t=document.getElementById("textCounterInput").value;
+    const words=t.trim()?t.trim().split(/\s+/).length:0;
+    const lines=t? t.split(/\n/).length:0;
+    document.getElementById("textCounterResult").textContent=
+        "Simvol: "+t.length+" | Söz: "+words+" | Sətir: "+lines;
+}
+document.getElementById("textCounterInput").addEventListener("input",updateTextCounter);
+
+function isPrime(n){
+    if(n<2 || !Number.isInteger(n)) return false;
+    for(let i=2;i*i<=n;i++) if(n%i===0) return false;
+    return true;
+}
+function checkNumber(){
+    const n=Number(document.getElementById("numberCheck").value);
+    const out=document.getElementById("numberCheckResult");
+    if(!Number.isFinite(n)){out.textContent="Ədəd yaz.";return;}
+    let parts=[];
+    parts.push(n%2===0?"Cüt ədəddir":"Tək ədəddir");
+    parts.push(isPrime(n)?"Sadə ədəddir":(Number.isInteger(n)?"Mürəkkəb və ya 1-dir":"Tam ədəd deyil"));
+    out.textContent="🔢 "+parts.join(" | ");
+}
+
+function makeTable(){
+    const n=Number(document.getElementById("tableNumber").value);
+    const out=document.getElementById("tableResult");
+    if(!Number.isFinite(n)||n<1){out.textContent="1-dən böyük ədəd yaz.";return;}
+    let s="";
+    for(let i=1;i<=10;i++) s+=n+" × "+i+" = "+(n*i)+"<br>";
+    out.innerHTML=s;
+}
+
+function randomChoice(){
+    const lines=document.getElementById("choicesInput").value
+        .split(/\n/).map(x=>x.trim()).filter(Boolean);
+    const out=document.getElementById("choiceResult");
+    if(!lines.length){out.textContent="Variantları yaz.";return;}
+    out.textContent="🎯 Seçildi: "+lines[Math.floor(Math.random()*lines.length)];
+}
+
+function randomColor(){
+    const hex="#"+Math.floor(Math.random()*16777216).toString(16).padStart(6,"0");
+    document.getElementById("colorPreview").style.background=hex;
+    document.getElementById("colorResult").textContent=hex;
+}
+
+function updatePasswordStrength(){
+    const p=document.getElementById("passwordCheck").value;
+    const out=document.getElementById("passwordStrength");
+    if(!p){out.textContent="Şifrə yaz...";return;}
+    let score=0;
+    if(p.length>=8) score++;
+    if(p.length>=12) score++;
+    if(/[A-Z]/.test(p)) score++;
+    if(/[a-z]/.test(p)) score++;
+    if(/[0-9]/.test(p)) score++;
+    if(/[^A-Za-z0-9]/.test(p)) score++;
+    const labels=["Çox zəif","Zəif","Orta","Yaxşı","Güclü","Çox güclü","Əla"];
+    out.textContent="🔐 "+labels[score]+" ("+score+"/6)";
+}
+document.getElementById("passwordCheck").addEventListener("input",updatePasswordStrength);
+
+// RESET — təsdiqsiz və birbaşa işləyir
 function resetAllTools(){
-    if(!confirm("⚠️ Bütün sayt məlumatları, klikçi xalları və qeydlər silinsin?")) return;
     localStorage.clear();
-    clearInterval(countdownTimer);
-    clearInterval(studyInterval);
-    if(reactionTimer) clearTimeout(reactionTimer);
+    sessionStorage.clear();
+    try{
+        clearInterval(countdownTimer);
+        clearInterval(studyInterval);
+        clearInterval(stopwatchInterval);
+        if(reactionTimer) clearTimeout(reactionTimer);
+    }catch(e){}
     location.reload();
 }
+
 
 renderStudyTimer();
 

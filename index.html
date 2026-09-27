@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEO Gaming Hub Enterprise v14</title>
+<title>CEO Gaming Hub Enterprise v15</title>
 
 <style>
 *{
@@ -116,138 +116,24 @@ margin-top:15px;
 font-weight:bold;
 }
 
-/* ===========================
-   CAT FISH ARENA CSS
-=========================== */
+/* ==============================
+   NEW STUDY + MINI TOOLS
+   ============================== */
+.toolGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:18px}
+.toolCard{background:#090909;border:1px solid #333;border-radius:10px;padding:18px;box-shadow:0 0 8px rgba(0,255,0,.18)}
+.toolCard h3{margin-bottom:12px;color:#00ff00}
+.toolCard input,.toolCard textarea,.toolCard select{width:100%;max-width:none;margin:6px 0;padding:10px;background:#000;color:#00ff00;border:1px solid #00ff00;border-radius:5px;box-sizing:border-box}
+.toolCard textarea{min-height:150px;resize:vertical}
+.toolResult{margin-top:10px;padding:12px;background:#000;border:1px solid #333;border-radius:6px;color:white;min-height:24px}
+.formula{color:#fff;text-align:left;line-height:1.8;margin:8px 0}
+.timerDisplay{font-size:42px;font-weight:bold;color:#ff3399;margin:12px 0}
+.reactionBox{height:150px;border:2px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;cursor:pointer;background:#220000;color:#fff;user-select:none}
+.reactionBox.ready{background:#00aa44;color:#000}
+.resetAll{background:#ff3333;color:#fff;box-shadow:0 0 12px #ff3333}
+.resetAll:hover{background:#cc0000}
+.smallBtn{padding:8px 14px;margin:5px}
+@media(max-width:600px){body{padding:10px}.box{padding:14px}.clickBtn{width:120px;height:120px}.toolGrid{grid-template-columns:1fr}}
 
-#arena{
-position:relative;
-width:700px;
-height:420px;
-margin:25px auto;
-background:#111;
-border:3px solid #00ff00;
-border-radius:12px;
-overflow:hidden;
-}
-
-#fish,
-#bomb{
-
-position:absolute;
-
-font-size:50px;
-
-transition:.15s;
-
-cursor:pointer;
-
-user-select:none;
-
-}
-
-#fish{
-
-left:120px;
-
-top:120px;
-
-}
-
-#bomb{
-
-left:520px;
-
-top:260px;
-
-}
-
-.scoreBoard{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:10px;
-
-margin-top:20px;
-
-}
-
-.scoreBoard p{
-
-background:#000;
-
-padding:12px;
-
-border:1px solid #00ff00;
-
-border-radius:8px;
-
-font-size:20px;
-
-}
-
-#winnerText{
-
-margin-top:20px;
-
-font-size:32px;
-
-color:gold;
-
-font-weight:bold;
-
-}
-
-#gameInfo{
-
-margin:20px 0;
-
-line-height:2;
-
-font-size:18px;
-
-}
-
-#gameMode,
-#winScore{
-
-padding:10px;
-
-background:#000;
-
-color:#00ff00;
-
-border:1px solid #00ff00;
-
-border-radius:6px;
-
-font-size:18px;
-
-margin:10px;
-
-}
-
-@media(max-width:800px){
-
-#arena{
-
-width:95%;
-
-height:320px;
-
-}
-
-#fish,
-#bomb{
-
-font-size:40px;
-
-}
-
-}
-    
 </style>
 
 </head>
@@ -256,8 +142,10 @@ font-size:40px;
 
 <div class="container">
 
-<h1>CEO Gaming Hub Enterprise v14</h1>
+<h1>CEO Gaming Hub Enterprise v15</h1>
 <p>Premium Multi Tool</p>
+
+<button class="resetAll" onclick="resetAllTools()">♻️ Hər şeyi sıfırla</button>
 
 <div class="box">
 
@@ -381,74 +269,95 @@ Hazırdır
 
 </div>
 <div class="box">
+<h2>🧰 Study & Mini Tools</h2>
+<p>Bütün alətlər brauzerdə işləyir. Qeyd dəftəri və klikçi yadda saxlanır.</p>
 
-<h2>🐱 Cat Fish Arena</h2>
+<div class="toolGrid">
 
-<p>
-İlk çatan qalib olur
-</p>
+<div class="toolCard">
+<h3>1️⃣ 🧮 Kalkulyator</h3>
+<input id="calcInput" placeholder="Məs: (25+5)*2 / 3">
+<button class="smallBtn" onclick="calculate()">Hesabla</button>
+<button class="smallBtn" onclick="document.getElementById('calcInput').value='';document.getElementById('calcResult').textContent=''">Təmizlə</button>
+<div class="toolResult" id="calcResult"></div>
+</div>
 
-<label>Oyunçu sayı:</label>
+<div class="toolCard">
+<h3>2️⃣ 📊 Faiz hesablayıcı</h3>
+<input id="percentValue" type="number" placeholder="Əsas məbləğ">
+<input id="percentRate" type="number" placeholder="Faiz (%)">
+<button class="smallBtn" onclick="calcPercent()">Hesabla</button>
+<div class="toolResult" id="percentResult"></div>
+</div>
 
-<select id="gameMode">
-    <option value="1">1 Oyunçu</option>
-    <option value="2">2 Oyunçu</option>
-    <option value="3">3 Oyunçu</option>
-    <option value="4">4 Oyunçu</option>
+<div class="toolCard">
+<h3>3️⃣ 🔺 Pifaqor kalkulyatoru</h3>
+<input id="pythA" type="number" min="0" placeholder="a tərəfi">
+<input id="pythB" type="number" min="0" placeholder="b tərəfi">
+<button class="smallBtn" onclick="calcPythagoras()">c-ni tap</button>
+<div class="toolResult" id="pythResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>4️⃣ 📐 Sadə riyaziyyat formulları</h3>
+<div class="formula">• Kvadrat: <b>S = a²</b>, <b>P = 4a</b><br>• Düzbucaqlı: <b>S = a·b</b>, <b>P = 2(a+b)</b><br>• Üçbucaq: <b>S = a·h / 2</b><br>• Dairə: <b>S = πr²</b>, <b>L = 2πr</b><br>• Sürət: <b>v = s/t</b><br>• Faiz: <b>p% = p/100</b></div>
+</div>
+
+<div class="toolCard">
+<h3>5️⃣ ⏱️ Study Timer / Pomodoro</h3>
+<div class="timerDisplay" id="studyTimer">25:00</div>
+<button class="smallBtn" onclick="startStudyTimer()">▶️ Başla</button>
+<button class="smallBtn" onclick="pauseStudyTimer()">⏸️ Dayandır</button>
+<button class="smallBtn" onclick="resetStudyTimer()">🔄 Sıfırla</button>
+<div class="toolResult" id="studyStatus">25 dəqiqəlik dərs vaxtı</div>
+</div>
+
+<div class="toolCard">
+<h3>6️⃣ 📝 Sadə qeyd dəftəri</h3>
+<textarea id="notes" placeholder="Buraya qeydlərini yaz..."></textarea>
+<button class="smallBtn" onclick="saveNotes()">💾 Yadda saxla</button>
+<button class="smallBtn" onclick="clearNotes()">🗑️ Təmizlə</button>
+<div class="toolResult" id="notesStatus"></div>
+</div>
+
+<div class="toolCard">
+<h3>7️⃣ ⚡ Reaction Test</h3>
+<div class="reactionBox" id="reactionBox" onclick="reactionClick()">Başlamaq üçün kliklə</div>
+<div class="toolResult" id="reactionResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>8️⃣ 🎲 Random Number</h3>
+<input id="randMin" type="number" placeholder="Minimum">
+<input id="randMax" type="number" placeholder="Maksimum">
+<button class="smallBtn" onclick="randomNumber()">🎯 Təsadüfi rəqəm</button>
+<div class="toolResult" id="randResult"></div>
+</div>
+
+<div class="toolCard">
+<h3>9️⃣ 🪙 Coin Flip</h3>
+<button class="smallBtn" onclick="flipCoin()">🪙 At</button>
+<div class="toolResult" id="coinResult">Hazırdır</div>
+</div>
+
+<div class="toolCard">
+<h3>🔟 🎲 Dice</h3>
+<button class="smallBtn" onclick="rollDice()">🎲 Zər at</button>
+<div class="toolResult" id="diceResult">Hazırdır</div>
+</div>
+
+</div>
+</div>
+
+<div class="box">
+
+<h2>🌍 Dil seçimi</h2>
+
+<select id="language" onchange="changeLanguage()">
+    <option value="az">🇦🇿 Azərbaycan</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="ru">🇷🇺 Русский</option>
 </select>
-
-<br><br>
-
-<label>Qələbə xalı:</label>
-
-<select id="winScore">
-    <option value="10">10</option>
-    <option value="100">100</option>
-</select>
-
-<br><br>
-
-<button onclick="startFishGame()">
-🎮 Oyuna Başla
-</button>
-
-<div id="gameInfo">
-
-<p>🔵 Mavi → A</p>
-
-<p>🔴 Qırmızı → Enter</p>
-
-<p>🟢 Yaşıl → Space</p>
-
-<p>🟡 Sarı → ↓</p>
-
-</div>
-
-<div id="arena">
-
-<div id="fish">🐟</div>
-
-<div id="bomb">💣</div>
-
-</div>
-
-<div class="scoreBoard">
-
-<p>🔵 Mavi :
-<span id="blueScore">0</span></p>
-
-<p>🔴 Qırmızı :
-<span id="redScore">0</span></p>
-
-<p>🟢 Yaşıl :
-<span id="greenScore">0</span></p>
-
-<p>🟡 Sarı :
-<span id="yellowScore">0</span></p>
-
-</div>
-
-<h2 id="winnerText"></h2>
 
 </div>
 <script>
@@ -973,358 +882,129 @@ countdown:"Обратный отсчёт"
 }
 
 };
-    // =========================
-// CAT GAME HƏRƏKƏT SİSTEMİ
+    
+// =========================
+// STUDY + MINI TOOLS
 // =========================
 
-function moveObjects(){
-
-    const cat=document.getElementById("cat");
-    const bomb=document.getElementById("bomb");
-    const area=document.getElementById("gameArea");
-
-    if(!cat || !bomb || !area) return;
-
-    const w=area.clientWidth-60;
-    const h=area.clientHeight-60;
-
-    cat.style.left=Math.random()*w+"px";
-    cat.style.top=Math.random()*h+"px";
-
-    bomb.style.left=Math.random()*w+"px";
-    bomb.style.top=Math.random()*h+"px";
-}
-
-function catchCat(){
-
-    catScore++;
-
-    document.getElementById("catScore").innerHTML=catScore;
-
-    moveObjects();
-
-    if(catScore>=100){
-
-        alert("🏆 Təbriklər! 100 xal topladın!");
-
-        catScore=0;
-
-        document.getElementById("catScore").innerHTML=catScore;
-
+function calculate(){
+    const raw=document.getElementById("calcInput").value.trim();
+    const out=document.getElementById("calcResult");
+    if(!raw){ out.textContent="Əvvəl ifadə yaz."; return; }
+    if(!/^[0-9+\-*/().%\s]+$/.test(raw)){
+        out.textContent="Yalnız rəqəmlər və + - * / ( ) % istifadə et.";
+        return;
     }
-
+    try{
+        const result=Function("\"use strict\"; return ("+raw+")")();
+        out.textContent=Number.isFinite(result)?"Nəticə: "+result:"Xəta";
+    }catch(e){ out.textContent="İfadə düzgün deyil."; }
 }
 
-function hitBomb(){
+function calcPercent(){
+    const value=Number(document.getElementById("percentValue").value);
+    const rate=Number(document.getElementById("percentRate").value);
+    const out=document.getElementById("percentResult");
+    if(!Number.isFinite(value)||!Number.isFinite(rate)){out.textContent="İki rəqəm də yaz.";return;}
+    const part=value*rate/100;
+    out.textContent=rate+"% = "+part+" | Üstünə gələndə: "+(value+part);
+}
 
-    catScore-=3;
+function calcPythagoras(){
+    const a=Number(document.getElementById("pythA").value);
+    const b=Number(document.getElementById("pythB").value);
+    const out=document.getElementById("pythResult");
+    if(a<=0||b<=0){out.textContent="a və b müsbət olmalıdır.";return;}
+    const c=Math.sqrt(a*a+b*b);
+    out.textContent="c = "+c.toFixed(4);
+}
 
-    if(catScore<0){
-        catScore=0;
+let studySeconds=25*60;
+let studyInterval=null;
+function renderStudyTimer(){
+    const m=Math.floor(studySeconds/60).toString().padStart(2,"0");
+    const s=(studySeconds%60).toString().padStart(2,"0");
+    document.getElementById("studyTimer").textContent=m+":"+s;
+}
+function startStudyTimer(){
+    if(studyInterval) return;
+    document.getElementById("studyStatus").textContent="📚 Dərs vaxtı başladı!";
+    studyInterval=setInterval(function(){
+        if(studySeconds>0){studySeconds--;renderStudyTimer();}
+        else{clearInterval(studyInterval);studyInterval=null;document.getElementById("studyStatus").textContent="🎉 25 dəqiqə tamamlandı! İndi 5 dəqiqə fasilə ver.";alert("🎉 Pomodoro tamamlandı! 5 dəqiqə fasilə ver.");}
+    },1000);
+}
+function pauseStudyTimer(){
+    clearInterval(studyInterval); studyInterval=null;
+    document.getElementById("studyStatus").textContent="⏸️ Timer dayandırıldı.";
+}
+function resetStudyTimer(){
+    clearInterval(studyInterval); studyInterval=null; studySeconds=25*60; renderStudyTimer();
+    document.getElementById("studyStatus").textContent="25 dəqiqəlik dərs vaxtı";
+}
+
+const notesEl=document.getElementById("notes");
+if(notesEl) notesEl.value=localStorage.getItem("ceoNotes")||"";
+function saveNotes(){
+    localStorage.setItem("ceoNotes",document.getElementById("notes").value);
+    document.getElementById("notesStatus").textContent="✅ Qeyd yadda saxlanıldı.";
+}
+function clearNotes(){
+    document.getElementById("notes").value="";
+    localStorage.removeItem("ceoNotes");
+    document.getElementById("notesStatus").textContent="🗑️ Qeydlər silindi.";
+}
+
+let reactionStart=0;
+let reactionWaiting=false;
+let reactionTimer=null;
+function reactionClick(){
+    const box=document.getElementById("reactionBox");
+    const out=document.getElementById("reactionResult");
+    if(reactionWaiting){
+        clearTimeout(reactionTimer); reactionWaiting=false;
+        box.classList.remove("ready"); box.textContent="Çox tez! Yenidən kliklə";
+        out.textContent="⛔ Yaşıl olmadan kliklədin.";
+        return;
     }
-
-    document.getElementById("catScore").innerHTML=catScore;
-
-    moveObjects();
-
+    if(box.classList.contains("ready")){
+        const ms=Date.now()-reactionStart;
+        reactionWaiting=false; box.classList.remove("ready"); box.textContent="Yenidən yoxla";
+        out.textContent="⚡ Reaksiya vaxtın: "+ms+" ms";
+        return;
+    }
+    box.textContent="Gözlə..."; out.textContent=""; reactionWaiting=true;
+    reactionTimer=setTimeout(function(){
+        reactionWaiting=false; reactionStart=Date.now(); box.classList.add("ready"); box.textContent="🟢 İNDİ KLİKLƏ!";
+    },2000+Math.floor(Math.random()*3000));
 }
 
-setInterval(moveObjects,1200);
-
-window.addEventListener("load",moveObjects);
-
-// ===============================
-// CAT FISH ARENA ENGINE
-// ===============================
-
-let fishGame={
-running:false,
-players:1,
-target:10,
-scores:[0,0,0,0]
-};
-
-let currentTarget="fish";
-
-const scoreIds=[
-"blueScore",
-"redScore",
-"greenScore",
-"yellowScore"
-];
-
-function updateFishScores(){
-
-for(let i=0;i<4;i++){
-
-const el=document.getElementById(scoreIds[i]);
-
-if(el){
-
-el.innerHTML=fishGame.scores[i];
-
+function randomNumber(){
+    let min=Number(document.getElementById("randMin").value);
+    let max=Number(document.getElementById("randMax").value);
+    const out=document.getElementById("randResult");
+    if(!Number.isFinite(min)||!Number.isFinite(max)){out.textContent="Minimum və maksimum yaz.";return;}
+    if(min>max)[min,max]=[max,min];
+    out.textContent="🎯 "+(Math.floor(Math.random()*(max-min+1))+min);
+}
+function flipCoin(){
+    document.getElementById("coinResult").textContent=Math.random()<0.5?"🪙 GERB":"🪙 YAZI";
+}
+function rollDice(){
+    document.getElementById("diceResult").textContent="🎲 "+(Math.floor(Math.random()*6)+1);
 }
 
+function resetAllTools(){
+    if(!confirm("⚠️ Bütün sayt məlumatları, klikçi xalları və qeydlər silinsin?")) return;
+    localStorage.clear();
+    clearInterval(countdownTimer);
+    clearInterval(studyInterval);
+    if(reactionTimer) clearTimeout(reactionTimer);
+    location.reload();
 }
 
-}
+renderStudyTimer();
 
-function randomPosition(id){
-
-const obj=document.getElementById(id);
-
-const arena=document.getElementById("arena");
-
-if(!obj||!arena)return;
-
-const maxX=arena.clientWidth-60;
-const maxY=arena.clientHeight-60;
-
-obj.style.left=Math.floor(Math.random()*maxX)+"px";
-obj.style.top=Math.floor(Math.random()*maxY)+"px";
-
-}
-
-function nextObject(){
-
-currentTarget=Math.random()<0.75?"fish":"bomb";
-
-document.getElementById("fish").style.display=
-currentTarget==="fish"?"block":"none";
-
-document.getElementById("bomb").style.display=
-currentTarget==="bomb"?"block":"none";
-
-randomPosition(currentTarget);
-
-}
-
-function startFishGame(){
-
-fishGame.players=parseInt(document.getElementById("gameMode").value);
-
-fishGame.target=parseInt(document.getElementById("winScore").value);
-
-fishGame.running=false;
-
-fishGame.scores=[0,0,0,0];
-
-updateFishScores();
-
-document.getElementById("winnerText").innerHTML="3...";
-
-setTimeout(()=>{
-document.getElementById("winnerText").innerHTML="2...";
-},1000);
-
-setTimeout(()=>{
-document.getElementById("winnerText").innerHTML="1...";
-},2000);
-
-setTimeout(()=>{
-
-document.getElementById("winnerText").innerHTML="GO!";
-
-fishGame.running=true;
-
-nextObject();
-
-},3000);
-
-}
-
-document.addEventListener("keydown",function(e){
-
-if(!fishGame.running)return;
-
-let player=-1;
-
-if(e.code==="KeyA")player=0;
-if(e.code==="Enter")player=1;
-if(e.code==="Space")player=2;
-if(e.code==="ArrowDown")player=3;
-
-if(player==-1)return;
-
-if(player>=fishGame.players)return;
-
-if(currentTarget==="fish"){
-
-fishGame.scores[player]++;
-
-}else{
-
-fishGame.scores[player]-=3;
-
-}
-
-updateFishScores();
-
-if(fishGame.scores[player]>=fishGame.target){
-
-fishGame.running=false;
-
-document.getElementById("winnerText").innerHTML=
-"🏆 "+["🔵 Mavi","🔴 Qırmızı","🟢 Yaşıl","🟡 Sarı"][player]+" QAZANDI!";
-
-return;
-
-}
-
-nextObject();
-
-});
-
-// ===============================
-// CAT FISH ARENA EXTRA
-// ===============================
-
-// Balıq 1.2 saniyədən bir qaçırsa -1 xal
-setInterval(function(){
-
-if(!fishGame.running) return;
-
-if(currentTarget==="fish"){
-
-for(let i=0;i<fishGame.players;i++){
-
-fishGame.scores[i]--;
-
-}
-
-updateFishScores();
-
-nextObject();
-
-}
-
-},1200);
-
-// Balıq və bombaya klik etməklə də işləsin
-document.getElementById("fish").onclick=function(){
-
-if(!fishGame.running)return;
-
-nextObject();
-
-}
-
-document.getElementById("bomb").onclick=function(){
-
-if(!fishGame.running)return;
-
-nextObject();
-
-}
-
-// Obyektlər hər 700 ms yeni yerə keçsin
-setInterval(function(){
-
-if(!fishGame.running)return;
-
-randomPosition(currentTarget);
-
-},700);
-
-// Oyun başlayanda bomba gizli olsun
-window.addEventListener("load",function(){
-
-document.getElementById("bomb").style.display="none";
-
-});
-
-// ESC düyməsi oyunu dayandırsın
-document.addEventListener("keydown",function(e){
-
-if(e.code==="Escape"){
-
-fishGame.running=false;
-
-document.getElementById("winnerText").innerHTML="⏸ Oyun dayandırıldı";
-
-}
-
-});    
-
-// =====================================
-// CAT FISH ARENA FINAL
-// =====================================
-
-// Qalib effekti
-function finishFishGame(player){
-
-fishGame.running=false;
-
-const names=[
-"🔵 Mavi",
-"🔴 Qırmızı",
-"🟢 Yaşıl",
-"🟡 Sarı"
-];
-
-document.getElementById("winnerText").innerHTML=
-"🏆 "+names[player]+" QAZANDI! 🎉";
-
-document.getElementById("fish").style.display="none";
-document.getElementById("bomb").style.display="none";
-
-}
-
-// Qələbə yoxlanışı
-function checkWinner(player){
-
-if(fishGame.scores[player]>=fishGame.target){
-
-finishFishGame(player);
-
-}
-
-}
-
-// updateFishScores funksiyasını genişləndir
-const oldUpdateFishScores=updateFishScores;
-
-updateFishScores=function(){
-
-oldUpdateFishScores();
-
-for(let i=0;i<fishGame.players;i++){
-
-checkWinner(i);
-
-}
-
-};
-
-// Yenidən başlat düyməsi
-function restartFishGame(){
-
-fishGame.running=false;
-
-fishGame.scores=[0,0,0,0];
-
-updateFishScores();
-
-document.getElementById("winnerText").innerHTML="";
-
-document.getElementById("fish").style.display="block";
-document.getElementById("bomb").style.display="none";
-
-}
-
-// Enter düyməsi ilə yenidən başlat
-document.addEventListener("keydown",function(e){
-
-if(e.code==="KeyR"){
-
-restartFishGame();
-
-}
-
-});
-
-console.log("✅ Cat Fish Arena v1 hazırdır.");
-    
 </script>
 
 </body>

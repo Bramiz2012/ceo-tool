@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEO Gaming Hub Enterprise v16</title>
+<title>CEO Gaming Hub Enterprise v18</title>
 
 <style>
 *{
@@ -136,6 +136,30 @@ font-weight:bold;
 
 
 /* =========================
+   CLICKER V18
+   ========================= */
+.clickBtn{width:118px;height:118px;border-radius:50%;font-size:20px;border:5px solid #00ff00;box-shadow:0 0 18px #00ff00, inset 0 0 18px rgba(0,0,0,.6);transition:transform .08s, box-shadow .15s}
+.clickBtn:active{transform:scale(.92);box-shadow:0 0 35px #00ff00}
+.clickStats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.clickPill{background:#050505;border:1px solid #333;border-radius:999px;padding:7px 12px;color:#fff}
+.clickCombo{color:#ffd700;font-weight:bold;min-height:22px}
+.miniLeaders{padding:12px 16px;margin-top:14px;border:1px solid #333;border-radius:9px;background:#070707}
+.miniLeaders h3{margin-bottom:7px;color:#ffd700}
+.miniLeaders table{margin-top:5px;font-size:14px}
+.miniLeaders td,.miniLeaders th{padding:5px;border-bottom:1px solid #222}
+/* =========================
+   MINI FOOTBALL
+   ========================= */
+.footballField{position:relative;max-width:520px;height:230px;margin:15px auto;background:linear-gradient(#073b16,#0a5c20);border:3px solid #fff;border-radius:12px;overflow:hidden;box-shadow:0 0 15px rgba(0,255,0,.25)}
+.goal{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:220px;height:72px;border:5px solid #fff;border-bottom:0;background:rgba(255,255,255,.06)}
+.keeper{position:absolute;top:45px;left:50%;transform:translateX(-50%);font-size:32px;transition:left .25s}
+.ball{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:28px;transition:all .45s cubic-bezier(.2,.8,.2,1)}
+.footballControls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.footballControls button{margin:4px}
+.footballScore{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+@media(max-width:600px){.toolGrid{grid-template-columns:1fr}.clickBtn{width:105px;height:105px}}
+
+/* =========================
    CEO V17 XP / CHALLENGE
    ========================= */
 .xpPanel{background:#050505;border:2px solid #00ff00;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 0 15px rgba(0,255,0,.25)}
@@ -171,13 +195,6 @@ body.theme-blue .box,body.theme-blue .xpPanel{border-color:#00ccff}
 body.theme-purple .box,body.theme-purple .xpPanel{border-color:#cc66ff}
 body.theme-red .box,body.theme-red .xpPanel{border-color:#ff4444}
 body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
-.wheelWrap{display:flex;flex-direction:column;align-items:center;gap:12px}
-.wheelPointer{font-size:34px;line-height:20px;transform:rotate(180deg)}
-.wheel{width:250px;height:250px;border-radius:50%;border:8px solid #eee;position:relative;overflow:hidden;box-shadow:0 0 25px #00ff00;transition:transform 5s cubic-bezier(.12,.72,.15,1)}
-.wheel::after{content:"🎰";position:absolute;inset:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:#000;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:27px}
-.wheelLabels{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;text-shadow:0 1px 3px #000;font-size:14px}
-.wheelCooldown{color:#ffcc00;font-weight:bold;min-height:24px}
-@media(max-width:600px){.answerGrid{grid-template-columns:1fr}.wheel{width:210px;height:210px}}
 
 </style>
 
@@ -187,7 +204,7 @@ body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
 
 <div class="container">
 
-<h1>CEO Gaming Hub Enterprise v16</h1>
+<h1>CEO Gaming Hub Enterprise v18</h1>
 <p>Premium Multi Tool</p>
 
 <button type="button" class="resetAll" onclick="resetAllTools()">♻️ Hər şeyi sıfırla</button>
@@ -217,10 +234,15 @@ Nickname Yarat
 <span id="score">0</span>
 </p>
 
-<button class="clickBtn"
+<button type="button" class="clickBtn"
 onclick="clickGame()">
-CLICK
+⚡ TAP!
 </button>
+<div class="clickStats">
+<div class="clickPill">💥 Güc: <span id="clickPowerDisplay">1</span></div>
+<div class="clickPill">🔥 Combo: <span id="clickComboDisplay">0</span></div>
+</div>
+<div class="clickCombo" id="clickComboText"></div>
 
 <div class="shop">
 
@@ -260,17 +282,38 @@ Al
 
 </div>
 
+
+<div class="miniLeaders">
+<h3>🏆 Mini Liderlər</h3>
+<table>
+<tr><th>#</th><th>Oyunçu</th><th>Xal</th></tr>
+<tr><td>1</td><td>👑 CEO</td><td>500</td></tr>
+<tr><td>2</td><td>⚡ Cyber</td><td>350</td></tr>
+<tr><tr><td>3</td><td>🤖 Bot</td><td>250</td></tr>
+<tr><td>4</td><td>🔥 Dark</td><td>150</td></tr>
+<tr><td>5</td><td>💀 Ghost</td><td>75</td></tr>
+<tr><td>🏅</td><td><b>Sən</b></td><td><b id="leaderMyScore">0</b></td></tr>
+</table>
+</div>
+
 <div class="box">
-<h2 id="wheelTitle">🎰 Şans Çarxı</h2>
-<div class="wheelWrap">
-<div class="wheelPointer">▼</div>
-<div class="wheel" id="prizeWheel">
-<div class="wheelLabels">+25 &nbsp; | &nbsp; +50 &nbsp; | &nbsp; +100 &nbsp; | &nbsp; +250 &nbsp; | &nbsp; +500 &nbsp; | &nbsp; X2</div>
+<h2>⚽ Mini Futbol — Penalty</h2>
+<p>Qapının hansı tərəfinə vuracağını seç. Qapıçı da təsadüfi tərəfə gedir!</p>
+<div class="footballScore">
+<div class="clickPill">⚽ Qol: <span id="footballGoals">0</span></div>
+<div class="clickPill">🎯 Cəhd: <span id="footballShots">0</span></div>
 </div>
-<button id="spinButton" onclick="spinWheel()">🎰 Fırlat</button>
-<div class="wheelCooldown" id="wheelCooldown"></div>
-<div class="output" id="wheelResult">Hazırdır</div>
+<div class="footballField" id="footballField">
+<div class="goal"></div>
+<div class="keeper" id="keeper">🧤</div>
+<div class="ball" id="ball">⚽</div>
 </div>
+<div class="footballControls">
+<button type="button" onclick="shootFootball('left')">⬅️ Sol</button>
+<button type="button" onclick="shootFootball('center')">⬆️ Mərkəz</button>
+<button type="button" onclick="shootFootball('right')">➡️ Sağ</button>
+</div>
+<div class="output" id="footballResult">Topu seçilən tərəfə vur!</div>
 </div>
 
 <div class="box">
@@ -570,6 +613,8 @@ Dönər"></textarea>
 let score = Number(localStorage.getItem("score")) || 0;
 let clickPower = Number(localStorage.getItem("clickPower")) || 1;
 let autoClick = Number(localStorage.getItem("autoClick")) || 0;
+let clickCombo = 0;
+let lastClickTime = 0;
 
 let catScore = 0;
 
@@ -594,7 +639,7 @@ localStorage.setItem("cost2",cost2);
 function updateScore(){
 
 document.getElementById("score").innerHTML=score;
-
+updateClickUI();
 saveGame();
 
 }
@@ -604,11 +649,25 @@ saveGame();
 // ===================
 
 function clickGame(){
+    const now=Date.now();
+    if(now-lastClickTime<1400){ clickCombo++; } else { clickCombo=1; }
+    lastClickTime=now;
+    let gain=clickPower;
+    if(clickCombo%10===0){ gain+=10; document.getElementById("clickComboText").textContent="🔥 10x COMBO! +10 bonus!"; }
+    else if(clickCombo>=5){ document.getElementById("clickComboText").textContent="🔥 Combo x"+clickCombo; }
+    else { document.getElementById("clickComboText").textContent=""; }
+    score+=gain;
+    updateScore();
+    updateClickUI();
+}
 
-score+=clickPower;
-
-updateScore();
-
+function updateClickUI(){
+    const p=document.getElementById("clickPowerDisplay");
+    const c=document.getElementById("clickComboDisplay");
+    const l=document.getElementById("leaderMyScore");
+    if(p)p.textContent=clickPower;
+    if(c)c.textContent=clickCombo;
+    if(l)l.textContent=score;
 }
 
 // ===================
@@ -759,58 +818,6 @@ document.getElementById("password").innerHTML=pass;
 
 }
     // ===================
-// ŞANS ÇARXI
-// ===================
-
-function spinWheel(){
-
-const result=document.getElementById("wheelResult");
-
-const random=Math.floor(Math.random()*100)+1;
-
-if(random<=40){
-
-let reward=Math.floor(Math.random()*20)+10;
-
-score+=reward;
-
-result.innerHTML="🎉 +" + reward + " xal qazandın!";
-
-}
-
-else if(random<=70){
-
-let reward=Math.floor(Math.random()*50)+25;
-
-score+=reward;
-
-result.innerHTML="🔥 JACKPOT! +" + reward + " xal!";
-
-}
-
-else if(random<=90){
-
-let lose=Math.min(score,20);
-
-score-=lose;
-
-result.innerHTML="😢 -" + lose + " xal itirdin.";
-
-}
-
-else{
-
-score*=2;
-
-result.innerHTML="💎 X2 BONUS! Xalın ikiqat oldu!";
-
-}
-
-updateScore();
-
-}
-
-// ===================
 // GERİ SAYIM
 // ===================
 
@@ -870,63 +877,6 @@ day+" Gün "
 
 }
 
-// ===================
-// LİDERLƏR
-// ===================
-
-const leaders=[
-
-{name:"👑 CEO",score:500},
-
-{name:"⚡ Cyber",score:350},
-
-{name:"🤖 Bot",score:250},
-
-{name:"🔥 Dark",score:150},
-
-{name:"💀 Ghost",score:75}
-
-];
-
-function showLeaders(){
-
-let html="<table>";
-
-html+="<tr><th>Oyunçu</th><th>Xal</th></tr>";
-
-leaders.forEach(function(player){
-
-html+="<tr>";
-
-html+="<td>"+player.name+"</td>";
-
-html+="<td>"+player.score+"</td>";
-
-html+="</tr>";
-
-});
-
-html+="<tr>";
-
-html+="<td><b>Sən</b></td>";
-
-html+="<td><b>"+score+"</b></td>";
-
-html+="</tr>";
-
-html+="</table>";
-
-const box=document.createElement("div");
-
-box.className="box";
-
-box.innerHTML="<h2>🏆 Liderlər</h2>"+html;
-
-document.querySelector(".container").appendChild(box);
-
-}
-
-showLeaders();
     // ===================
 // EXTRA
 // ===================
@@ -961,7 +911,7 @@ generateNick();
 
 setTimeout(function(){
 
-console.log("CEO Gaming Hub Enterprise v14 hazırdır.");
+console.log("CEO Gaming Hub Enterprise v18 hazırdır.");
 
 },500);
 
@@ -994,8 +944,6 @@ function changeLanguage() {
     document.getElementById("clickerTitle").innerHTML =
         translations[lang].clickerTitle;
 
-    document.getElementById("wheelTitle").innerHTML =
-        translations[lang].wheelTitle;
 
     document.getElementById("passwordTitle").innerHTML =
         translations[lang].passwordTitle;
@@ -1026,7 +974,6 @@ const translations = {
 az: {
 nickTitle:"⚔ Premium Ləqəb Generatoru",
 clickerTitle:"🎮 Cyber Klik Oyunu",
-wheelTitle:"🎰 Şans Çarxı",
 passwordTitle:"🔒 Şifrə Generatoru",
 countdownTitle:"⏳ Geri Sayım",
 score:"Xal",
@@ -1041,7 +988,6 @@ countdown:"Geri Sayım"
 en: {
 nickTitle:"⚔ Premium Nickname Generator",
 clickerTitle:"🎮 Cyber Clicker",
-wheelTitle:"🎰 Lucky Wheel",
 passwordTitle:"🔒 Password Generator",
 countdownTitle:"⏳ Countdown",
 score:"Score",
@@ -1056,7 +1002,6 @@ countdown:"Countdown"
 tr: {
 nickTitle:"⚔ Premium Takma Ad Oluşturucu",
 clickerTitle:"🎮 Cyber Tıklama Oyunu",
-wheelTitle:"🎰 Şans Çarkı",
 passwordTitle:"🔒 Şifre Oluşturucu",
 countdownTitle:"⏳ Geri Sayım",
 score:"Puan",
@@ -1071,7 +1016,6 @@ countdown:"Geri Sayım"
 ru: {
 nickTitle:"⚔ Генератор Никнеймов",
 clickerTitle:"🎮 Кибер Кликер",
-wheelTitle:"🎰 Колесо Удачи",
 passwordTitle:"🔒 Генератор Паролей",
 countdownTitle:"⏳ Обратный Отсчет",
 score:"Очки",
@@ -1315,6 +1259,36 @@ function updatePasswordStrength(){
 }
 document.getElementById("passwordCheck").addEventListener("input",updatePasswordStrength);
 
+// =========================
+// MINI FUTBOL
+// =========================
+let footballGoals=Number(localStorage.getItem("footballGoals")||0);
+let footballShots=Number(localStorage.getItem("footballShots")||0);
+function updateFootballUI(){
+    const g=document.getElementById("footballGoals"), s=document.getElementById("footballShots");
+    if(g)g.textContent=footballGoals; if(s)s.textContent=footballShots;
+}
+function shootFootball(direction){
+    const ball=document.getElementById("ball"), keeper=document.getElementById("keeper"), result=document.getElementById("footballResult");
+    const map={left:"18%",center:"50%",right:"82%"};
+    const choices=["left","center","right"];
+    const keeperDir=choices[Math.floor(Math.random()*3)];
+    footballShots++;
+    keeper.style.left=map[keeperDir];
+    ball.style.left=map[direction];
+    ball.style.bottom="145px";
+    setTimeout(()=>{
+        const goal=direction!==keeperDir;
+        if(goal){ footballGoals++; score+=50; addXP(150,"football"); result.textContent="⚽ GOOOOL! +50 xal +150 XP 🎉"; }
+        else { result.textContent="🧤 Qapıçı tutdu! Növbəti zərbədə sınayarsan."; }
+        localStorage.setItem("footballGoals",footballGoals);
+        localStorage.setItem("footballShots",footballShots);
+        updateFootballUI(); updateScore(); checkAchievements();
+        setTimeout(()=>{ball.style.left="50%";ball.style.bottom="28px";},300);
+    },450);
+}
+updateFootballUI();
+
 // RESET — təsdiqsiz və birbaşa işləyir
 function resetAllTools(){
     localStorage.clear();
@@ -1554,7 +1528,6 @@ const achievements=[
 ["streak_7","🔥 7 Gün","7 günlük streak et",()=>streak>=7],
 ["xp_100k","💎 100K XP","100,000 XP topla",()=>xp>=100000],
 ["million","👑 CEO Legend","1,000,000 XP topla",()=>xp>=1000000],
-["lucky_spin","🎰 Şanslı","Şans çarxını fırlat",()=>Number(localStorage.getItem("wheelSpins")||0)>=1],
 ["surprise","🎁 Surprise","Surprise Me istifadə et",()=>Number(localStorage.getItem("surprises")||0)>=1]
 ];
 
@@ -1602,61 +1575,6 @@ function surpriseMe(){
     checkAchievements();
 }
 
-// =========================
-// REAL 5-SECOND WHEEL + 60s COOLDOWN
-// =========================
-let wheelSpinning=false;
-function wheelRemaining(){
-    const until=Number(localStorage.getItem("wheelCooldownUntil")||0);
-    return Math.max(0,until-Date.now());
-}
-function updateWheelCooldown(){
-    const ms=wheelRemaining();
-    const btn=document.getElementById("spinButton");
-    const out=document.getElementById("wheelCooldown");
-    if(!btn||!out)return;
-    if(ms>0){
-        btn.disabled=true;
-        out.textContent="⏳ Yenidən fırlatmaq üçün "+Math.ceil(ms/1000)+" saniyə.";
-        setTimeout(updateWheelCooldown,250);
-    }else if(!wheelSpinning){
-        btn.disabled=false;
-        out.textContent="✅ Hazırdır — 1 dəqiqədə 1 dəfə.";
-    }
-}
-function spinWheel(){
-    if(wheelSpinning || wheelRemaining()>0)return;
-    wheelSpinning=true;
-    const btn=document.getElementById("spinButton");
-    const out=document.getElementById("wheelCooldown");
-    const wheel=document.getElementById("prizeWheel");
-    btn.disabled=true;
-    out.textContent="🎰 Fırlanır... 5 saniyə!";
-    const prizeIndex=Math.floor(Math.random()*6);
-    const prizes=[25,50,100,250,500,"x2"];
-    const turns=6*360;
-    const extra=prizeIndex*60+Math.floor(Math.random()*20);
-    wheel.style.transform=`rotate(${turns+extra}deg)`;
-    setTimeout(()=>{
-        const prize=prizes[prizeIndex];
-        let message="";
-        if(prize==="x2"){
-            score=Math.max(1,score*2);updateScore();
-            message="💎 X2 BONUS! Clicker xalların ikiqat oldu!";
-        }else{
-            addXP(prize*5,"wheel");
-            score+=prize;updateScore();
-            message=`🎉 +${prize} xal və +${prize*5} XP qazandın!`;
-        }
-        localStorage.setItem("wheelSpins",Number(localStorage.getItem("wheelSpins")||0)+1);
-        localStorage.setItem("wheelCooldownUntil",String(Date.now()+60000));
-        wheelSpinning=false;
-        document.getElementById("wheelResult").textContent=message;
-        updateWheelCooldown();
-        checkAchievements();
-    },5000);
-}
-setInterval(updateWheelCooldown,1000);
 
 renderStudyTimer();
 

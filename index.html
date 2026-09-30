@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEO Gaming Hub Enterprise v18</title>
+<title>CEO Gaming Hub Enterprise v19</title>
 
 <style>
 *{
@@ -150,13 +150,26 @@ font-weight:bold;
 /* =========================
    MINI FOOTBALL
    ========================= */
-.footballField{position:relative;max-width:520px;height:230px;margin:15px auto;background:linear-gradient(#073b16,#0a5c20);border:3px solid #fff;border-radius:12px;overflow:hidden;box-shadow:0 0 15px rgba(0,255,0,.25)}
-.goal{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:220px;height:72px;border:5px solid #fff;border-bottom:0;background:rgba(255,255,255,.06)}
-.keeper{position:absolute;top:45px;left:50%;transform:translateX(-50%);font-size:32px;transition:left .25s}
-.ball{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:28px;transition:all .45s cubic-bezier(.2,.8,.2,1)}
+.footballField{position:relative;max-width:520px;height:250px;margin:15px auto;background:linear-gradient(#073b16,#0a5c20);border:3px solid #fff;border-radius:12px;overflow:hidden;box-shadow:0 0 15px rgba(0,255,0,.25)}
+.goal{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:320px;height:105px;border:5px solid #fff;border-bottom:0;background:rgba(255,255,255,.06)}
+.keeper{position:absolute;top:55px;left:50%;transform:translateX(-50%);font-size:32px;transition:left .25s}
+.ball{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);font-size:28px;transition:all .45s cubic-bezier(.2,.8,.2,1)}
 .footballControls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
 .footballControls button{margin:4px}
 .footballScore{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+
+/* =========================
+   TAP-TAP BASKETBALL V19
+   ========================= */
+.basketCourt{position:relative;max-width:520px;height:300px;margin:15px auto;background:linear-gradient(#1a0f05,#3b1d08);border:3px solid #ff9d00;border-radius:14px;overflow:hidden;box-shadow:0 0 18px rgba(255,157,0,.25)}
+.basketHoop{position:absolute;top:28px;left:50%;transform:translateX(-50%);width:150px;height:92px;border:6px solid #eee;border-bottom:0;border-radius:12px 12px 0 0}
+.basketRim{position:absolute;top:100px;left:50%;transform:translateX(-50%);width:100px;height:18px;border:5px solid #ff5a00;border-radius:50%;background:transparent;z-index:3}
+.basketNet{position:absolute;top:112px;left:50%;transform:translateX(-50%);width:72px;height:65px;border:2px dashed #fff;border-top:0;border-radius:0 0 35px 35px;z-index:2}
+.basketBall{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:42px;z-index:4;transition:all .45s cubic-bezier(.2,.85,.2,1)}
+.basketControls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.basketBtn{background:#ff8c00!important;color:#111!important;border:2px solid #ffd27a!important;font-size:20px;min-width:150px}
+.basketStats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+.basketCombo{color:#ffd700;font-weight:bold;min-height:24px;font-size:18px}
 @media(max-width:600px){.toolGrid{grid-template-columns:1fr}.clickBtn{width:105px;height:105px}}
 
 /* =========================
@@ -204,7 +217,7 @@ body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
 
 <div class="container">
 
-<h1>CEO Gaming Hub Enterprise v18</h1>
+<h1>CEO Gaming Hub Enterprise v19</h1>
 <p>Premium Multi Tool</p>
 
 <button type="button" class="resetAll" onclick="resetAllTools()">♻️ Hər şeyi sıfırla</button>
@@ -314,6 +327,27 @@ Al
 <button type="button" onclick="shootFootball('right')">➡️ Sağ</button>
 </div>
 <div class="output" id="footballResult">Topu seçilən tərəfə vur!</div>
+</div>
+
+<div class="box">
+<h2>🏀 Tap-Tap Basketball</h2>
+<p>Səbətə topu at! Ardıcıl səbət etdikcə <b>combo</b> artır və daha çox XP qazanırsan. 🔥</p>
+<div class="basketStats">
+<div class="clickPill">🏀 Səbət: <span id="basketGoals">0</span></div>
+<div class="clickPill">🎯 Atış: <span id="basketShots">0</span></div>
+<div class="clickPill">🔥 Combo: <span id="basketCombo">0</span></div>
+</div>
+<div class="basketCourt" id="basketCourt">
+<div class="basketHoop"></div>
+<div class="basketRim"></div>
+<div class="basketNet"></div>
+<div class="basketBall" id="basketBall">🏀</div>
+</div>
+<div class="basketControls">
+<button type="button" class="basketBtn" onclick="shootBasketball()">🏀 SEBƏTƏ AT!</button>
+</div>
+<div class="output" id="basketResult">Hazırsan? Topu səbətə at! 🏀</div>
+<div class="basketCombo" id="basketComboText"></div>
 </div>
 
 <div class="box">
@@ -911,7 +945,7 @@ generateNick();
 
 setTimeout(function(){
 
-console.log("CEO Gaming Hub Enterprise v18 hazırdır.");
+console.log("CEO Gaming Hub Enterprise v19 hazırdır.");
 
 },500);
 
@@ -1270,24 +1304,71 @@ function updateFootballUI(){
 }
 function shootFootball(direction){
     const ball=document.getElementById("ball"), keeper=document.getElementById("keeper"), result=document.getElementById("footballResult");
-    const map={left:"18%",center:"50%",right:"82%"};
+    const map={left:"28%",center:"50%",right:"72%"};
     const choices=["left","center","right"];
     const keeperDir=choices[Math.floor(Math.random()*3)];
     footballShots++;
     keeper.style.left=map[keeperDir];
     ball.style.left=map[direction];
-    ball.style.bottom="145px";
+    ball.style.bottom="125px";
     setTimeout(()=>{
         const goal=direction!==keeperDir;
-        if(goal){ footballGoals++; score+=50; addXP(150,"football"); result.textContent="⚽ GOOOOL! +50 xal +150 XP 🎉"; }
-        else { result.textContent="🧤 Qapıçı tutdu! Növbəti zərbədə sınayarsan."; }
+        if(goal){
+            footballGoals++; score+=50; addXP(150,"football");
+            result.textContent="⚽ GOOOOL! Top qapının içində! +50 xal +150 XP 🎉";
+            ball.style.bottom="115px";
+        } else {
+            result.textContent="🧤 Qapıçı tutdu! Növbəti zərbədə sınayarsan.";
+        }
         localStorage.setItem("footballGoals",footballGoals);
         localStorage.setItem("footballShots",footballShots);
         updateFootballUI(); updateScore(); checkAchievements();
-        setTimeout(()=>{ball.style.left="50%";ball.style.bottom="28px";},300);
+        setTimeout(()=>{ball.style.left="50%";ball.style.bottom="25px";},700);
     },450);
 }
 updateFootballUI();
+
+// =========================
+// TAP-TAP BASKETBALL
+// =========================
+let basketGoals=Number(localStorage.getItem("basketGoals")||0);
+let basketShots=Number(localStorage.getItem("basketShots")||0);
+let basketCombo=0;
+let basketBusy=false;
+function updateBasketUI(){
+    const g=document.getElementById("basketGoals"), s=document.getElementById("basketShots"), c=document.getElementById("basketCombo");
+    if(g)g.textContent=basketGoals; if(s)s.textContent=basketShots; if(c)c.textContent=basketCombo;
+}
+function shootBasketball(){
+    if(basketBusy)return;
+    basketBusy=true;
+    const ball=document.getElementById("basketBall"), result=document.getElementById("basketResult"), comboText=document.getElementById("basketComboText");
+    basketShots++;
+    const made=Math.random()<0.62;
+    ball.style.left=(48+Math.random()*4)+"%";
+    ball.style.bottom="155px";
+    setTimeout(()=>{
+        if(made){
+            basketGoals++; basketCombo++;
+            const comboBonus=Math.max(0,basketCombo-1)*100;
+            const gainedXP=200+comboBonus;
+            const gainedScore=100+Math.max(0,basketCombo-1)*25;
+            score+=gainedScore; addXP(gainedXP,"basketball");
+            result.textContent="🏀 SƏBƏT! +"+gainedXP+" XP +"+gainedScore+" xal";
+            comboText.textContent=basketCombo>=2 ? "🔥 COMBO x"+basketCombo+"! Combo bonusu +"+comboBonus+" XP" : "🔥 Combo başladı!";
+            ball.style.bottom="135px";
+        }else{
+            basketCombo=0;
+            result.textContent="❌ Top səbətə girmədi. Yenidən at!";
+            comboText.textContent="Combo sıfırlandı.";
+        }
+        localStorage.setItem("basketGoals",basketGoals);
+        localStorage.setItem("basketShots",basketShots);
+        updateBasketUI(); updateScore(); checkAchievements();
+        setTimeout(()=>{ball.style.left="50%";ball.style.bottom="24px";basketBusy=false;},650);
+    },450);
+}
+updateBasketUI();
 
 // RESET — təsdiqsiz və birbaşa işləyir
 function resetAllTools(){
@@ -1298,6 +1379,7 @@ function resetAllTools(){
         clearInterval(studyInterval);
         clearInterval(stopwatchInterval);
         if(reactionTimer) clearTimeout(reactionTimer);
+        if(quizNextTimer) clearTimeout(quizNextTimer);
     }catch(e){}
     location.reload();
 }
@@ -1451,41 +1533,58 @@ const quizBank=[
 ["5! neçədir?","120",["25","60","100","120"]]
 ];
 
+let quizRunning=false;
+let quizAnswerLocked=false;
+let quizNextTimer=null;
 function startQuiz(){
-    quizIndex=0;quizScore=0;
+    if(quizNextTimer){clearTimeout(quizNextTimer);quizNextTimer=null;}
+    quizIndex=0; quizScore=0; quizRunning=true; quizAnswerLocked=false;
     currentQuiz=[...quizBank].sort(()=>Math.random()-.5).slice(0,10);
+    const answers=document.getElementById("quizAnswers");
+    const feedback=document.getElementById("quizFeedback");
+    if(answers)answers.innerHTML="";
+    if(feedback)feedback.textContent="🚀 Yeni Quiz Arena raundu başladı!";
     showQuizQuestion();
 }
 function showQuizQuestion(){
+    if(!currentQuiz || !currentQuiz.length){ startQuiz(); return; }
     if(quizIndex>=currentQuiz.length){
+        quizRunning=false; quizAnswerLocked=false;
         document.getElementById("quizQuestion").textContent=`🏁 Raund bitdi: ${quizScore}/10`;
         document.getElementById("quizAnswers").innerHTML="";
-        document.getElementById("quizFeedback").textContent="🎉 Raund bonusu: +"+(quizScore*250)+" XP";
+        document.getElementById("quizFeedback").textContent="🎉 Raund bonusu: +"+(quizScore*250)+" XP — yenidən oynamaq üçün düyməyə bas!";
         addXP(quizScore*250,"quiz");
         return;
     }
     const item=currentQuiz[quizIndex];
-    document.getElementById("quizQuestion").textContent=
-        `Sual ${quizIndex+1}/10 — ${item[0]}`;
+    quizAnswerLocked=false;
+    document.getElementById("quizQuestion").textContent=`Sual ${quizIndex+1}/10 — ${item[0]}`;
     const arr=[...item[2]].sort(()=>Math.random()-.5);
-    document.getElementById("quizAnswers").innerHTML=arr.map(v=>
-        `<button class="answerBtn" onclick="answerQuiz(${JSON.stringify(v)},this)">${v}</button>`
-    ).join("");
+    const wrap=document.getElementById("quizAnswers");
+    wrap.innerHTML="";
+    arr.forEach(v=>{
+        const b=document.createElement("button");
+        b.type="button"; b.className="answerBtn"; b.textContent=v;
+        b.addEventListener("click",()=>answerQuiz(v,b),{once:true});
+        wrap.appendChild(b);
+    });
     document.getElementById("quizFeedback").textContent="";
 }
 function answerQuiz(value,btn){
+    if(!quizRunning || quizAnswerLocked || !currentQuiz || !currentQuiz[quizIndex])return;
+    quizAnswerLocked=true;
     const item=currentQuiz[quizIndex];
     document.querySelectorAll("#quizAnswers .answerBtn").forEach(b=>b.disabled=true);
     if(value===item[1]){
-        btn.classList.add("correct");quizScore++;quizCorrect++;
+        btn.classList.add("correct"); quizScore++; quizCorrect++;
         localStorage.setItem("quizCorrect",quizCorrect);
         addXP(250,"quiz-question");
-        document.getElementById("quizFeedback").textContent="✅ +250 XP";
+        document.getElementById("quizFeedback").textContent="✅ Düzdür! +250 XP";
     }else{
         btn.classList.add("wrong");
         document.getElementById("quizFeedback").textContent="❌ Düz cavab: "+item[1];
     }
-    setTimeout(()=>{quizIndex++;showQuizQuestion();},650);
+    quizNextTimer=setTimeout(()=>{quizIndex++; quizNextTimer=null; showQuizQuestion();},650);
 }
 
 function claimDailyReward(){

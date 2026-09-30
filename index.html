@@ -132,6 +132,8 @@ font-weight:bold;
 .resetAll{background:#ff3333;color:#fff;box-shadow:0 0 12px #ff3333}
 .resetAll:hover{background:#cc0000}
 .smallBtn{padding:8px 14px;margin:5px}
+/* TAG GAME */
+.tagArena{position:relative;max-width:680px;height:390px;margin:16px auto;background:linear-gradient(135deg,#08111d,#102b1a);border:3px solid #00ff00;border-radius:14px;overflow:hidden;box-shadow:0 0 18px rgba(0,255,0,.22);touch-action:none}.tagArena:before{content:"";position:absolute;inset:14px;border:1px dashed rgba(255,255,255,.22);border-radius:10px;pointer-events:none}.tagPlayer{position:absolute;width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:23px;user-select:none}.tagPlayer.it{box-shadow:0 0 0 3px #ff4444,0 0 18px rgba(255,68,68,.8)}.tagPlayer.p1{background:#00ccff}.tagPlayer.p2{background:#ffd700}.tagPlayer.p3{background:#cc66ff}.tagPlayer.p4{background:#ff8844}.tagHud{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:10px 0}.tagControls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;align-items:center}.tagControls select{background:#000;color:#00ff00;border:1px solid #00ff00;border-radius:5px;padding:10px}.tagLegend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;color:#ddd;font-size:13px;margin-top:8px}.tagHelp{color:#aaa;line-height:1.6;margin:8px auto;max-width:620px}.tagResult{min-height:26px;color:#ffd700;font-weight:bold}
 @media(max-width:600px){body{padding:10px}.box{padding:14px}.clickBtn{width:120px;height:120px}.toolGrid{grid-template-columns:1fr}}
 
 
@@ -158,18 +160,8 @@ font-weight:bold;
 .footballControls button{margin:4px}
 .footballScore{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
 
-/* =========================
-   TAP-TAP BASKETBALL V19
-   ========================= */
-.basketCourt{position:relative;max-width:520px;height:300px;margin:15px auto;background:linear-gradient(#1a0f05,#3b1d08);border:3px solid #ff9d00;border-radius:14px;overflow:hidden;box-shadow:0 0 18px rgba(255,157,0,.25)}
-.basketHoop{position:absolute;top:28px;left:50%;transform:translateX(-50%);width:150px;height:92px;border:6px solid #eee;border-bottom:0;border-radius:12px 12px 0 0}
-.basketRim{position:absolute;top:100px;left:50%;transform:translateX(-50%);width:100px;height:18px;border:5px solid #ff5a00;border-radius:50%;background:transparent;z-index:3}
-.basketNet{position:absolute;top:112px;left:50%;transform:translateX(-50%);width:72px;height:65px;border:2px dashed #fff;border-top:0;border-radius:0 0 35px 35px;z-index:2}
-.basketBall{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:42px;z-index:4;transition:all .45s cubic-bezier(.2,.85,.2,1)}
-.basketControls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-.basketBtn{background:#ff8c00!important;color:#111!important;border:2px solid #ffd27a!important;font-size:20px;min-width:150px}
-.basketStats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
-.basketCombo{color:#ffd700;font-weight:bold;min-height:24px;font-size:18px}
+/* TAG GAME */
+.tagArena{position:relative;max-width:680px;height:390px;margin:16px auto;background:linear-gradient(135deg,#08111d,#102b1a);border:3px solid #00ff00;border-radius:14px;overflow:hidden;box-shadow:0 0 18px rgba(0,255,0,.22);touch-action:none}.tagArena:before{content:"";position:absolute;inset:14px;border:1px dashed rgba(255,255,255,.22);border-radius:10px;pointer-events:none}.tagPlayer{position:absolute;width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:23px;user-select:none}.tagPlayer.it{box-shadow:0 0 0 3px #ff4444,0 0 18px rgba(255,68,68,.8)}.tagPlayer.p1{background:#00ccff}.tagPlayer.p2{background:#ffd700}.tagPlayer.p3{background:#cc66ff}.tagPlayer.p4{background:#ff8844}.tagHud{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:10px 0}.tagControls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;align-items:center}.tagControls select{background:#000;color:#00ff00;border:1px solid #00ff00;border-radius:5px;padding:10px}.tagLegend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;color:#ddd;font-size:13px;margin-top:8px}.tagHelp{color:#aaa;line-height:1.6;margin:8px auto;max-width:620px}.tagResult{min-height:26px;color:#ffd700;font-weight:bold}
 @media(max-width:600px){.toolGrid{grid-template-columns:1fr}.clickBtn{width:105px;height:105px}}
 
 /* =========================
@@ -330,24 +322,14 @@ Al
 </div>
 
 <div class="box">
-<h2>🏀 Tap-Tap Basketball</h2>
-<p>Səbətə topu at! Ardıcıl səbət etdikcə <b>combo</b> artır və daha çox XP qazanırsan. 🔥</p>
-<div class="basketStats">
-<div class="clickPill">🏀 Səbət: <span id="basketGoals">0</span></div>
-<div class="clickPill">🎯 Atış: <span id="basketShots">0</span></div>
-<div class="clickPill">🔥 Combo: <span id="basketCombo">0</span></div>
-</div>
-<div class="basketCourt" id="basketCourt">
-<div class="basketHoop"></div>
-<div class="basketRim"></div>
-<div class="basketNet"></div>
-<div class="basketBall" id="basketBall">🏀</div>
-</div>
-<div class="basketControls">
-<button type="button" class="basketBtn" onclick="shootBasketball()">🏀 SEBƏTƏ AT!</button>
-</div>
-<div class="output" id="basketResult">Hazırsan? Topu səbətə at! 🏀</div>
-<div class="basketCombo" id="basketComboText"></div>
+<h2>🏃 TAG GAME — 2 / 3 / 4 NƏFƏRLİ</h2>
+<p>Bir oyunçu <b>IT</b> olur və digərlərini tutmağa çalışır. Eyni kompüterdə oynayın! 🔥</p>
+<div class="tagControls"><label>👥 Oyunçu sayı: <select id="tagPlayerCount"><option value="2">2 nəfər</option><option value="3">3 nəfər</option><option value="4">4 nəfər</option></select></label><button type="button" id="tagStartBtn">▶️ Oyuna başla</button><button type="button" id="tagResetBtn">🔄 Yenilə</button></div>
+<div class="tagHud"><div class="clickPill">⏱️ Vaxt: <span id="tagTime">60</span>s</div><div class="clickPill">🎯 IT: <span id="tagIt">P1</span></div><div class="clickPill">🏃 Tutulan: <span id="tagCaught">0</span></div></div>
+<div class="tagArena" id="tagArena" aria-label="Tag oyun sahəsi"></div>
+<div class="tagLegend" id="tagLegend"></div>
+<p class="tagHelp">P1: <b>WASD</b> · P2: <b>↑ ↓ ← →</b> · P3: <b>I J K L</b> · P4: <b>NumPad 8 5 4 6</b>. IT olan oyunçu başqasına toxunanda o oyunçu IT olur.</p>
+<div class="output tagResult" id="tagResult">Oyuna başlamaq üçün “Oyuna başla” düyməsinə bas.</div>
 </div>
 
 <div class="box">
@@ -1328,47 +1310,19 @@ function shootFootball(direction){
 }
 updateFootballUI();
 
-// =========================
-// TAP-TAP BASKETBALL
-// =========================
-let basketGoals=Number(localStorage.getItem("basketGoals")||0);
-let basketShots=Number(localStorage.getItem("basketShots")||0);
-let basketCombo=0;
-let basketBusy=false;
-function updateBasketUI(){
-    const g=document.getElementById("basketGoals"), s=document.getElementById("basketShots"), c=document.getElementById("basketCombo");
-    if(g)g.textContent=basketGoals; if(s)s.textContent=basketShots; if(c)c.textContent=basketCombo;
-}
-function shootBasketball(){
-    if(basketBusy)return;
-    basketBusy=true;
-    const ball=document.getElementById("basketBall"), result=document.getElementById("basketResult"), comboText=document.getElementById("basketComboText");
-    basketShots++;
-    const made=Math.random()<0.62;
-    ball.style.left=(48+Math.random()*4)+"%";
-    ball.style.bottom="155px";
-    setTimeout(()=>{
-        if(made){
-            basketGoals++; basketCombo++;
-            const comboBonus=Math.max(0,basketCombo-1)*100;
-            const gainedXP=200+comboBonus;
-            const gainedScore=100+Math.max(0,basketCombo-1)*25;
-            score+=gainedScore; addXP(gainedXP,"basketball");
-            result.textContent="🏀 SƏBƏT! +"+gainedXP+" XP +"+gainedScore+" xal";
-            comboText.textContent=basketCombo>=2 ? "🔥 COMBO x"+basketCombo+"! Combo bonusu +"+comboBonus+" XP" : "🔥 Combo başladı!";
-            ball.style.bottom="135px";
-        }else{
-            basketCombo=0;
-            result.textContent="❌ Top səbətə girmədi. Yenidən at!";
-            comboText.textContent="Combo sıfırlandı.";
-        }
-        localStorage.setItem("basketGoals",basketGoals);
-        localStorage.setItem("basketShots",basketShots);
-        updateBasketUI(); updateScore(); checkAchievements();
-        setTimeout(()=>{ball.style.left="50%";ball.style.bottom="24px";basketBusy=false;},650);
-    },450);
-}
-updateBasketUI();
+// TAG GAME — 2/3/4 PLAYERS
+(function(){
+const arena=document.getElementById('tagArena'),countEl=document.getElementById('tagPlayerCount'),startBtn=document.getElementById('tagStartBtn'),resetBtn=document.getElementById('tagResetBtn'),timeEl=document.getElementById('tagTime'),itEl=document.getElementById('tagIt'),caughtEl=document.getElementById('tagCaught'),resultEl=document.getElementById('tagResult'),legend=document.getElementById('tagLegend');
+if(!arena)return;
+const controls=[{up:'w',down:'s',left:'a',right:'d'},{up:'ArrowUp',down:'ArrowDown',left:'ArrowLeft',right:'ArrowRight'},{up:'i',down:'k',left:'j',right:'l'},{up:'8',down:'5',left:'4',right:'6'}],names=['P1','P2','P3','P4'],icons=['🔵','🟡','🟣','🟠'];
+let players=[],it=0,time=60,caught=0,running=false,timer=null,raf=null;const keys=new Set();
+function makePlayers(n){arena.innerHTML='';players=[];caught=0;it=Math.floor(Math.random()*n);const spots=[[10,70],[82,70],[12,15],[78,15]];for(let i=0;i<n;i++){const el=document.createElement('div');el.className='tagPlayer p'+(i+1);el.textContent=icons[i];arena.appendChild(el);players.push({el,x:spots[i][0],y:spots[i][1],alive:true});}render();itEl.textContent=names[it];legend.innerHTML=controls.slice(0,n).map((c,i)=>`${icons[i]} <b>${names[i]}</b>: ${c.up} / ${c.left}${c.down}${c.right}`).join(' &nbsp; ');}
+function render(){players.forEach((p,i)=>{p.el.style.left=p.x+'%';p.el.style.top=p.y+'%';p.el.classList.toggle('it',i===it&&p.alive);p.el.style.display=p.alive?'flex':'none';});itEl.textContent=names[it]||'-';timeEl.textContent=time;caughtEl.textContent=caught;}
+function reset(){running=false;clearInterval(timer);cancelAnimationFrame(raf);timer=null;raf=null;keys.clear();time=60;makePlayers(Number(countEl.value));resultEl.textContent='Oyuna başlamaq üçün “Oyuna başla” düyməsinə bas.';startBtn.disabled=false;}
+function start(){reset();running=true;startBtn.disabled=true;resultEl.textContent='🔥 Başladı! IT qaçanları tutmalıdır!';timer=setInterval(()=>{if(!running)return;time--;render();if(time<=0)finish();},1000);raf=requestAnimationFrame(loop);}
+function finish(){if(!running)return;running=false;clearInterval(timer);cancelAnimationFrame(raf);timer=null;const survivors=players.filter((p,i)=>i!==it&&p.alive).length;resultEl.textContent=survivors?`🏁 Vaxt bitdi! ${survivors} oyunçu qaçdı. +100 XP`:'🏁 Hamı tutuldu!';if(typeof addXP==='function')addXP(100,'tag-game');startBtn.disabled=false;render();}
+function loop(){if(!running)return;const speed=.38;players.forEach((p,i)=>{if(!p.alive)return;const c=controls[i];if(keys.has(c.up))p.y-=speed;if(keys.has(c.down))p.y+=speed;if(keys.has(c.left))p.x-=speed;if(keys.has(c.right))p.x+=speed;p.x=Math.max(2,Math.min(92,p.x));p.y=Math.max(4,Math.min(84,p.y));});if(players[it]&&players[it].alive){const t=players[it];players.forEach((p,i)=>{if(i===it||!p.alive)return;if(Math.hypot(t.x-p.x,t.y-p.y)<6.5){p.alive=false;caught++;it=i;resultEl.textContent=`💥 ${names[i]} tutuldu! İndi ${names[it]} IT-dir!`;if(caught>=players.length-1){running=false;clearInterval(timer);cancelAnimationFrame(raf);timer=null;resultEl.textContent='🏆 Hamı tutuldu! IT qalib gəldi! +200 XP';if(typeof addXP==='function')addXP(200,'tag-win');startBtn.disabled=false;}}});}render();if(running)raf=requestAnimationFrame(loop);}
+window.addEventListener('keydown',e=>{if(!running)return;const k=String(e.key);if(controls.flatMap(Object.values).includes(k)){e.preventDefault();keys.add(k);}});window.addEventListener('keyup',e=>keys.delete(String(e.key)));startBtn.addEventListener('click',start);resetBtn.addEventListener('click',reset);countEl.addEventListener('change',reset);reset();})();
 
 // RESET — təsdiqsiz və birbaşa işləyir
 function resetAllTools(){

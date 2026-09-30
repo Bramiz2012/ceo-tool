@@ -201,6 +201,10 @@ body.theme-purple .box,body.theme-purple .xpPanel{border-color:#cc66ff}
 body.theme-red .box,body.theme-red .xpPanel{border-color:#ff4444}
 body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
 
+
+/* 1M XP LEGEND POPUP */
+.millionPopup{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:99999;padding:20px}.millionPopup.show{display:flex}.millionCard{max-width:620px;width:100%;background:#050505;border:3px solid #ffd700;border-radius:20px;padding:38px 25px;box-shadow:0 0 45px rgba(255,215,0,.55);animation:legendPop .45s ease-out;text-align:center}.millionCard h2{font-size:36px;color:#ffd700;margin-bottom:15px}.millionCard p{font-size:20px;color:#fff;line-height:1.6}.millionBadge{font-size:70px;margin:8px 0 18px}@keyframes legendPop{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
+
 </style>
 
 </head>
@@ -608,6 +612,17 @@ Dönər"></textarea>
 <p>1 milyon XP topladıqda <b>CEO LEGEND</b> mükafatı açılır.</p>
 <div class="toolResult" id="millionReward">🔒 Hələ kilidlidir.</div>
 </div>
+</div>
+
+
+<div class="millionPopup" id="millionPopup" role="dialog" aria-modal="true">
+  <div class="millionCard">
+    <div class="millionBadge">👑🏆🎉</div>
+    <h2>1,000,000 XP!</h2>
+    <p><b>CEO LEGEND OLDUN!</b></p>
+    <p>🔥 1 milyon XP-ni tamamladın!<br>🏅 CEO Legend nailiyyəti açıldı!</p>
+    <button type="button" onclick="closeMillionPopup()">🚀 Davam et</button>
+  </div>
 </div>
 
 <div class="box">
@@ -1343,6 +1358,7 @@ function resetAllTools(){
 // CEO V17 XP / CHALLENGES
 // =========================
 let xp=Number(localStorage.getItem("ceoXP"))||0;
+let millionPopupShown=localStorage.getItem("millionPopupShown")==="1";
 let mathCorrect=Number(localStorage.getItem("mathCorrect"))||0;
 let quizCorrect=Number(localStorage.getItem("quizCorrect"))||0;
 let achievementUnlocked=JSON.parse(localStorage.getItem("achievementUnlocked")||"{}");
@@ -1358,12 +1374,19 @@ function todayKey(){return new Date().toISOString().slice(0,10);}
 
 function getLevel(){return Math.floor(xp/1000)+1;}
 function addXP(amount,reason){
+    const before=xp;
     xp+=amount;
     localStorage.setItem("ceoXP",xp);
     updateXPUI();
     checkAchievements();
     if(xp>=1000000){
         document.getElementById("millionReward").innerHTML="👑 <b>CEO LEGEND PACK AÇILDI!</b><br>🏆 1,000,000 XP tamamlandı! Sən əfsanəsən!";
+        // Popup yalnız 1,000,000 XP ilk dəfə keçiləndə açılır. XP heç vaxt burada sıfırlanmır.
+        if(before<1000000 && !millionPopupShown){
+            millionPopupShown=true;
+            localStorage.setItem("millionPopupShown","1");
+            setTimeout(showMillionPopup,80);
+        }
     }
 }
 function updateXPUI(){
@@ -1628,6 +1651,16 @@ function surpriseMe(){
     checkAchievements();
 }
 
+
+
+function showMillionPopup(){
+    const popup=document.getElementById("millionPopup");
+    if(popup) popup.classList.add("show");
+}
+function closeMillionPopup(){
+    const popup=document.getElementById("millionPopup");
+    if(popup) popup.classList.remove("show");
+}
 
 renderStudyTimer();
 

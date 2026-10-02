@@ -1702,6 +1702,9 @@ updateWheelCooldown();
 newMathQuestion();
 
 
+</script>
+
+<script>
 /* ===== CEO V22 ARCADE ===== */
 (function(){
 const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v)); const load=(k,d)=>localStorage.getItem(k)===null?d:JSON.parse(localStorage.getItem(k));
@@ -1737,7 +1740,7 @@ window.v22CityCollect=()=>{let i=city.grid.reduce((n,b)=>n+(b?B[b].i:0),0);city.
 window.v22CityReset=()=>{if(confirm("Yalnız şəhər sıfırlansın? XP toxunulmaz qalacaq.")){city={money:1000,pop:0,happy:50,grid:Array(24).fill(null)};sel=-1;cityRender()}};cityRender();
 })();
 
-</script>
 
+</script>
 </body>
 </html>

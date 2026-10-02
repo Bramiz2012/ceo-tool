@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEO Gaming Hub Enterprise v19</title>
+<title>CEO Gaming Hub Enterprise v22</title>
 
 <style>
 *{
@@ -205,6 +205,16 @@ body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
 /* 1M XP LEGEND POPUP */
 .millionPopup{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:99999;padding:20px}.millionPopup.show{display:flex}.millionCard{max-width:620px;width:100%;background:#050505;border:3px solid #ffd700;border-radius:20px;padding:38px 25px;box-shadow:0 0 45px rgba(255,215,0,.55);animation:legendPop .45s ease-out;text-align:center}.millionCard h2{font-size:36px;color:#ffd700;margin-bottom:15px}.millionCard p{font-size:20px;color:#fff;line-height:1.6}.millionBadge{font-size:70px;margin:8px 0 18px}@keyframes legendPop{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
 
+
+.v22Box{border:2px solid #00ff00;border-radius:14px;padding:18px;margin:20px 0;background:#090909}
+.v22Stats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}.v22Pill{border:1px solid #333;border-radius:999px;padding:7px 12px;background:#050505;color:#fff}
+.v22Grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.v22Card{background:#050505;border:1px solid #333;border-radius:12px;padding:14px}.v22Card h3{margin-top:0;color:#00ff00}
+.v22Game{overflow:hidden;min-height:270px;border:2px solid #222;border-radius:12px;background:#020202}.v22Small{font-size:13px;color:#aaa}
+.v22Field{height:280px;background:#168b37;position:relative;border:3px solid #fff;border-radius:10px;overflow:hidden}.v22Field:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:#fff}.v22Field:after{content:"";position:absolute;left:50%;top:50%;width:55px;height:55px;border:2px solid #fff;border-radius:50%;transform:translate(-50%,-50%)}
+.v22Player{position:absolute;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:3}.v22You{background:#00ccff}.v22Enemy{background:#ff4444}.v22Ball{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;color:#111;z-index:4;font-size:9px}
+.v22Goal{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:38px;border:4px solid #fff;border-top:0;z-index:2}.v22Goal.bottom{top:auto;bottom:0;border-top:4px solid #fff;border-bottom:0}
+.v22Race{height:280px;position:relative;background:repeating-linear-gradient(90deg,#222 0,#222 46%,#fff 46%,#fff 49%,#222 49%,#222 100%);overflow:hidden;border-radius:10px}.v22Car{position:absolute;bottom:25px;left:50%;width:42px;height:70px;background:#00ccff;border:2px solid #fff;border-radius:9px;transform:translateX(-50%);z-index:3}.v22Obstacle{position:absolute;width:42px;height:42px;background:#ff3333;border-radius:8px;z-index:2}.v22Coin{position:absolute;width:20px;height:20px;background:#ffd700;border-radius:50%;z-index:2}
+.v22IQQuestion{font-size:25px;min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center}.v22City{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;background:#102315;padding:8px;border:2px solid #333;border-radius:12px;min-height:270px}.v22Tile{min-height:58px;border:1px solid #24442b;border-radius:6px;background:#08120b;display:flex;align-items:center;justify-content:center;text-align:center;font-size:25px;cursor:pointer}.v22Tile.building{background:#111;color:#fff}.v22CityInfo{display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px;margin:8px 0;color:#fff}.v22BuildBtns{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
 </style>
 
 </head>
@@ -213,7 +223,7 @@ body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
 
 <div class="container">
 
-<h1>CEO Gaming Hub Enterprise v19</h1>
+<h1>CEO Gaming Hub Enterprise v22</h1>
 <p>Premium Multi Tool</p>
 
 <button type="button" class="resetAll" onclick="resetAllTools()">♻️ Hər şeyi sıfırla</button>
@@ -615,6 +625,22 @@ Dönər"></textarea>
 </div>
 
 
+
+<div class="v22Box" id="v22Arcade"><h2>🔥 CEO ARCADE — V22</h2><p>⚽ Real Football • 🏎️ Neon Racing • 🧠 IQ Battle • 🏙️ CEO City</p><div class="v22Grid">
+<div class="v22Card"><h3>⚽ REAL CEO FOOTBALL</h3><div class="v22Stats"><div class="v22Pill">⏱️ <span id="v22FootballTime">90</span>s</div><div class="v22Pill">🏆 <span id="v22FootballScore">0 - 0</span></div></div>
+<div class="v22Game"><div class="v22Field" id="v22Field"><div class="v22Goal"></div><div class="v22Goal bottom"></div><div class="v22Player v22You" id="v22You">⚽</div><div class="v22Player v22Enemy" id="v22Enemy">🤖</div><div class="v22Ball" id="v22Ball">●</div></div></div>
+<p class="v22Small">WASD hərəkət • Space zərbə • E ötürmə</p><button onclick="v22FootballStart()">▶️ Matçı başlat</button><button onclick="v22FootballReset()">🔄 Reset</button><div class="toolResult" id="v22FootballResult">Başlamağa hazırsan?</div></div>
+
+<div class="v22Card"><h3>🏎️ NEON RACING</h3><div class="v22Stats"><div class="v22Pill">🏁 <span id="v22RaceScore">0</span></div><div class="v22Pill">⚡ <span id="v22RaceSpeed">1</span>x</div><div class="v22Pill">🏆 Rekord: <span id="v22RaceBest">0</span></div></div>
+<div class="v22Game"><div class="v22Race" id="v22Race"><div class="v22Car" id="v22Car"></div></div></div><p class="v22Small">A/D və ya ←/→ ilə idarə et.</p><button onclick="v22RaceStart()">🏎️ Start</button><button onclick="v22RaceReset()">🔄 Reset</button><div class="toolResult" id="v22RaceResult">Rekordu qır!</div></div>
+
+<div class="v22Card"><h3>🧠 CEO IQ BATTLE</h3><div class="v22Stats"><div class="v22Pill">⏱️ <span id="v22IQTime">60</span>s</div><div class="v22Pill">🔥 Combo: <span id="v22IQCombo">0</span></div><div class="v22Pill">🏆 <span id="v22IQBest">0</span></div></div>
+<div class="v22IQQuestion" id="v22IQQuestion">Start düyməsinə bas!</div><div id="v22IQAnswers"></div><button onclick="v22IQStart()">🧠 Başla</button><div class="toolResult" id="v22IQResult">60 saniyədə bacardığın qədər sual!</div></div>
+
+<div class="v22Card" style="grid-column:1/-1"><h3>🏙️ CEO CITY — ŞƏHƏRİNİ QUR!</h3><div class="v22CityInfo"><div>💰 Pul: <b id="v22CityMoney">1000</b></div><div>👥 Əhali: <b id="v22CityPop">0</b></div><div>😊 Xoşbəxtlik: <b id="v22CityHappy">50</b>%</div><div>⭐ Level: <b id="v22CityLevel">1</b></div><div>💵 Gəlir/tur: <b id="v22CityIncome">0</b></div></div>
+<div class="v22City" id="v22CityGrid"></div><p class="v22Small">Boş xanaya kliklə, sonra bina seç.</p><div class="v22BuildBtns">
+<button onclick="v22Build('house')">🏠 Ev 100</button><button onclick="v22Build('shop')">🏪 Mağaza 250</button><button onclick="v22Build('office')">🏢 Ofis 400</button><button onclick="v22Build('park')">🌳 Park 150</button><button onclick="v22Build('road')">🛣️ Yol 80</button><button onclick="v22Build('factory')">🏭 Fabrik 700</button><button onclick="v22Build('stadium')">🏟️ Stadion 1200</button><button onclick="v22Build('bank')">🏦 Bank 1500</button><button onclick="v22Build('tower')">🏙️ CEO Tower 5000</button></div>
+<div class="toolResult" id="v22CityResult">Şəhərinin ilk evini tik! 🏠</div><button onclick="v22CityCollect()">💰 Gəliri topla</button><button onclick="v22CityReset()">⚠️ Yalnız şəhəri sıfırla</button></div></div></div>
 <div class="millionPopup" id="millionPopup" role="dialog" aria-modal="true">
   <div class="millionCard">
     <div class="millionBadge">👑🏆🎉</div>
@@ -942,7 +968,7 @@ generateNick();
 
 setTimeout(function(){
 
-console.log("CEO Gaming Hub Enterprise v19 hazırdır.");
+console.log("CEO Gaming Hub Enterprise v22 hazırdır.");
 
 },500);
 
@@ -1674,6 +1700,42 @@ if(lastReward===todayKey()){
 }
 updateWheelCooldown();
 newMathQuestion();
+
+
+/* ===== CEO V22 ARCADE ===== */
+(function(){
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v)); const load=(k,d)=>localStorage.getItem(k)===null?d:JSON.parse(localStorage.getItem(k));
+/* Football */
+let fb={run:false,t:90,a:0,b:0,x:50,y:76,ex:50,ey:22,bx:50,by:70,keys:{}},fbTimer=null;
+function fbUI(){document.getElementById("v22FootballTime").textContent=fb.t;document.getElementById("v22FootballScore").textContent=fb.a+" - "+fb.b;["v22You","v22Enemy","v22Ball"].forEach((id,i)=>{let e=document.getElementById(id),p=[[fb.x,fb.y],[fb.ex,fb.ey],[fb.bx,fb.by]][i];e.style.left=p[0]+"%";e.style.top=p[1]+"%"})}
+window.v22FootballStart=()=>{if(fb.run)return;fb.run=true;fb.t=90;fb.a=fb.b=0;fb.x=50;fb.y=76;fb.ex=50;fb.ey=22;fb.bx=50;fb.by=70;document.getElementById("v22FootballResult").textContent="⚽ Matç başladı!";fbTimer=setInterval(()=>{fb.t--;fbUI();if(fb.t<=0){fb.run=false;clearInterval(fbTimer);let r=fb.a>fb.b?500:fb.a===fb.b?150:50;if(typeof addXP==="function")addXP(r,"v22-football");document.getElementById("v22FootballResult").textContent=(fb.a>fb.b?"🏆 Qələbə! ":"🏁 Matç bitdi. ")+`+${r} XP`}},1000);requestAnimationFrame(fbLoop)};
+window.v22FootballReset=()=>{fb.run=false;clearInterval(fbTimer);fb.t=90;fb.a=fb.b=0;fb.x=50;fb.y=76;fb.ex=50;fb.ey=22;fb.bx=50;fb.by=70;fbUI()};
+function fbLoop(){if(!fb.run)return;let k=fb.keys;fb.x=Math.max(4,Math.min(96,fb.x+((k.d?1:0)-(k.a?1:0))*.8));fb.y=Math.max(7,Math.min(92,fb.y+((k.s?1:0)-(k.w?1:0))*.8));let dx=fb.x-fb.ex,dy=fb.y-fb.ey,d=Math.hypot(dx,dy)||1;if(d>5){fb.ex+=dx/d*.3;fb.ey+=dy/d*.3}if(Math.hypot(fb.x-fb.bx,fb.y-fb.by)<7){fb.bx=fb.x;fb.by=fb.y+2}if(k[" "]&&fb.by<fb.y+10){fb.by=Math.max(1,fb.by-8);k[" "]=false}if(k.e){fb.by=Math.max(1,fb.by-14);fb.bx=fb.x;k.e=false}if(fb.by<=3){fb.a++;fb.bx=50;fb.by=70;fb.x=50;fb.y=76;document.getElementById("v22FootballResult").textContent="🔥 GOOOOL!"}if(fb.by>=96){fb.b++;fb.bx=50;fb.by=30}fbUI();requestAnimationFrame(fbLoop)}
+document.addEventListener("keydown",e=>{fb.keys[e.key.toLowerCase()]=true;if(["w","a","s","d","e"," "].includes(e.key.toLowerCase()))e.preventDefault()});document.addEventListener("keyup",e=>fb.keys[e.key.toLowerCase()]=false);fbUI();
+
+/* Racing */
+let rc={run:false,x:50,score:0,speed:3,obs:[],coins:[],best:Number(localStorage.getItem("v22RaceBest"))||0},rk={};let rAF;
+window.v22RaceStart=()=>{if(rc.run)return;rc.run=true;rc.x=50;rc.score=0;rc.speed=3;rc.obs=[];rc.coins=[];document.getElementById("v22RaceResult").textContent="🏎️ Getdik!";requestAnimationFrame(raceLoop)};
+window.v22RaceReset=()=>{rc.run=false;rc.obs=[];rc.coins=[];rc.score=0;rc.x=50;renderRace();document.getElementById("v22RaceResult").textContent="Reset edildi."};
+function renderRace(){let a=document.getElementById("v22Race");a.querySelectorAll(".v22Obstacle,.v22Coin").forEach(e=>e.remove());document.getElementById("v22Car").style.left=rc.x+"%";document.getElementById("v22RaceScore").textContent=Math.floor(rc.score);document.getElementById("v22RaceSpeed").textContent=(rc.speed/3).toFixed(1);document.getElementById("v22RaceBest").textContent=rc.best;rc.obs.forEach(o=>{let e=document.createElement("div");e.className="v22Obstacle";e.style.left=o.x+"%";e.style.top=o.y+"px";a.appendChild(e)});rc.coins.forEach(o=>{let e=document.createElement("div");e.className="v22Coin";e.style.left=o.x+"%";e.style.top=o.y+"px";a.appendChild(e)})}
+function raceLoop(t){if(!rc.run)return;rc.x=Math.max(9,Math.min(91,rc.x+(((rk.arrowright||rk.d)?1:0)-((rk.arrowleft||rk.a)?1:0))*1.2));if(Math.random()<.06)rc.obs.push({x:10+Math.random()*80,y:-50});if(Math.random()<.035)rc.coins.push({x:10+Math.random()*80,y:-30});rc.obs.forEach(o=>o.y+=rc.speed);rc.coins.forEach(o=>o.y+=rc.speed);rc.score+=.15*rc.speed;rc.speed+=.002;for(let o of rc.obs)if(o.y>205&&o.y<275&&Math.abs(o.x-rc.x)<7){rc.run=false;rc.best=Math.max(rc.best,Math.floor(rc.score));localStorage.setItem("v22RaceBest",rc.best);document.getElementById("v22RaceResult").textContent="💥 Qəza! Rekord: "+rc.best;if(typeof addXP==="function")addXP(Math.min(500,Math.floor(rc.score/2)),"v22-racing");renderRace();return}rc.obs=rc.obs.filter(o=>o.y<300);rc.coins=rc.coins.filter(o=>o.y<300);for(let o of rc.coins)if(o.y>205&&o.y<275&&Math.abs(o.x-rc.x)<8){o.y=999;rc.score+=100}renderRace();rAF=requestAnimationFrame(raceLoop)}
+document.addEventListener("keydown",e=>rk[e.key.toLowerCase()]=true);document.addEventListener("keyup",e=>rk[e.key.toLowerCase()]=false);renderRace();
+
+/* IQ */
+let iq={run:false,t:60,score:0,combo:0,best:Number(localStorage.getItem("v22IQBest"))||0,timer:null};
+function newIQ(){let a=5+Math.floor(Math.random()*20),b=2+Math.floor(Math.random()*15),ans=a*b;return Math.random()<.7?{q:`${a} × ${b} = ?`,ans,opts:[ans,ans+2,ans-3,a+b]}:{q:"Ardıcıllığı tamamla: 2, 4, 8, 16, ?",ans:32,opts:[24,30,32,36]}}
+function iqNext(){iq.q=newIQ();document.getElementById("v22IQQuestion").textContent=iq.q.q;let box=document.getElementById("v22IQAnswers");box.innerHTML="";iq.q.opts.sort(()=>Math.random()-.5).forEach(o=>{let b=document.createElement("button");b.textContent=o;b.onclick=()=>iqAns(o);box.appendChild(b)})}
+function iqAns(o){if(!iq.run)return;if(o===iq.q.ans){iq.combo++;iq.score+=100+iq.combo*25;if(typeof addXP==="function")addXP(25+iq.combo*5,"v22-iq");document.getElementById("v22IQResult").textContent="✅ Düzdür!"}else{iq.combo=0;document.getElementById("v22IQResult").textContent="❌ Səhv!"}document.getElementById("v22IQCombo").textContent=iq.combo;iqNext()}
+window.v22IQStart=()=>{if(iq.run)return;iq.run=true;iq.t=60;iq.score=0;iq.combo=0;iq.timer=setInterval(()=>{document.getElementById("v22IQTime").textContent=--iq.t;if(iq.t<=0){iq.run=false;clearInterval(iq.timer);iq.best=Math.max(iq.best,iq.score);localStorage.setItem("v22IQBest",iq.best);document.getElementById("v22IQBest").textContent=iq.best;document.getElementById("v22IQResult").textContent=`🏁 Bitdi! ${iq.score} xal`;if(typeof addXP==="function")addXP(Math.min(1000,Math.floor(iq.score/5)),"v22-iq-end")}},1000);iqNext()};document.getElementById("v22IQBest").textContent=iq.best;
+
+/* City */
+const B={house:{e:"🏠",c:100,p:8,i:5,h:2},shop:{e:"🏪",c:250,p:3,i:20,h:1},office:{e:"🏢",c:400,p:10,i:40,h:0},park:{e:"🌳",c:150,p:0,i:2,h:8},road:{e:"🛣️",c:80,p:0,i:1,h:1},factory:{e:"🏭",c:700,p:5,i:90,h:-5},stadium:{e:"🏟️",c:1200,p:25,i:160,h:6},bank:{e:"🏦",c:1500,p:10,i:220,h:3},tower:{e:"🏙️",c:5000,p:50,i:700,h:10}};
+let city=load("v22City",{money:1000,pop:0,happy:50,grid:Array(24).fill(null)}),sel=-1;
+function cityRender(){let g=document.getElementById("v22CityGrid");g.innerHTML="";city.grid.forEach((b,i)=>{let d=document.createElement("div");d.className="v22Tile "+(b?"building":"");d.textContent=b?B[b].e:"+";d.onclick=()=>{if(!b){sel=i;document.getElementById("v22CityResult").textContent="İndi bina seç!"}};g.appendChild(d)});let income=city.grid.reduce((n,b)=>n+(b?B[b].i:0),0);document.getElementById("v22CityMoney").textContent=Math.floor(city.money);document.getElementById("v22CityPop").textContent=city.pop;document.getElementById("v22CityHappy").textContent=Math.max(0,Math.min(100,city.happy));document.getElementById("v22CityLevel").textContent=1+Math.floor(city.pop/50);document.getElementById("v22CityIncome").textContent=income;save("v22City",city)}
+window.v22Build=t=>{if(sel<0)return document.getElementById("v22CityResult").textContent="Əvvəl boş xana seç!";let b=B[t];if(city.grid[sel])return;if(city.money<b.c)return document.getElementById("v22CityResult").textContent="💸 Pul çatmır!";city.money-=b.c;city.grid[sel]=t;city.pop+=b.p;city.happy+=b.h;sel=-1;cityRender();document.getElementById("v22CityResult").textContent=`${b.e} tikildi! +${b.i} gəlir`;if(typeof addXP==="function")addXP(50,"v22-city-build")};
+window.v22CityCollect=()=>{let i=city.grid.reduce((n,b)=>n+(b?B[b].i:0),0);city.money+=i;cityRender();document.getElementById("v22CityResult").textContent=i?`💰 +${i} pul!`:"Hələ gəlir yoxdur.";if(i&&typeof addXP==="function")addXP(Math.min(250,i),"v22-city-income")};
+window.v22CityReset=()=>{if(confirm("Yalnız şəhər sıfırlansın? XP toxunulmaz qalacaq.")){city={money:1000,pop:0,happy:50,grid:Array(24).fill(null)};sel=-1;cityRender()}};cityRender();
+})();
 
 </script>
 

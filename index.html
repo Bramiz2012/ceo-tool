@@ -217,6 +217,9 @@ body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
 .v22IQQuestion{font-size:25px;min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center}.v22City{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;background:#102315;padding:8px;border:2px solid #333;border-radius:12px;min-height:270px}.v22Tile{min-height:58px;border:1px solid #24442b;border-radius:6px;background:#08120b;display:flex;align-items:center;justify-content:center;text-align:center;font-size:25px;cursor:pointer}.v22Tile.building{background:#111;color:#fff}.v22CityInfo{display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px;margin:8px 0;color:#fff}.v22BuildBtns{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
 
 .v23HeistGrid{display:grid;grid-template-columns:repeat(10,minmax(18px,1fr));gap:3px;background:#080d13;padding:7px;border:1px solid #345;border-radius:10px;max-width:520px;margin:10px auto}.v23HeistTile{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#14202a;border-radius:4px;font-size:clamp(12px,2vw,21px);user-select:none}.v23HeistTile.wall{background:#273545}.v23HeistTile.guard{background:#5b1515}.v23HeistTile.key{background:#55470a}.v23HeistTile.exit{background:#123c15}.v23HeistTile.player{background:#004b50;box-shadow:inset 0 0 0 2px #00f5d4}
+
+/* SECRET 10M CHALLENGE */
+.shadowQuest{border:2px solid #6536a8;background:linear-gradient(135deg,#080610,#10101b);border-radius:14px;padding:18px;margin:18px auto;max-width:900px;box-shadow:0 0 18px #5d2c9144}.shadowQuest h3{color:#d8a7ff;margin-bottom:8px}.shadowTrack{height:14px;background:#24202e;border-radius:99px;overflow:hidden;margin:12px 0}.shadowFill{height:100%;width:0;background:linear-gradient(90deg,#662d91,#d9a7ff);transition:width .3s}.shadowDoor{font-size:40px;filter:grayscale(1);opacity:.65}.shadowDoor.open{filter:none;opacity:1;animation:shadowPulse 1.2s infinite alternate;cursor:pointer}.shadowPopup{display:none;position:fixed;inset:0;z-index:100001;background:rgba(0,0,0,.94);align-items:center;justify-content:center;padding:18px}.shadowPopup.show{display:flex}.shadowCard{max-width:560px;width:100%;padding:28px;background:#090710;border:2px solid #b879ff;border-radius:18px;color:#eee;box-shadow:0 0 40px #8c42d477}.shadowCard h2{color:#d9a7ff;margin:12px 0}.shadowCard .sigil{font-size:64px}@keyframes shadowPulse{from{transform:scale(1);text-shadow:0 0 5px #bd7cff}to{transform:scale(1.08);text-shadow:0 0 24px #bd7cff}}
 </style>
 
 </head>
@@ -628,6 +631,8 @@ Dönər"></textarea>
 
 
 
+<div class="shadowQuest" id="shadowQuest"><div class="shadowDoor" id="shadowDoor">🚪</div><h3>⛧ PROJECT: UNKNOWN — GİZLİ SINAQ</h3><p>Bu qapı adi XP ilə açılmır. Oyunlardan və çətin tapşırıqlardan Qaranlıq Xal topla. <b>10,000,000</b> xal tamamlananda qapının işarəsi dəyişəcək.</p><div class="shadowTrack"><div class="shadowFill" id="shadowFill"></div></div><p>🌑 Qaranlıq Xal: <b id="shadowPoints">0</b> / 10,000,000</p><p id="shadowHint">🔒 Qapı bağlıdır. Nə gizləndiyini heç kim bilmir...</p><button id="shadowDoorBtn" type="button" onclick="openShadowDoor()" disabled>🔒 Gizli qapı</button></div>
+<div class="shadowPopup" id="shadowPopup" role="dialog" aria-modal="true"><div class="shadowCard"><div class="sigil">⛧ 🚪 ⛧</div><h2>QAPI AÇILDI</h2><p>10,000,000 Qaranlıq Xal tamamlandı.</p><p id="shadowSecretText">Sınaq qəbul edildi. Gizli mərhələ açılır...</p><button type="button" onclick="closeShadowDoor()">Davam et</button></div></div>
 <div class="v22Box" id="v22Arcade"><h2>🔥 CEO ARCADE — V23 ULTIMATE</h2><p>⚽ Hardcore Team Football • 🏎️ Neon Racing • 🧠 IQ Battle • 🏙️ CEO City HARD MODE • 🕵️ CEO HEIST</p><div class="v22Grid">
 <div class="v22Card"><h3>⚽ REAL CEO FOOTBALL</h3><div class="v22Stats"><div class="v22Pill">⏱️ <span id="v22FootballTime">90</span>s</div><div class="v22Pill">🏆 <span id="v22FootballScore">0 - 0</span></div></div>
 <div class="v22Game"><div class="v22Field" id="v22Field"><div class="v22Goal"></div><div class="v22Goal bottom"></div><div class="v22Player v22You" id="v22You">P1</div><div class="v22Player v22You" id="v22Mate2" style="left:35%;top:65%;background:#00aaff">P2</div><div class="v22Player v22You" id="v22Mate3" style="left:65%;top:60%;background:#00aaff;display:none">P3</div><div class="v22Player v22You" id="v22Mate4" style="left:25%;top:50%;background:#00aaff;display:none">P4</div><div class="v22Player v22Enemy" id="v22Enemy">🤖</div><div class="v22Player v22Enemy" id="v22Enemy2" style="background:#ff6666">🤖</div><div class="v22Player v22Enemy" id="v22Enemy3" style="background:#ff8888">🤖</div><div class="v22Player v22Enemy" id="v22Enemy4" style="background:#ff9999;display:none">🤖</div><div class="v22Ball" id="v22Ball">●</div></div></div>
@@ -1404,6 +1409,10 @@ function getLevel(){return Math.floor(xp/1000)+1;}
 function addXP(amount,reason){
     const before=xp;
     xp+=amount;
+    // Separate long-term secret challenge: only newly earned XP contributes.
+    const shadowPoints = Number(localStorage.getItem("ceoShadowPoints")||0) + Math.max(0, Math.floor(Number(amount)||0) * 10);
+    localStorage.setItem("ceoShadowPoints", shadowPoints);
+    updateShadowQuest();
     localStorage.setItem("ceoXP",xp);
     updateXPUI();
     checkAchievements();
@@ -1623,6 +1632,17 @@ function updateStreak(){
         `🔥 Hazırkı streak: ${streak} gün`;
 }
 
+const SHADOW_GOAL=10000000;
+function updateShadowQuest(){
+  const points=Number(localStorage.getItem('ceoShadowPoints')||0);
+  const val=document.getElementById('shadowPoints'),fill=document.getElementById('shadowFill'),door=document.getElementById('shadowDoor'),btn=document.getElementById('shadowDoorBtn'),hint=document.getElementById('shadowHint');
+  if(!val||!fill||!door||!btn||!hint)return;
+  val.textContent=Math.min(points,SHADOW_GOAL).toLocaleString();fill.style.width=(Math.min(100,points/SHADOW_GOAL*100))+'%';
+  if(points>=SHADOW_GOAL){door.classList.add('open');btn.disabled=false;btn.textContent='🚪 Qapını aç';hint.textContent='✨ Qapı işarəsi oyandı. Hazırsansa, aç.';}
+  else{door.classList.remove('open');btn.disabled=true;btn.textContent='🔒 Gizli qapı';hint.textContent='🔒 Qapı bağlıdır. Nə gizləndiyini heç kim bilmir...';}
+}
+function openShadowDoor(){if(Number(localStorage.getItem('ceoShadowPoints')||0)<SHADOW_GOAL)return;const el=document.getElementById('shadowPopup');if(el)el.classList.add('show');const done=localStorage.getItem('ceoShadowDoorOpened')==='1';const t=document.getElementById('shadowSecretText');if(t)t.textContent=done?'Gizli otaq artıq sənin hesabında açıqdır.':'Sınaq qəbul edildi. Gizli mərhələ açılır...';localStorage.setItem('ceoShadowDoorOpened','1');}
+function closeShadowDoor(){const el=document.getElementById('shadowPopup');if(el)el.classList.remove('show');}
 const achievements=[
 ["first_xp","⭐ İlk XP","İlk dəfə XP qazan",()=>xp>=1],
 ["math_10","🧠 Riyaziyyatçı","10 çətin riyaziyyat sualı düz cavabla",()=>mathCorrect>=10],
@@ -1792,6 +1812,7 @@ document.addEventListener('keydown',e=>{if(!heist.run)return;let k=e.key.toLower
 })();
 
 
+updateShadowQuest();
 </script>
 </body>
 </html>

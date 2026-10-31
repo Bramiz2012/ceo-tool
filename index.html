@@ -293,6 +293,11 @@ body.theme-gold .box,body.theme-gold .xpPanel{border-color:#ffd700}
 @media(max-width:800px){#ceoUniverse .cu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#ceoUniverse .cu-profile{grid-template-columns:1fr}}
 @media(max-width:540px){#ceoUniverse .cu-grid{grid-template-columns:1fr}#ceoUniverse .cu-art{height:170px}#ceoUniverse .cu-body p{min-height:0}}
 
+
+/* CEO SIX NEW ARCADE GAMES */
+#ceoSixGames{max-width:1200px;margin:28px auto;padding:clamp(14px,3vw,28px);border-radius:24px;background:linear-gradient(135deg,#11152b,#19162e);color:#f7f8ff;text-align:left;font-family:Inter,system-ui,sans-serif;border:1px solid #3d3b69}
+#ceoSixGames *{box-sizing:border-box}#ceoSixGames h2{font-size:clamp(25px,4vw,36px);margin:0 0 8px;color:#f3c66b}#ceoSixGames .sixIntro{color:#c0c5dc;margin:0 0 20px}#ceoSixGames .sixGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}#ceoSixGames .sixGame{background:#20233e;border:1px solid #393d62;border-radius:17px;padding:16px;min-width:0}#ceoSixGames h3{margin:0 0 8px;color:#fff;font-size:19px}#ceoSixGames p{color:#c1c6dd;font-size:13px;line-height:1.5}#ceoSixGames button{border:0;border-radius:10px;background:#f3c66b;color:#26213a;font-weight:800;padding:10px 13px;margin:4px 4px 4px 0;cursor:pointer}#ceoSixGames button:disabled{opacity:.5;cursor:not-allowed}#ceoSixGames input{max-width:100%;border:1px solid #515679;background:#101328;color:white;border-radius:9px;padding:10px;margin:4px}#ceoSixGames .sixOut{margin-top:10px;padding:11px;border-radius:10px;background:#11152a;color:#e4e8ff;min-height:42px;white-space:pre-wrap}#ceoSixGames .sixArena{height:150px;background:radial-gradient(circle at center,#292d56,#0e1125);border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0;padding:10px}#ceoSixGames .sixTarget{font-size:28px;border-radius:50%!important;min-width:54px;min-height:54px;background:#8ce5ff!important;color:#14203a!important}#ceoSixGames .sixBoss{font-size:45px;text-align:center;margin:10px}#ceoSixGames .sixHp{height:10px;background:#454965;border-radius:99px;overflow:hidden;margin:8px 0}#ceoSixGames .sixHp span{display:block;height:100%;background:#fa6b89;width:100%;transition:width .2s}@media(max-width:680px){#ceoSixGames .sixGrid{grid-template-columns:1fr}}
+
 </style>
 
 </head>
@@ -345,6 +350,21 @@ Sistem hazırdır. `help` yaz.</div></div>
  </div>
 </section>
 
+
+
+<section id="ceoSixGames" aria-label="CEO Tool yeni oyunlar">
+ <h2>🎮 CEO ARCADE: 6 YENİ OYUN</h2>
+ <p class="sixIntro">Oyna, rekordunu yaxşılaşdır və CEO profilində XP/coin qazan. Oyun nəticələri bu brauzerdə saxlanılır.</p>
+ <div class="sixGrid">
+  <article class="sixGame"><h3>💻 1. CEO Hacker</h3><p>3 rəqəmli gizli kodu tap. Hər cəhddən sonra neçə rəqəmin düzgün yerdə olduğu göstərilir.</p><button onclick="sixHackerNew()">Yeni kod</button><input id="sixHackInput" inputmode="numeric" maxlength="3" placeholder="3 rəqəm"><button onclick="sixHackerTry()">Kodu yoxla</button><div class="sixOut" id="sixHackOut">Başlamaq üçün “Yeni kod” düyməsinə bas.</div></article>
+  <article class="sixGame"><h3>⚡ 2. CEO Dash</h3><p>5 maneədən yayın. Hər turda sola və ya sağa hərəkət et; maneənin olduğu zolağı seçmə!</p><div class="sixArena" id="sixDashArena">🏃‍♂️ Başlamağa hazırsan?</div><button onclick="sixDashStart()">Qaçışa başla</button><button id="sixDashLeft" onclick="sixDashMove('L')" disabled>⬅️ Sol</button><button id="sixDashRight" onclick="sixDashMove('R')" disabled>Sağ ➡️</button><div class="sixOut" id="sixDashOut">5 turu keç və mükafat qazan.</div></article>
+  <article class="sixGame"><h3>🚀 3. Space Battle</h3><p>Görünən yadplanetliləri vur. 10 saniyədə mümkün qədər çox hədəfə bas.</p><div class="sixArena" id="sixSpaceArena">🛸 Hədəflər burada görünəcək</div><button id="sixSpaceStart" onclick="sixSpaceStart()">Döyüşə başla</button><div class="sixOut" id="sixSpaceOut">Hazır ol, kapitan!</div></article>
+  <article class="sixGame"><h3>🔐 4. Secret Vault 2.0</h3><p>3 qapıdan birini seç. Yalnız birində xəzinə var. Uğursuz olsan, yenidən sınaya bilərsən.</p><button onclick="sixVaultPick(1)">🚪 Qapı 1</button><button onclick="sixVaultPick(2)">🚪 Qapı 2</button><button onclick="sixVaultPick(3)">🚪 Qapı 3</button><div class="sixOut" id="sixVaultOut">Qapını seç və sirri tap.</div></article>
+  <article class="sixGame"><h3>🎯 5. Target Rush</h3><p>Başla və 10 saniyə ərzində hədəflərə mümkün qədər tez bas.</p><div class="sixArena" id="sixTargetArena"><span>🎯 Hazırsan?</span></div><button id="sixTargetStart" onclick="sixTargetStart()">Başla</button><div class="sixOut" id="sixTargetOut">Hədəfləri vur, xal topla.</div></article>
+  <article class="sixGame"><h3>👑 6. CEO Boss Challenge</h3><p>Boss-un suallarına düzgün cavab verərək onun gücünü sıfırla.</p><div class="sixBoss">👾</div><div class="sixHp"><span id="sixBossHp"></span></div><div class="sixOut" id="sixBossQuestion">Boss hazırdır. Döyüşə başla!</div><div id="sixBossAnswers"><button onclick="sixBossStart()">Boss-a meydan oxu</button></div><div class="sixOut" id="sixBossOut">5 düzgün cavabla boss-u məğlub et.</div></article>
+ </div>
+ <p style="font-size:12px;color:#aeb5d4;margin:16px 0 0">Qeyd: XP və rekordlar bu brauzerdə saxlanır; başqa cihazlarda ortaq reytinq üçün server lazımdır.</p>
+</section>
 
 <div class="container">
 
@@ -1954,6 +1974,7 @@ updateShadowQuest();
  function rank(){let l=level();return l>=30?'LEGEND':l>=15?'ELITE':l>=7?'PRO':l>=3?'Rising Star':'Rookie'}
  function render(){if(!$('cuLevel'))return;$('cuLevel').textContent=level();$('cuRank').textContent=rank();$('cuXp').textContent=st.xp;$('cuCoins').textContent=st.coins;$('cuEquipped').textContent=st.equipped;let part=st.xp%100;$('cuProgress').style.width=part+'%';$('cuProgressText').textContent=(100-part)+' XP növbəti level üçün'}
  function reward(xp,coins){st.xp+=xp;st.coins+=coins;save()}
+ window.cuGameReward=(xp,coins=0)=>{reward(xp,coins)};
  window.cuClaimQuest=()=>{let day=new Date().toISOString().slice(0,10);if(st.questDay===day){$('cuQuestMsg').textContent='Bugünkü tapşırığı artıq tamamlamısan. Sabah yenə gəl!';return}st.questDay=day;reward(25,20);$('cuQuestMsg').textContent='Tapşırıq tamamlandı! +25 XP, +20 CEO Coins. Sabah yenidən gəl.'}
  window.cuCheckVault=()=>{let val=$('cuSecretCode').value.trim();if(val==='2048'){if(st.vault){$('cuVaultMsg').textContent='Vault artıq açılıb! Sirri tapmısan.';return}st.vault=true;reward(75,50);$('cuVaultMsg').textContent='🔓 Vault açıldı! +75 XP və +50 CEO Coins qazandın.'}else $('cuVaultMsg').textContent='Kod uyğun deyil. İpucunu düşün: yaddaş və gələcək texnologiya.'}
  window.cuReflexStart=()=>{let b=$('cuReflexBtn');if(b.dataset.waiting==='1'){let ms=Date.now()-Number(b.dataset.started);b.dataset.waiting='0';b.textContent='Yenidən oyna';if(ms<10000){reward(Math.max(5,Math.round(1000/ms*20)),15);if(!st.reflexBest||ms<st.reflexBest)st.reflexBest=ms;$('cuReflexMsg').textContent='Reaksiya: '+ms+' ms. +XP və +15 coin! Ən yaxşı: '+st.reflexBest+' ms.'}else $('cuReflexMsg').textContent='Çox tez basdın! Yenidən sına.';return}b.disabled=true;b.textContent='Gözlə...';$('cuReflexMsg').textContent='Hədəfin çıxmasını gözlə...';let delay=1200+Math.random()*2800;setTimeout(()=>{b.disabled=false;b.dataset.waiting='1';b.dataset.started=Date.now();b.textContent='İNDİ BAS!';$('cuReflexMsg').textContent='İNDİ! Bas düyməni!'},delay)}
@@ -1966,5 +1987,27 @@ updateShadowQuest();
 })();
 
 </script>
+
+<script>
+/* Six independent mini-games; rewards use CEO Universe XP/coin profile. */
+(()=>{
+ const $=id=>document.getElementById(id); const rand=n=>Math.floor(Math.random()*n);
+ const reward=(xp,coins=0)=>{if(window.cuGameReward)window.cuGameReward(xp,coins);else alert('+'+xp+' XP, +'+coins+' coin!')};
+ let hack='',hackDone=false,dash={round:0,active:false,lane:'L',obstacle:'R'},space={active:false,score:0},vaultWon=false,target={active:false,score:0},boss={hp:5,active:false};
+ window.sixHackerNew=()=>{hack=String(100+rand(900));hackDone=false;$('sixHackInput').value='';$('sixHackOut').textContent='Yeni 3 rəqəmli kod yaradıldı. Təxmin et!';};
+ window.sixHackerTry=()=>{if(!hack)window.sixHackerNew();if(hackDone){$('sixHackOut').textContent='Bu kod artıq açılıb. “Yeni kod” seç.';return}let g=$('sixHackInput').value.trim();if(!/^\d{3}$/.test(g)){$('sixHackOut').textContent='Dəqiq 3 rəqəm yaz.';return}let exact=[0,1,2].filter(i=>g[i]===hack[i]).length;if(g===hack){hackDone=true;$('sixHackOut').textContent='🔓 Kod açıldı! +40 XP, +25 coin.';reward(40,25)}else $('sixHackOut').textContent=exact+' rəqəm düzgün yerdədir. Yenidən sına!';};
+ window.sixDashStart=()=>{dash={round:0,active:true,lane:'L',obstacle:Math.random()<.5?'L':'R'};$('sixDashLeft').disabled=false;$('sixDashRight').disabled=false;$('sixDashArena').textContent='🏃‍♂️ Sən sol zolaqdasan. Maneəyə bax!';$('sixDashOut').textContent='Tur 1/5 — maneə: '+(dash.obstacle==='L'?'SOL':'SAĞ');};
+ window.sixDashMove=lane=>{if(!dash.active)return;if(lane===dash.obstacle){dash.active=false;$('sixDashLeft').disabled=true;$('sixDashRight').disabled=true;$('sixDashArena').textContent='💥 Maneəyə dəydin!';$('sixDashOut').textContent='Qaçış bitdi — '+dash.round+'/5 tur. Yenidən başla!';return}dash.round++;if(dash.round>=5){dash.active=false;$('sixDashLeft').disabled=true;$('sixDashRight').disabled=true;$('sixDashArena').textContent='🏁 FİNİŞ!';$('sixDashOut').textContent='Möhtəşəm qaçış! +50 XP, +30 coin.';reward(50,30);return}dash.obstacle=Math.random()<.5?'L':'R';$('sixDashArena').textContent='🏃‍♂️ '+(lane==='L'?'Sol':'Sağ')+' zolağına keçdin!';$('sixDashOut').textContent='Tur '+(dash.round+1)+'/5 — maneə: '+(dash.obstacle==='L'?'SOL':'SAĞ');};
+ window.sixSpaceStart=()=>{if(space.active)return;space={active:true,score:0};$('sixSpaceStart').disabled=true;$('sixSpaceOut').textContent='Düşmənləri vur!';spaceDraw();space.timer=setTimeout(()=>{space.active=false;$('sixSpaceStart').disabled=false;$('sixSpaceArena').textContent='🌌 Döyüş bitdi';$('sixSpaceOut').textContent='Nəticə: '+space.score+' hədəf. '+(space.score?'Mükafat: +'+(space.score*5)+' XP, +'+(space.score*3)+' coin.':'Bu dəfə xal olmadı.');if(space.score)reward(space.score*5,space.score*3)},10000)};
+ function spaceDraw(){if(!space.active)return;let n=3+rand(3);$('sixSpaceArena').innerHTML='';for(let i=0;i<n;i++){let b=document.createElement('button');b.className='sixTarget';b.textContent=['👾','🛸','☄️'][rand(3)];b.onclick=()=>{if(!space.active)return;space.score++;b.remove();$('sixSpaceOut').textContent='Hədəf: '+space.score;};$('sixSpaceArena').appendChild(b)}space.drawTimer=setTimeout(spaceDraw,900)};
+ window.sixVaultPick=n=>{if(vaultWon){$('sixVaultOut').textContent='Xəzinəni artıq tapmısan! Sabah yenidən oynaya bilərsən.';return}let treasure=Number(localStorage.getItem('sixVaultDoor')||0);if(!treasure){treasure=1+rand(3);try{localStorage.setItem('sixVaultDoor',String(treasure))}catch(e){}}if(n===treasure){vaultWon=true;$('sixVaultOut').textContent='💎 Xəzinə tapıldı! +35 XP, +20 coin.';reward(35,20)}else $('sixVaultOut').textContent='Bu qapı boşdur 😈 Başqa qapını yoxla!';};
+ window.sixTargetStart=()=>{if(target.active)return;target={active:true,score:0};$('sixTargetStart').disabled=true;$('sixTargetOut').textContent='Vaxt başladı!';targetDraw();target.timer=setTimeout(()=>{target.active=false;$('sixTargetStart').disabled=false;$('sixTargetArena').innerHTML='<span>⏱️ Vaxt bitdi!</span>';$('sixTargetOut').textContent='Xal: '+target.score+'. '+(target.score?'+'+(target.score*4)+' XP, +'+(target.score*2)+' coin qazandın!':'Yenidən sına!');if(target.score)reward(target.score*4,target.score*2)},10000)};
+ function targetDraw(){if(!target.active)return;let b=document.createElement('button');b.className='sixTarget';b.textContent='🎯';b.onclick=()=>{if(!target.active)return;target.score++;$('sixTargetOut').textContent='Hədəf: '+target.score;targetDraw()};$('sixTargetArena').replaceChildren(b)};
+ const qs=[{q:'HTML əsasən nə üçün istifadə olunur?',a:['Veb səhifənin quruluşu','Kompüteri soyutmaq','İnternet kabeli'],c:0},{q:'2 + 3 neçə edir?',a:['6','5','4'],c:1},{q:'CSS nəyi idarə edir?',a:['Səhifənin görünüşünü','Səs kartını','Wi-Fi şifrəsini'],c:0},{q:'JavaScript nə edə bilər?',a:['Səhifəni interaktiv etmək','Monitoru təmizləmək','Batareyanı doldurmaq'],c:0},{q:'Klaviaturada Enter nə üçün istifadə olunur?',a:['Təsdiq/sətir keçidi','Ekranı söndürmək','Səsi artırmaq'],c:0}];
+ window.sixBossStart=()=>{boss={hp:5,active:true,asked:[]};$('sixBossHp').style.width='100%';$('sixBossOut').textContent='Boss döyüşü başladı!';bossQuestion()};
+ function bossQuestion(){if(!boss.active)return;let ix;do{ix=rand(qs.length)}while(boss.asked.includes(ix)&&boss.asked.length<qs.length);boss.asked.push(ix);let q=qs[ix];$('sixBossQuestion').textContent=q.q;$('sixBossAnswers').innerHTML='';q.a.forEach((ans,i)=>{let b=document.createElement('button');b.textContent=ans;b.onclick=()=>{if(!boss.active)return;if(i===q.c){boss.hp--;$('sixBossOut').textContent='Düzgün cavab! Boss-un gücü azaldı.'}else $('sixBossOut').textContent='Yanlış cavab! Boss hələ dayanır.';$('sixBossHp').style.width=(boss.hp/5*100)+'%';if(boss.hp<=0){boss.active=false;$('sixBossQuestion').textContent='👑 Boss məğlub oldu!';$('sixBossAnswers').innerHTML='<button onclick="sixBossStart()">Yenidən oyna</button>';$('sixBossOut').textContent='+100 XP, +60 coin!';reward(100,60)}else if(boss.asked.length>=qs.length){boss.active=false;$('sixBossQuestion').textContent='Boss qaçdı! Yenidən sınaya bilərsən.';$('sixBossAnswers').innerHTML='<button onclick="sixBossStart()">Yenidən başla</button>'}else bossQuestion()};$('sixBossAnswers').appendChild(b)})}
+})();
+</script>
+
 </body>
 </html>

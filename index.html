@@ -43,7 +43,9 @@
     <div class="two-col"><div><div class="section-head"><div><h2>🔥 Sənin üçün seçdik</h2><p>Bir oyun seç və macəraya başla.</p></div><button class="btn secondary small" onclick="showView('games')">Hamısı →</button></div><div class="games-grid" id="featuredGames"></div></div><div><div class="section-head"><div><h2>🎯 CEO missiyası</h2><p>Bu gün özünü sına.</p></div></div><div class="panel"><div style="font-size:35px">🧠</div><h3>Bir oyunu qazan</h3><p class="muted">İstənilən mini-oyunu tamamla və bonus XP əldə et.</p><div class="progress"><div id="missionProgress"></div></div><div class="list-row"><span id="missionText">0 / 1 qələbə</span><b style="color:var(--gold)">+10 XP</b></div><button class="btn small" style="margin-top:14px" onclick="showView('games')">Missiyanı başla</button></div></div></div>
   </section>
   <section class="view" id="view-games">
-    <div class="section-head"><div><h2>🎲 CEO DOMİNO</h2><p>Telefon və 101 — klassik daş oyunu, tünd göy-qızılı masa üslubunda.</p></div></div>
+    <div class="section-head"><div><h2>🎮 Mini oyunlar</h2><p>CEO Battle Arena və Domino oyunları.</p></div></div>
+    <div class="games-grid" id="allGames"></div>
+    <div class="section-head"><div><h2>🎲 CEO DOMİNO</h2><p>101 və Telefon rejimləri — botlara qarşı oyna.</p></div></div>
     <div class="dom-hero"><div class="dom-mark">🁣</div><div><div class="eyebrow">CEO UNIVERSE TABLE GAMES</div><h2>DOMİNO</h2><p>Daşlarını düz, rəqiblərini qabaql a və qalib gəl.</p></div></div>
     <div class="dom-tabs"><button class="btn" onclick="domSelectMode('101')">101 Domino</button><button class="btn secondary" onclick="domSelectMode('phone')">Telefon Domino</button></div>
     <div id="domLobby" class="dom-panel">
@@ -57,10 +59,11 @@
       <div class="dom-game-head"><div><span class="eyebrow" id="domGameMode">101 DOMİNO</span><h3 id="domTurn">Sənin növbəndir</h3></div><div class="pill gold">🏆 <span id="domScore">0</span></div></div>
       <div class="dom-table"><div class="dom-seat top" id="domSeatTop">Bot 2 · 7 daş</div><div class="dom-seat left" id="domSeatLeft">Bot 3 · 7 daş</div><div class="dom-chain" id="domChain"><span class="muted">İlk daşı qoy</span></div><div class="dom-seat right" id="domSeatRight">Bot 1 · 7 daş</div><div class="dom-seat bottom">Sən · <span id="domHandCount">7</span> daş</div></div>
       <div class="dom-ends" id="domEnds">Açıq uclar: —</div><div class="dom-hand" id="domHand"></div>
-      <div class="dom-actions"><button class="btn secondary small" onclick="domPass()">Pas</button><button class="btn secondary small" onclick="domNewRound()">Yeni raund</button></div>
+      <div class="dom-actions"><button class="btn secondary small" id="domDraw" onclick="domDraw()" disabled>Daş götür</button><button class="btn secondary small" id="domPassButton" onclick="domPass()">Pas</button><button class="btn secondary small" onclick="domNewRound()">Yeni raund</button></div>
       <p class="notice" id="domMessage">Uyğun daşı seç və masanın açıq ucuna qoy.</p>
     </div>
-    <div class="dom-footer-note">Botla solo oyun hazırdır. Real oyunçularla online otaqlar üçün server bağlantısı ayrıca qurulmalıdır.</div>
+    <div class="dom-footer-note">Botlara qarşı solo oyun. Onlayn oyun üçün ayrıca server bağlantısı lazımdır.</div>
+    <div id="gameStage" class="game-stage" style="display:none"></div>
   </section>
   <section class="view" id="view-market"><div class="section-head"><div><h2>🛍️ CEO Battle Market</h2><p>Döyüş qəhrəmanlarını coin ilə aç, seç və arenada onların gücündən istifadə et.</p></div><div class="pill gold">🪙 <span id="marketCoins">20</span></div></div><div class="panel" style="margin-bottom:18px;background:linear-gradient(120deg,#241b4b,#102c43)"><div style="display:flex;align-items:center;gap:16px"><div style="font-size:48px">⚔️</div><div><h3 style="margin:0 0 5px">Qəhrəman seçimi</h3><p class="muted" style="margin:0">Hər qəhrəmanın canı, sürəti və hücum gücü fərqlidir. Bahalı qəhrəmanlar üçün coin topla!</p></div></div></div><div class="games-grid" id="marketGrid"></div><p class="notice">Qəhrəmanlar bu brauzerdə yadda saxlanılır. Qəhrəman almaqla coin xərclənir; seçilmiş qəhrəman döyüşdə istifadə olunur. Coin-lər real pul deyil.</p></section>
   <section class="view" id="view-records"><div class="section-head"><div><h2>🏆 Şəxsi rekordlar</h2><p>İrəliləyişin bu cihazda saxlanılır.</p></div><button class="btn secondary small" onclick="resetStats()">Sıfırla</button></div><div class="stats"><div class="stat"><div class="stat-label">Qələbələr</div><div class="stat-value" id="recWins">0</div></div><div class="stat"><div class="stat-label">Oynanmış oyun</div><div class="stat-value" id="recPlays">0</div></div><div class="stat"><div class="stat-label">Ən yaxşı yaddaş</div><div class="stat-value" id="recMemory">—</div></div><div class="stat"><div class="stat-label">Açılmış əşyalar</div><div class="stat-value" id="recItems">0</div></div></div><div class="panel"><h3>📜 Son hadisələr</h3><div id="history" class="list"><div class="empty">Hələ rekord yoxdur. İlk oyunu qazan!</div></div></div><p class="notice">Qeyd: bu, şəxsi rekord cədvəlidir. Bütün istifadəçilər arasında onlayn reytinq üçün server və verilənlər bazası lazımdır.</p></section>
@@ -105,8 +108,8 @@ function reward(gameId,bonus=0){
   runRewarded=true;state.dailyGameRewards[today].push(gameId);
   // Köhnə tarixçəni məhdud saxla ki, yaddaş böyüməsin.
   Object.keys(state.dailyGameRewards).sort().slice(0,-7).forEach(k=>delete state.dailyGameRewards[k]);
-  state.wins++;state.xp+=8+bonus;state.coins+=5;state.wonGames=[...new Set([...state.wonGames,gameId])];addHistory('🏆 '+(games.find(g=>g.id===gameId)?.name||'Oyun')+' — qələbə (+25 XP, +20 coin)');if(state.wins===1){state.xp+=10;addHistory('🎯 İlk qələbə missiyası: +10 XP')}if(state.wonGames.length===3){state.coins+=15;addHistory('🧩 Kəşfiyyatçı bonusu: +15 coin');notify('3 fərqli oyunda qələbə! +15 coin 🎉')}save();notify('Qələbə! +8 XP və +5 coin qazandın 🏆');renderHistory()}
-function startGame(id){if(arena&&arena.raf)cancelAnimationFrame(arena.raf);arena=null;activeGame=id;runRewarded=false;state.plays++;save();let g=games.find(x=>x.id===id),stage=document.getElementById('gameStage');stage.innerHTML=`<span class="tag">${g.type}</span><h3>${g.emoji} ${g.name}</h3><div id="gameContent"></div>`;let c=document.getElementById('gameContent');
+  state.wins++;state.xp+=8+bonus;state.coins+=5;state.wonGames=[...new Set([...state.wonGames,gameId])];addHistory('🏆 '+(games.find(g=>g.id===gameId)?.name||'Oyun')+' — qələbə (+'+(8+bonus)+' XP, +5 coin)');if(state.wins===1){state.xp+=10;addHistory('🎯 İlk qələbə missiyası: +10 XP')}if(state.wonGames.length===3){state.coins+=15;addHistory('🧩 Kəşfiyyatçı bonusu: +15 coin');notify('3 fərqli oyunda qələbə! +15 coin 🎉')}save();notify('Qələbə! +8 XP və +5 coin qazandın 🏆');renderHistory()}
+function startGame(id){let g=games.find(x=>x.id===id);if(!g){notify('Bu oyun tapılmadı.');return}showView('games');if(arena&&arena.raf)cancelAnimationFrame(arena.raf);arena=null;activeGame=id;runRewarded=false;state.plays++;save();let stage=document.getElementById('gameStage');stage.style.display='block';stage.innerHTML=`<span class="tag">${g.type}</span><h3>${g.emoji} ${g.name}</h3><div id="gameContent"></div>`;let c=document.getElementById('gameContent');
 if(id==='dungeon'){c.innerHTML='<p class="muted">Üç qapıdan birinin arxasında xəzinə var. Birini seç!</p><div class="choice-grid">'+[1,2,3].map(n=>`<button class="choice" onclick="dungeon(${n})">🚪 Qapı ${n}</button>`).join('')+'</div><p id="gameMsg" class="muted"></p>'}
 if(id==='racing'){c.innerHTML='<p>Yolun qarşına çıxan maneədən yayın. Hər düzgün seçim bir mərhələdir.</p><div class="big-number" id="raceTrack">🏁</div><p id="raceMsg">Hazırsan?</p><div class="game-controls"><button class="btn" onclick="race(true)">⬅️ Sola dön</button><button class="btn" onclick="race(false)">Sağa dön ➡️</button></div>'}
 if(id==='escape'){let a=Math.floor(Math.random()*8)+2,b=Math.floor(Math.random()*8)+2;window.escapeAnswer=a+b;c.innerHTML=`<p>Qapı şifrəsi üçün hesabla:</p><div class="big-number">${a} + ${b} = ?</div><input class="input" id="escapeInput" type="number" placeholder="Cavab"><button class="btn" onclick="escapeCheck()">Şifrəni yoxla</button><p id="gameMsg" class="muted"></p>`}
@@ -161,16 +164,16 @@ function resetStats(){if(!confirm('Bütün irəliləyiş sıfırlansın? Bu əm�
 function toggleSound(){soundOn=!soundOn;state.sound=soundOn;save();notify(soundOn?'Səs aktivdir 🔊':'Səs söndürüldü 🔇')}
 function exportSave(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ceo-universe-save.json';a.click();URL.revokeObjectURL(url);notify('Saxlama faylı hazırdır 💾')}
 
-// CEO DOMINO — solo bot mode
-let dom={mode:'101',players:4,hand:[],bots:[],chain:[],turn:0,ends:[],started:false,roundOver:false,score:0,lastPlayer:0};
-function domSelectMode(mode){dom.mode=mode;document.getElementById('domModeTitle').textContent=mode==='101'?'101 Domino':'Telefon Domino';document.getElementById('domModeDesc').textContent=mode==='101'?'Əlindəki daşları birinci bitir və 101 xala çat.':'Telefon daşı yarananda dörd qol açılır. 365 xala çatan tərəf raundun sonunu gözləyir.';document.getElementById('domGameMode').textContent=mode==='101'?'101 DOMİNO':'TELEFON DOMİNO';}
+// CEO DOMINO — botlara qarşı oyun
+let dom={mode:'101',players:4,hand:[],bots:[],boneyard:[],chain:[],turn:0,ends:[],spinner:false,started:false,roundOver:false,score:0,passes:0};
+function domSelectMode(mode){dom.mode=mode;document.getElementById('domModeTitle').textContent=mode==='101'?'101 Domino':'Telefon Domino';document.getElementById('domModeDesc').textContent=mode==='101'?'Daşlarını birinci bitir və 101 xala çat.':'İkiqat daş masada dörd açıq qol yarada bilər. 365 xala çat.';document.getElementById('domGameMode').textContent=mode==='101'?'101 DOMİNO':'TELEFON DOMİNO';}
 function domPips(n){return n===0?'':Array(n).fill('•').join(' ')}
 function domTileHTML(a,b){return `<span class="dom-tile"><i>${domPips(a)||'·'}</i><i>${domPips(b)||'·'}</i></span>`}
-function domStart(){dom.players=Number(document.getElementById('domPlayers').value);dom.score=dom.score||0;domNewRound();document.getElementById('domLobby').style.display='none';document.getElementById('domGame').style.display='block';}
+function domStart(){dom.players=Number(document.getElementById('domPlayers').value);dom.score=0;domNewRound();document.getElementById('domLobby').style.display='none';document.getElementById('domGame').style.display='block';}
 function domNewRound(){
  const deck=[];for(let a=0;a<=6;a++)for(let b=a;b<=6;b++)deck.push([a,b]);
  for(let i=deck.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]]}
- let count=dom.players===2?7:7;dom.hand=deck.splice(0,count);dom.bots=Array.from({length:dom.players-1},(_,i)=>({name:'Bot '+(i+1),hand:deck.splice(0,count)}));dom.chain=[];dom.ends=[];dom.turn=0;dom.roundOver=false;dom.started=true;domRender();if(dom.players>1&&dom.turn!==0)setTimeout(domBotTurn,500);
+ const count=7;dom.hand=deck.splice(0,count);dom.bots=Array.from({length:dom.players-1},(_,i)=>({name:'Bot '+(i+1),hand:deck.splice(0,count)}));dom.boneyard=deck;dom.chain=[];dom.ends=[];dom.spinner=false;dom.turn=0;dom.passes=0;dom.roundOver=false;dom.started=true;document.getElementById('domMessage').textContent='Uyğun daşı seç. Uyğun daşın yoxdursa, daş götür və ya pas ver.';domRender();
 }
 function domRender(){
  document.getElementById('domHandCount').textContent=dom.hand.length;document.getElementById('domScore').textContent=dom.score;
@@ -178,25 +181,38 @@ function domRender(){
  document.getElementById('domChain').innerHTML=dom.chain.length?dom.chain.map(t=>domTileHTML(t[0],t[1])).join(''):'<span class="muted">İlk daşı qoy</span>';
  document.getElementById('domEnds').textContent=dom.ends.length?('Açıq uclar: '+dom.ends.join(' · ')):'Açıq uclar: —';
  document.getElementById('domHand').innerHTML=dom.hand.map((t,i)=>`<button onclick="domPlay(${i})" ${dom.roundOver||dom.turn!==0||!domCanPlay(t)?'disabled':''}>${domTileHTML(t[0],t[1])}</button>`).join('');
- document.getElementById('domTurn').textContent=dom.roundOver?'Raund bitdi':dom.turn===0?'Sənin növbəndir':'Bot oynayır…';
+ document.getElementById('domTurn').textContent=dom.roundOver?'Raund bitdi':dom.turn===0?'Sənin növbəndir':`Bot ${dom.turn} oynayır…`;
+ const draw=document.getElementById('domDraw');if(draw)draw.disabled=dom.roundOver||dom.turn!==0||dom.hand.some(domCanPlay)||dom.boneyard.length===0;
+ const pass=document.getElementById('domPassButton');if(pass)pass.disabled=dom.roundOver||dom.turn!==0||dom.hand.some(domCanPlay)||dom.boneyard.length>0;
 }
-function domCanPlay(t){if(!dom.chain.length)return true;return dom.ends.includes(t[0])||dom.ends.includes(t[1])}
-function domPut(tile,side){
- if(!dom.chain.length){dom.chain=[tile.slice()];dom.ends=[tile[0],tile[1]];return}
- let [a,b]=tile;
- if(side==='left'){let e=dom.ends[0];if(b===e){dom.chain.unshift(tile.slice())}else if(a===e){dom.chain.unshift([b,a])}else return;dom.ends[0]=dom.chain[0][0]}
- else {let e=dom.ends[1];if(a===e){dom.chain.push(tile.slice())}else if(b===e){dom.chain.push([b,a])}else return;dom.ends[1]=dom.chain[dom.chain.length-1][1]}
- // Telephone: the first double becomes the spinner; four arms are represented by four open ends.
- if(dom.mode==='phone'&&dom.chain.length===2&&a===b){dom.ends=[dom.ends[0],dom.ends[1],a,a];}
+function domCanPlay(t){return !dom.chain.length||dom.ends.some(e=>t[0]===e||t[1]===e)}
+function domPut(tile,endIndex){
+ if(!dom.chain.length){dom.chain=[tile.slice()];dom.ends=[tile[0],tile[1]];if(dom.mode==='phone'&&tile[0]===tile[1]){dom.spinner=true;dom.ends=[tile[0],tile[1],tile[0],tile[0]];}return true}
+ const e=dom.ends[endIndex];let other;
+ if(tile[0]===e)other=tile[1];else if(tile[1]===e)other=tile[0];else return false;
+ if(endIndex===0)dom.chain.unshift(tile[0]===e?tile.slice():[tile[1],tile[0]]);
+ else if(endIndex===1)dom.chain.push(tile[0]===e?tile.slice():[tile[1],tile[0]]);
+ else dom.chain.push(tile.slice());
+ dom.ends[endIndex]=other;
+ // Telefon rejimində ilk qoşulan qoşa daş dörd açıq qol yaradır.
+ if(dom.mode==='phone'&&!dom.spinner&&tile[0]===tile[1]){dom.spinner=true;dom.ends=[dom.ends[0],dom.ends[1],tile[0],tile[0]];}
+ return true;
 }
-function domPlay(i){if(dom.roundOver||dom.turn!==0)return;let tile=dom.hand[i];if(!tile)return;if(!dom.chain.length){dom.hand.splice(i,1);domPut(tile,'right')}else{let side=dom.ends[0]===tile[0]||dom.ends[0]===tile[1]?'left':'right';dom.hand.splice(i,1);domPut(tile,side)}if(!dom.hand.length){domRoundEnd(true);return}dom.turn=1;domRender();setTimeout(domBotTurn,650)}
+function domBestEnd(tile){return dom.ends.findIndex(e=>tile[0]===e||tile[1]===e)}
+function domPlay(i){if(dom.roundOver||dom.turn!==0)return;const tile=dom.hand[i];if(!tile)return;const side=dom.chain.length?domBestEnd(tile):1;if(dom.chain.length&&side<0)return;dom.hand.splice(i,1);domPut(tile,side);dom.passes=0;if(!dom.hand.length){domRoundEnd(0);return}domAdvanceTurn();}
+function domAdvanceTurn(){if(dom.roundOver)return;dom.turn=(dom.turn+1)%dom.players;domRender();if(dom.turn!==0)setTimeout(domBotTurn,500);}
 function domBotTurn(){
- if(dom.roundOver)return;let bot=dom.bots[0];if(!bot){dom.turn=0;domRender();return}
- let idx=bot.hand.findIndex(domCanPlay);if(idx>=0){let tile=bot.hand.splice(idx,1)[0];let side=!dom.chain.length?'right':(dom.ends[0]===tile[0]||dom.ends[0]===tile[1]?'left':'right');domPut(tile,side);if(!bot.hand.length){domRoundEnd(false);return}}
- dom.turn=0;domRender();if(!dom.hand.some(domCanPlay)&&bot.hand.some(domCanPlay)){dom.turn=1;domRender();setTimeout(domBotTurn,650)}
+ if(dom.roundOver||dom.turn===0)return;const bot=dom.bots[dom.turn-1];if(!bot)return;
+ let idx=bot.hand.findIndex(domCanPlay);
+ while(idx<0&&dom.boneyard.length){bot.hand.push(dom.boneyard.pop());idx=bot.hand.findIndex(domCanPlay)}
+ if(idx>=0){const tile=bot.hand.splice(idx,1)[0],side=dom.chain.length?domBestEnd(tile):1;domPut(tile,side);dom.passes=0;if(!bot.hand.length){domRoundEnd(dom.turn);return}}
+ else{dom.passes++;if(dom.passes>=dom.players){domRoundEnd(-1);return}}
+ domAdvanceTurn();
 }
-function domRoundEnd(playerWon){dom.roundOver=true;let msg=document.getElementById('domMessage');if(playerWon){let points=dom.bots.reduce((s,b)=>s+b.hand.reduce((x,t)=>x+t[0]+t[1],0),0);dom.score+=points;msg.textContent=`🎉 Raundu qazandın! Rəqiblərin daş xalları: ${points}. Sənin hesabın: ${dom.score}.`;}else{let points=dom.hand.reduce((s,t)=>s+t[0]+t[1],0);dom.score+=points;msg.textContent=`Raund bitdi. Əlində qalan daşların xalı: ${points}.`;}if(dom.mode==='101'&&dom.score>=101){msg.textContent+=' 101 xala çatdın — qalib!';}if(dom.mode==='phone'&&dom.score>=365){msg.textContent+=' 365 xala çatmısan; yekun üçün raund sonunu gözlə.';}domRender();}
-function domPass(){if(dom.roundOver)return;if(dom.hand.some(domCanPlay)){document.getElementById('domMessage').textContent='Uyğun daşın var — pas edə bilməzsən.';return}dom.turn=1;domRender();setTimeout(domBotTurn,500)}
+function domDraw(){if(dom.roundOver||dom.turn!==0||dom.hand.some(domCanPlay)||!dom.boneyard.length)return;dom.hand.push(dom.boneyard.pop());document.getElementById('domMessage').textContent='Bir daş götürdün. İndi uyğun daşın varsa, onu oyna.';domRender();}
+function domPass(){if(dom.roundOver||dom.turn!==0)return;if(dom.hand.some(domCanPlay)){document.getElementById('domMessage').textContent='Uyğun daşın var — pas edə bilməzsən.';return}if(dom.boneyard.length){document.getElementById('domMessage').textContent='Əvvəlcə qalan daşlardan götür.';return}dom.passes++;if(dom.passes>=dom.players){domRoundEnd(-1);return}domAdvanceTurn();}
+function domRoundEnd(winner){dom.roundOver=true;const msg=document.getElementById('domMessage');const allHands=[dom.hand,...dom.bots.map(b=>b.hand)];if(winner>=0){const points=allHands.reduce((sum,h,i)=>sum+(i===winner?0:h.reduce((v,t)=>v+t[0]+t[1],0)),0);dom.score+=points;msg.textContent=`🎉 ${winner===0?'Raundu qazandın!':'Bot '+winner+' raundu qazandı.'} Rəqiblərin qalan daş xalı: ${points}. Hesab: ${dom.score}.`;}else{const totals=allHands.map(h=>h.reduce((v,t)=>v+t[0]+t[1],0));const low=Math.min(...totals);const best=totals.indexOf(low);const points=totals.reduce((sum,v,i)=>sum+(i===best?0:v),0);dom.score+=best===0?points:0;msg.textContent=`Oyun bağlandı. Ən az xal ${best===0?'səndədir':'Bot '+best+'-dədir'} (${low}).`;}
+ if(dom.mode==='101'&&dom.score>=101)msg.textContent+=' 101 xala çatdın!';if(dom.mode==='phone'&&dom.score>=365)msg.textContent+=' 365 xala çatdın!';domRender();}
 
 renderStats();renderHistory();
 </script>
